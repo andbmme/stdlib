@@ -86,9 +86,9 @@ partition,utils/bifurcate
 reduce,utils/reduce
 reduceRight,utils/reduce-right
 reject,(planned)
-sample,math/random
+sample,random/sample
 sampleSize,N/A
-shuffle,math/random
+shuffle,random/shuffle
 size,N/A
 some,utils/any-by
 sortBy,(planned)
@@ -129,7 +129,7 @@ isArguments,assert/is-arguments
 isArray,assert/is-array
 isArrayBuffer,assert/is-arraybuffer
 isArrayLike,assert/is-array-like
-isArrayLikeObject,(planned)
+isArrayLikeObject,assert/is-array-like-object
 isBoolean,assert/is-boolean
 isBuffer,assert/is-buffer
 isDate,assert/is-date-object
@@ -138,7 +138,7 @@ isEmpty,assert/is-empty-object and assert/is-empty-array
 isEqual,(planned)
 isEqualWith,N/A
 isError,assert/is-error
-isFinite,(planned)
+isFinite,assert/is-finite
 isFunction,assert/is-function
 isInteger,assert/is-integer
 isLength,N/A
@@ -189,7 +189,7 @@ sum,(planned)
 sumBy,(maybe)
 clamp,(planned)
 inRange,(planned)
-random,math/base/random/*
+random,random/base/*
 assign,utils/merge
 assignIn,(maybe)
 assignInWith,N/A
@@ -269,7 +269,7 @@ truncate,(planned)
 unescape,(planned)
 upperCase,string/uppercase
 upperFirst,(planned)
-words,(planned)
+words,nlp/tokenize
 attempt,utils/try-function
 bindAll,(maybe)
 cond,N/A

@@ -1,18 +1,51 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VERBOSITY #
 
 ifndef VERBOSE
 	QUIET := @
+else
+	QUIET :=
 endif
 
 
 # GENERAL VARIABLES #
 
 # Define supported Node.js versions:
-NODE_VERSIONS ?= '0.10 0.12 1 2 3 4 5 6 7 8 9 node'
+NODE_VERSIONS ?= '0.10 0.12 1 2 3 4 5 6 7 8 9 10 11 12 13 node'
 
 # Define a license SPDX identifier whitelist:
 LICENSES_WHITELIST ?= 'Apache-2.0,Artistic-2.0,BSD-2-Clause,BSD-3-Clause,BSL-1.0,CC0-1.0,ISC,MIT,MPL-2.0,Unlicense,WTFPL'
+
+# Define keywords identifying source annotations:
+KEYWORDS ?= 'TODO|FIXME|WARNING|HACK|NOTE|OPTIMIZE'
+
+# Indicate whether to "fast" fail when linting, running tests, etc:
+ifndef FAST_FAIL
+	FAIL_FAST := true
+else
+ifeq ($(FAST_FAIL), 0)
+	FAIL_FAST := false
+else
+	FAIL_FAST := true
+endif
+endif
 
 
 # ENVIRONMENTS #
@@ -38,21 +71,31 @@ endif
 endif
 endif
 
-# Define whether the make commands are running on a hosted continuous integration service:
+# Define whether the `make` commands are running on a hosted continuous integration service:
 TRAVIS ?=
 APPVEYOR ?=
+CIRCLECI ?=
+GITHUB ?=
 ifeq ($(TRAVIS), true)
 	CI_SERVICE ?= travis
 else
 ifeq ($(APPVEYOR), true)
 	CI_SERVICE ?= appveyor
 else
+ifeq ($(CIRCLECI), true)
+	CI_SERVICE ?= circle
+else
+ifeq ($(GITHUB), true)
+	CI_SERVICE ?= github
+else
 	CI_SERVICE ?= none
 endif
 endif
+endif
+endif
 
 
-# TOOLS #
+# OPTIONS #
 
 # Define the test runner to use when running JavaScript tests:
 JAVASCRIPT_TEST_RUNNER ?= tape
@@ -62,6 +105,12 @@ JAVASCRIPT_LINTER ?= eslint
 
 # Define the code coverage instrumentation utility:
 JAVASCRIPT_CODE_INSTRUMENTER ?= istanbul
+
+# Define the linter to use when linting TypeScript files:
+TYPESCRIPT_LINTER ?= tslint
+
+# Define the linter to use when linting TypeScript declaration files:
+TYPESCRIPT_DECLARATIONS_LINTER ?= dtslint
 
 # Define the browser test runner:
 BROWSER_TEST_RUNNER ?= testling
@@ -77,6 +126,9 @@ COVERAGE_SERVICE ?= codecov
 
 # Define the linter to use when linting Markdown files:
 MARKDOWN_LINTER ?= remark
+
+# Define the linter to use when linting shell script files:
+SHELL_LINTER ?= shellcheck
 
 
 # COMMANDS #
@@ -168,6 +220,79 @@ RSCRIPT ?= Rscript
 # Define the command for getting the current project version:
 CURRENT_PROJECT_VERSION ?= $(NODE) -e "console.log( require( '$(ROOT_DIR)/package.json' ).version )"
 
+# Define the command for getting the project name:
+PROJECT_NAME ?= $(NODE) -e "console.log( require( '$(ROOT_DIR)/package.json' ).name )"
+
+# Define the command for getting the project GitHub URL:
+PROJECT_GITHUB_URL ?= $(NODE) -e "console.log( require( '$(ROOT_DIR)/package.json' ).repository.url )"
+
+# Define the command for determining the host architecture:
+NODE_HOST_ARCH ?= $(NODE) -e 'console.log( process.arch )'
+
+# Define the command for determining the host platform:
+NODE_HOST_PLATFORM ?= $(NODE) -e 'console.log( process.platform )'
+
+
+# TOOLS #
+
+# Define the path to the [`remark`][1] executable.
+#
+# To install `remark`:
+#
+# ```bash
+# $ npm install remark-cli
+# ```
+#
+# [1]: https://github.com/wooorm/remark/
+REMARK ?= $(BIN_DIR)/remark
+
+# Define the path to the local remark plugins directory:
+REMARK_LOCAL_PLUGINS_DIR ?= $(TOOLS_PKGS_DIR)/remark/plugins
+
+# Define the path to the [`browserify`][1] executable.
+#
+# To install `browserify`:
+#
+# ```bash
+# $ npm install browserify
+# ```
+#
+# [1]: https://github.com/browserify/browserify
+BROWSERIFY ?= $(BIN_DIR)/browserify
+
+# Define the path to the [`tap-spec`][1] executable.
+#
+# To install `tap-spec`:
+#
+# ```bash
+# $ npm install tap-spec
+# ```
+#
+# [1]: https://github.com/scottcorgan/tap-spec
+TAP_REPORTER ?= $(BIN_DIR)/tap-spec
+
+# Define the path to the [`tap-summary`][1] executable.
+#
+# To install `tap-summary`:
+#
+# ```bash
+# $ npm install tap-summary
+# ```
+#
+# [1]: https://github.com/zoubin/tap-summary
+TAP_SUMMARY ?= $(BIN_DIR)/tap-summary
+
+# Define the path to the [`tap-xunit`][1] executable.
+#
+# To install `tap-xunit`:
+#
+# ```bash
+# $ npm install tap-xunit
+# ```
+#
+# [1]: https://github.com/aghassemi/tap-xunit
+TAP_XUNIT ?= $(BIN_DIR)/tap-xunit
+
 
 # COMPILERS #
 
@@ -234,7 +359,7 @@ BLAS_DIR ?=
 DEPS_BUILD_DIR ?= $(DEPS_DIR)/build
 
 # Define the Boost version:
-DEPS_BOOST_VERSION ?= 1.62.0
+DEPS_BOOST_VERSION ?= 1.69.0
 
 # Generate a version slug:
 deps_boost_version_slug := $(subst .,_,$(DEPS_BOOST_VERSION))
@@ -329,11 +454,29 @@ DEPS_EMSDK_BUILD_OUT ?= $(DEPS_BUILD_DIR)/emsdk
 # Define the Emscripten SDK version:
 DEPS_EMSDK_VERSION ?= incoming
 
+# Define the path to Emscripten:
+DEPS_EMSDK_EMSCRIPTEN ?= $(DEPS_EMSDK_BUILD_OUT)/emscripten/$(DEPS_EMSDK_VERSION)
+
+# Define the path to the Emscripten C compiler:
+DEPS_EMSDK_EMSCRIPTEN_EMCC ?= $(DEPS_EMSDK_EMSCRIPTEN)/emcc
+
+# Define the path to the Emscripten C++ compiler:
+DEPS_EMSDK_EMSCRIPTEN_EMXX ?= $(DEPS_EMSDK_EMSCRIPTEN)/em++
+
 # Define the Binaryen version:
 DEPS_EMSDK_BINARYEN_VERSION ?= master
 
 # Define the output path when building the WebAssembly Binary Toolkit (WABT):
 DEPS_WABT_BUILD_OUT ?= $(DEPS_BUILD_DIR)/wabt
+
+# Define the path to the utility for converting WebAssembly binary files to the WebAssembly text format:
+DEPS_WABT_WASM2WAT ?= $(DEPS_WABT_BUILD_OUT)/wasm2wat
+
+# Define the path to the utility for converting WebAssembly text format files to the WebAssembly binary format:
+DEPS_WABT_WAT2WASM ?= $(DEPS_WABT_BUILD_OUT)/wat2wasm
+
+# Define the path to the utility for linking (merging) multiple WebAssembly files:
+DEPS_WABT_WASM_LINK ?= $(DEPS_WABT_BUILD_OUT)/wasm-link
 
 # Define the Cephes distribution to build (netlib, moshier, cephes-2.8):
 DEPS_CEPHES_DIST ?= moshier
@@ -342,32 +485,32 @@ DEPS_CEPHES_DIST ?= moshier
 #
 # ## Notes
 #
-# * For the `netlib` distribution, the list may include the following libraries:
+# -   For the `netlib` distribution, the list may include the following libraries:
 #
-#   - 128bit
-#   - bessel
-#   - c9x-complex
-#   - cmath
-#   - cprob
-#   - ellf
-#   - eval
-#   - ieee
-#   - ldouble
-#   - linalg
-#   - ode
-#   - misc
-#   - polyn
-#   - qfloat
-#   - remes
-#   - single
+#     -   128bit
+#     -   bessel
+#     -   c9x-complex
+#     -   cmath
+#     -   cprob
+#     -   ellf
+#     -   eval
+#     -   ieee
+#     -   ldouble
+#     -   linalg
+#     -   ode
+#     -   misc
+#     -   polyn
+#     -   qfloat
+#     -   remes
+#     -   single
 #
-# * For the `moshier` distribution, the list may include the following libraries:
+# -   For the `moshier` distribution, the list may include the following libraries:
 #
-#   - 128bit
-#   - double
-#   - ldouble
-#   - qlib
-#   - single
+#     -   128bit
+#     -   double
+#     -   ldouble
+#     -   qlib
+#     -   single
 #
 ifeq ($(DEPS_CEPHES_DIST), netlib)
 	DEPS_CEPHES_LIBS ?= \
@@ -395,8 +538,8 @@ else
 endif
 endif
 
-# Define the Electron version:
-DEPS_ELECTRON_VERSION ?= 1.7.6
+# Define the Electron version (NOTE: whenever updated, update the `david` configuration file):
+DEPS_ELECTRON_VERSION ?= 6.0.10
 
 # Generate a version slug:
 deps_electron_version_slug := $(subst .,_,$(DEPS_ELECTRON_VERSION))
@@ -405,7 +548,19 @@ deps_electron_version_slug := $(subst .,_,$(DEPS_ELECTRON_VERSION))
 DEPS_ELECTRON_BUILD_OUT ?= $(DEPS_BUILD_DIR)/electron_$(deps_electron_version_slug)
 
 # Host architecture:
-DEPS_ELECTRON_ARCH := $(shell command -v $(NODE) >/dev/null 2>&1 && $(NODE) -e 'console.log( process.arch )')
+DEPS_ELECTRON_ARCH := $(shell command -v $(NODE) >/dev/null 2>&1 && $(NODE_HOST_ARCH))
 
 # Host platform:
-DEPS_ELECTRON_PLATFORM := $(shell command -v $(NODE) >/dev/null 2>&1 && $(NODE) -e 'console.log( process.platform )')
+DEPS_ELECTRON_PLATFORM := $(shell command -v $(NODE) >/dev/null 2>&1 && $(NODE_HOST_PLATFORM))
+
+# Define the shellcheck version:
+DEPS_SHELLCHECK_VERSION ?= 0.5.0
+
+# Generate a version slug:
+deps_shellcheck_version_slug := $(subst .,_,$(DEPS_SHELLCHECK_VERSION))
+
+# Define the output path when building shellcheck:
+DEPS_SHELLCHECK_BUILD_OUT ?= $(DEPS_BUILD_DIR)/shellcheck_$(deps_shellcheck_version_slug)
+
+# Host platform:
+DEPS_SHELLCHECK_PLATFORM := $(shell command -v $(NODE) >/dev/null 2>&1 && $(NODE_HOST_PLATFORM))

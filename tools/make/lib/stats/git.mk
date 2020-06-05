@@ -1,8 +1,26 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
+
 # When adding targets to this file, ensure they are added in alphabetical order according to target name.
 
 # VARIABLES #
 
-# Define the path to the directory containing scripts for mining the git repository:
+# Define the path to the directory containing scripts for mining the Git repository:
 GIT_SCRIPTS_DIR ?= $(TOOLS_DIR)/git/scripts
 
 # Define a directory path for when listing contributors:
@@ -58,6 +76,17 @@ stats-additions-per-weekday:
 .PHONY: stats-additions-per-weekday
 
 
+# Compute additions per year.
+#
+# This target computes the number of additions committed per year.
+
+stats-additions-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/additions_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/additions_per_year
+
+.PHONY: stats-additions-per-year
+
+
 # Compute author additions per day.
 #
 # This target computes the number of additions committed per day per author.
@@ -89,6 +118,17 @@ stats-author-additions-per-weekday:
 	$(QUIET) $(GIT_SCRIPTS_DIR)/author_additions_per_weekday
 
 .PHONY: stats-author-additions-per-weekday
+
+
+# Compute author additions per year.
+#
+# This target computes the number of additions committed per year per author.
+
+stats-author-additions-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/author_additions_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/author_additions_per_year
+
+.PHONY: stats-author-additions-per-year
 
 
 # Compute author commit intervals.
@@ -146,6 +186,17 @@ stats-author-commits-per-weekday:
 .PHONY: stats-author-commits-per-weekday
 
 
+# Compute author commits per year.
+#
+# This target computes the number of commits per year per author.
+
+stats-author-commits-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/author_commits_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/author_commits_per_year
+
+.PHONY: stats-author-commits-per-year
+
+
 # Compute author days active.
 #
 # This target computes the number of days each author has committed.
@@ -190,6 +241,17 @@ stats-author-deletions-per-weekday:
 .PHONY: stats-author-deletions-per-weekday
 
 
+# Compute author deletions per year.
+#
+# This target computes the number of deletions committed per year per author.
+
+stats-author-deletions-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/author_deletions_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/author_deletions_per_year
+
+.PHONY: stats-author-deletions-per-year
+
+
 # Compute number of filenames changed per day per author.
 #
 # This target computes the number of filename changes per day per author.
@@ -223,6 +285,17 @@ stats-author-filename-changes-per-weekday:
 .PHONY: stats-author-filename-changes-per-weekday
 
 
+# Compute number of filenames changed per year per author.
+#
+# This target computes the number of filename changes per year per author.
+
+stats-author-filename-changes-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/author_filename_changes_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/author_filename_changes_per_year
+
+.PHONY: stats-author-filename-changes-per-year
+
+
 # Compute author number of changed files per day.
 #
 # This target computes the number of files changed per day per author.
@@ -254,6 +327,17 @@ stats-author-files-changed-per-weekday:
 	$(QUIET) $(GIT_SCRIPTS_DIR)/author_files_changed_per_weekday
 
 .PHONY: stats-author-files-changed-per-weekday
+
+
+# Compute author number of changed files per year.
+#
+# This target computes the number of files changed per year per author.
+
+stats-author-files-changed-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/author_files_changed_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/author_files_changed_per_year
+
+.PHONY: stats-author-files-changed-per-year
 
 
 # Compute number of library packages per day per author.
@@ -386,6 +470,17 @@ stats-author-shortstats-per-month:
 	$(QUIET) $(GIT_SCRIPTS_DIR)/author_shortstats_per_month
 
 .PHONY: stats-author-shortstats-per-month
+
+
+# Compute author short stats per year.
+#
+# This target computes summary statistic per year per author.
+
+stats-author-shortstats-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/author_shortstats_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/author_shortstats_per_year
+
+.PHONY: stats-author-shortstats-per-year
 
 
 # Compute number of tools packages per day per author.
@@ -795,6 +890,17 @@ stats-deletions-per-weekday:
 .PHONY: stats-deletions-per-weekday
 
 
+# Compute deletions per year.
+#
+# This target computes the number of deletions per year.
+
+stats-deletions-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/deletions_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/deletions_per_year
+
+.PHONY: stats-deletions-per-year
+
+
 # Compute filenames changed.
 #
 # This target prints filename changes.
@@ -850,6 +956,17 @@ stats-filename-changes-per-weekday:
 .PHONY: stats-filename-changes-per-weekday
 
 
+# Compute filenames changed per year.
+#
+# This target computes the number of filenames changed per year.
+
+stats-filename-changes-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/filename_changes_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/filename_changes_per_year
+
+.PHONY: stats-filename-changes-per-year
+
+
 # Compute files changed per day.
 #
 # This target computes the number of files changed per day.
@@ -892,6 +1009,17 @@ stats-files-changed-per-weekday:
 	$(QUIET) $(GIT_SCRIPTS_DIR)/files_changed_per_weekday
 
 .PHONY: stats-files-changed-per-weekday
+
+
+# Compute files changed per year.
+#
+# This target computes the number of files changed per year.
+
+stats-files-changed-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/files_changed_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/files_changed_per_year
+
+.PHONY: stats-files-changed-per-year
 
 
 # Compute number of library packages added per day.
@@ -1541,6 +1669,17 @@ stats-shortstats-per-weekday:
 	$(QUIET) $(GIT_SCRIPTS_DIR)/shortstats_per_weekday
 
 .PHONY: stats-shortstats-per-weekday
+
+
+# Compute summary statistics per year.
+#
+# This target computes summary statistics for each year.
+
+stats-shortstats-per-year:
+	$(QUIET) $(MAKE_EXECUTABLE) $(GIT_SCRIPTS_DIR)/shortstats_per_year
+	$(QUIET) $(GIT_SCRIPTS_DIR)/shortstats_per_year
+
+.PHONY: stats-shortstats-per-year
 
 
 # Compute additions per commit standard deviation.

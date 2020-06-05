@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -16,23 +33,15 @@ GIT_COMMIT_SRC_URLS ?= $(GIT_COMMIT) -m $(GIT_COMMIT_MESSAGE_SRC_URLS)
 # Define the path relative to a processed Markdown file for storing equation resources:
 EQUATION_RESOURCES_PATH ?= ./docs/img/
 
-# Define the path to the [remark][1] executable.
-#
-# To install remark:
-#     $ npm install remark-cli
-#
-# [1]: https://github.com/wooorm/remark/
-
-REMARK ?= $(BIN_DIR)/remark
-
 # Define the path to the remark configuration file:
 REMARK_EQUATIONS_CONF ?= $(CONFIG_DIR)/remark/.remarkrc.js
 
 # Define the path to the remark ignore file:
-REMARK_EQUATIONS_IGNORE ?= $(CONFIG_DIR)/remark/.remarkignore
+# REMARK_EQUATIONS_IGNORE ?= $(CONFIG_DIR)/remark/.remarkignore FIXME
+REMARK_EQUATIONS_IGNORE ?= $(ROOT_DIR)/.remarkignore
 
 # Define the path to the local remark plugins directory:
-REMARK_LOCAL_PLUGINS_DIR ?= $(TOOLS_DIR)/remark/plugins
+REMARK_LOCAL_PLUGINS_DIR ?= $(TOOLS_PKGS_DIR)/remark/plugins
 
 # Define the path to a plugin which processes Markdown equation comments:
 REMARK_IMG_EQUATIONS_PLUGIN ?= $(REMARK_LOCAL_PLUGINS_DIR)/remark-img-equations
@@ -55,13 +64,13 @@ REMARK_STDLIB_URLS_PLUGIN_SETTINGS ?=
 REMARK_STDLIB_URLS_PLUGIN_FLAGS ?= --use $(REMARK_STDLIB_URLS_PLUGIN)=$(REMARK_STDLIB_URLS_PLUGIN_SETTINGS)
 
 # Define command-line options when invoking the remark executable:
-REMARK_FLAGS ?= \
+REMARK_EQUATIONS_FLAGS ?= \
 	--ext $(MARKDOWN_FILENAME_EXT) \
 	--rc-path $(REMARK_EQUATIONS_CONF) \
 	--ignore-path $(REMARK_EQUATIONS_IGNORE)
 
 # Define the remark output option:
-REMARK_OUTPUT_FLAG ?= --output
+REMARK_EQUATIONS_OUTPUT_FLAG ?= --output
 
 
 # TARGETS #
@@ -70,24 +79,24 @@ REMARK_OUTPUT_FLAG ?= --output
 #
 # This target processes Markdown files containing Markdown equation elements as follows:
 #
-# 1. Files containing equation comments are transformed to include equation elements.
-# 2. SVG files are generated for each equation.
-# 3. Processed files are committed to source control.
-# 4. Resource URLs are inserted in image equation elements.
-# 5. Processed files are committed to source control.
+# 1.  Files containing equation comments are transformed to include equation elements.
+# 2.  SVG files are generated for each equation.
+# 3.  Processed files are committed to source control.
+# 4.  Resource URLs are inserted in image equation elements.
+# 5.  Processed files are committed to source control.
 
 markdown-equations: $(NODE_MODULES)
-	$(QUIET) $(REMARK) $(MARKDOWN_FILES) \
-		$(REMARK_FLAGS) \
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(REMARK) $(MARKDOWN_FILES) \
+		$(REMARK_EQUATIONS_FLAGS) \
 		$(REMARK_IMG_EQUATIONS_PLUGIN_FLAGS) \
 		$(REMARK_SVG_EQUATIONS_PLUGIN_FLAGS) \
-		$(REMARK_OUTPUT_FLAG) && \
+		$(REMARK_EQUATIONS_OUTPUT_FLAG) && \
 	$(GIT_ADD) && \
 	$(GIT_COMMIT_EQUATIONS) && \
-	$(REMARK) $(MARKDOWN_FILES) \
-		$(REMARK_FLAGS) \
+	NODE_PATH="$(NODE_PATH)" $(REMARK) $(MARKDOWN_FILES) \
+		$(REMARK_EQUATIONS_FLAGS) \
 		$(REMARK_IMG_EQUATIONS_SRC_URLS_PLUGIN_FLAGS) \
-		$(REMARK_OUTPUT_FLAG) && \
+		$(REMARK_EQUATIONS_OUTPUT_FLAG) && \
 	$(GIT_ADD) && \
 	$(GIT_COMMIT_SRC_URLS)
 
@@ -99,10 +108,10 @@ markdown-equations: $(NODE_MODULES)
 # This target transforms Markdown files containing equation comment markup to include image equation elements.
 
 markdown-img-equations: $(NODE_MODULES)
-	$(QUIET) $(REMARK) $(MARKDOWN_FILES) \
-		$(REMARK_FLAGS) \
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(REMARK) $(MARKDOWN_FILES) \
+		$(REMARK_EQUATIONS_FLAGS) \
 		$(REMARK_IMG_EQUATIONS_PLUGIN_FLAGS) \
-		$(REMARK_OUTPUT_FLAG)
+		$(REMARK_EQUATIONS_OUTPUT_FLAG)
 
 .PHONY: markdown-img-equations
 
@@ -112,8 +121,8 @@ markdown-img-equations: $(NODE_MODULES)
 # This target generates SVG equation files from Markdown equation comments.
 
 markdown-svg-equations: $(NODE_MODULES)
-	$(QUIET) $(REMARK) $(MARKDOWN_FILES) \
-		$(REMARK_FLAGS) \
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(REMARK) $(MARKDOWN_FILES) \
+		$(REMARK_EQUATIONS_FLAGS) \
 		$(REMARK_SVG_EQUATIONS_PLUGIN_FLAGS)
 
 .PHONY: markdown-svg-equations
@@ -124,10 +133,10 @@ markdown-svg-equations: $(NODE_MODULES)
 # This target inserts resource URLs into Markdown image equation elements. Note that this target assumes that image equation files already exist and have been committed to source control.
 
 markdown-img-equations-src-urls: $(NODE_MODULES)
-	$(QUIET) $(REMARK) $(MARKDOWN_FILES) \
-		$(REMARK_FLAGS) \
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(REMARK) $(MARKDOWN_FILES) \
+		$(REMARK_EQUATIONS_FLAGS) \
 		$(REMARK_IMG_EQUATIONS_SRC_URLS_PLUGIN_FLAGS) \
-		$(REMARK_OUTPUT_FLAG)
+		$(REMARK_EQUATIONS_OUTPUT_FLAG)
 
 .PHONY: markdown-img-equations-src-urls
 
@@ -135,12 +144,14 @@ markdown-img-equations-src-urls: $(NODE_MODULES)
 # Insert repository package URLs.
 #
 # This target resolves package identifiers to GitHub repository URLs and updates Markdown files accordingly.
+#
+# TODO: create separate environment variables for this recipe, rather than using "equations" environment variables
 
 markdown-stdlib-urls: $(NODE_MODULES)
-	$(QUIET) $(REMARK) $(MARKDOWN_FILES) \
-		$(REMARK_FLAGS) \
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(REMARK) $(MARKDOWN_FILES) \
+		$(REMARK_EQUATIONS_FLAGS) \
 		$(REMARK_STDLIB_URLS_PLUGIN_FLAGS) \
-		$(REMARK_OUTPUT_FLAG)
+		$(REMARK_EQUATIONS_OUTPUT_FLAG)
 
 .PHONY: markdown-stdlib-urls
 

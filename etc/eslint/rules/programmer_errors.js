@@ -1,3 +1,21 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 'use strict';
 
 /**
@@ -12,7 +30,6 @@ var rules = {};
 *
 * @name for-direction
 * @memberof rules
-* @typeof rules
 * @type {string}
 * @default 'error'
 * @see [for-direction]{@link http://eslint.org/docs/rules/for-direction}
@@ -32,6 +49,44 @@ var rules = {};
 * }
 */
 rules[ 'for-direction' ] = 'error';
+
+/**
+* Require a `return` statement in property getters.
+*
+* @name 'getter-return'
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [getter-return]{@link https://eslint.org/docs/rules/getter-return}
+*
+* @example
+* // Bad...
+* Object.defineProperty( {}, 'foo', {
+*     'get': function get() {
+*         // No return...
+*     }
+* });
+*
+* @example
+* // Good...
+* Object.defineProperty( {}, 'foo', {
+*     'get': function get() {
+*         return 'bar'
+*     }
+* });
+*/
+rules[ 'getter-return' ] = 'error';
+
+/**
+* Never allow using an async function as a `Promise` executor.
+*
+* @name no-async-promise-executor)
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [no-async-promise-executor)]{@link https://eslint.org/docs/rules/no-async-promise-executor}
+*/
+rules[ 'no-async-promise-executor' ] = 'error';
 
 /**
 * Warn when using `await` inside of loops.
@@ -163,14 +218,18 @@ rules[ 'no-control-regex' ] = 'error';
 *
 * @example
 * // Bad...
-* if ( bool === true ) {
-*     debugger;
-*     return bool;
+* function foo( bool ) {
+*     if ( bool === true ) {
+*         debugger;
+*         return bool;
+*     }
 * }
 *
 * @example
-* if ( bool === true ) {
-*     return bool;
+* function foo( bool ) {
+*     if ( bool === true ) {
+*         return bool;
+*     }
 * }
 */
 rules[ 'no-debugger' ] = 'error';
@@ -263,25 +322,6 @@ rules[ 'no-dupe-keys' ] = 'error';
 rules[ 'no-duplicate-case' ] = 'error';
 
 /**
-* Never allow empty character classes in regular expression literals.
-*
-* @name no-empty-character-class
-* @memberof rules
-* @type {string}
-* @default 'error'
-* @see [no-empty-character-class]{@link http://eslint.org/docs/rules/no-empty-character-class}
-*
-* @example
-* // Bad...
-* var re = /^abc[]/;
-*
-* @example
-* // Good...
-* var re = /^abc[a-z]/;
-*/
-rules[ 'no-empty-character-class' ] = 'error';
-
-/**
 * Never allow empty block statements, including when using `try/catch`.
 *
 * @name no-empty
@@ -315,6 +355,25 @@ rules[ 'no-empty-character-class' ] = 'error';
 * }
 */
 rules[ 'no-empty' ] = 'error';
+
+/**
+* Never allow empty character classes in regular expression literals.
+*
+* @name no-empty-character-class
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [no-empty-character-class]{@link http://eslint.org/docs/rules/no-empty-character-class}
+*
+* @example
+* // Bad...
+* var re = /^abc[]/;
+*
+* @example
+* // Good...
+* var re = /^abc[a-z]/;
+*/
+rules[ 'no-empty-character-class' ] = 'error';
 
 /**
 * Never allow reassignment of an exception parameter in a `catch` block.
@@ -437,6 +496,17 @@ rules[ 'no-extra-semi' ] = 'error';
 rules[ 'no-func-assign' ] = 'error';
 
 /**
+* Never allow assigning to imported bindings.
+*
+* @name no-import-assign
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [no-import-assign]{@link http://eslint.org/docs/rules/no-import-assign}
+*/
+rules[ 'no-import-assign' ] = 'error';
+
+/**
 * Never allow either function or variable declarations within inner block scopes.
 *
 * @name no-inner-declarations
@@ -508,6 +578,25 @@ rules[ 'no-invalid-regexp' ] = 'error';
 * @see [no-irregular-whitespace]{@link http://eslint.org/docs/rules/no-irregular-whitespace}
 */
 rules[ 'no-irregular-whitespace' ] = 'error';
+
+/**
+* Never allow characters which are made with multiple code points in character class syntax.
+*
+* @name no-misleading-character-class
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [no-misleading-character-class]{@link http://eslint.org/docs/rules/no-misleading-character-class}
+*
+* @example
+* // Bad...
+* var re = /^[👍]$/;
+*
+* @example
+* // Good...
+* var re = /^[👍]$/u;
+*/
+rules[ 'no-misleading-character-class' ] = 'error';
 
 /**
 * Never allow calling of global objects as functions.
@@ -670,23 +759,27 @@ rules[ 'no-unreachable' ] = 'error';
 *
 * @example
 * // Bad...
-* try {
-*     return 1;
-* } catch ( err ) {
-*     return 2;
-* } finally {
-*     return 3; // 3 is returned before 1
+* function foo() {
+*     try {
+*         return 1;
+*     } catch ( err ) {
+*         return 2;
+*     } finally {
+*         return 3; // 3 is returned before 1
+*     }
 * }
 *
 * @example
 * // Good...
 * var bool;
-* try {
-*     return 1;
-* } catch ( err ) {
-*     return 2;
-* } finally {
-*     bool = true;
+* function foo() {
+*     try {
+*         return 1;
+*     } catch ( err ) {
+*         return 2;
+*     } finally {
+*         bool = true;
+*     }
 * }
 */
 rules[ 'no-unsafe-finally' ] = 'error';
@@ -709,6 +802,17 @@ rules[ 'no-unsafe-finally' ] = 'error';
 * var x = 3 - 4;
 */
 rules[ 'no-unsafe-negation' ] = 'error';
+
+/**
+* Never allow assignments that can lead to race conditions due to usage of await or yield.
+*
+* @name require-atomic-updates
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [require-atomic-updates]{@link http://eslint.org/docs/rules/require-atomic-updates}
+*/
+rules[ 'require-atomic-updates' ] = 'error';
 
 /**
 * Never allow direct comparison with `NaN`.

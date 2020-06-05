@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -23,8 +40,12 @@ else
 ifeq ($(DEPS_ELECTRON_PLATFORM), freebsd)
 	deps_electron_path := dist/electron
 else
+ifeq ($(DEPS_ELECTRON_PLATFORM), sunos)
+	deps_electron_path := dist/electron
+else
 ifeq ($(DEPS_ELECTRON_PLATFORM), win32)
 	deps_electron_path := dist/electron.exe
+endif
 endif
 endif
 endif
@@ -34,7 +55,7 @@ endif
 deps_electron_index := 'var fs = require("fs");var path = require("path");var pathFile = path.join(__dirname, "path.txt");if (fs.existsSync(pathFile)){module.exports = path.join(__dirname, fs.readFileSync(pathFile, "utf-8"));} else {throw new Error("Electron failed to install correctly. Please try installing again.");}'
 
 # Define the contents of the Electron Node.js CLI:
-deps_electron_cli := '\#!/usr/bin/env node\nvar electron = require("./");var proc = require("child_process");var child = proc.spawn(electron, process.argv.slice(2), {"stdio": "inherit"});child.on("close", function (code) {process.exit(code);});'
+deps_electron_cli := '\#!/usr/bin/env node\nvar electron = require("./");var proc = require("child_process");var child = proc.spawn(electron, process.argv.slice(2), {"stdio": "inherit"});child.on("error", function (err) {console.error("Error: %%s", err.message);});child.on("close", function (code) {if (code !== 0) {console.error("Electron exited with a nonzero exit code: %%d", code);} process.exit(code);});'
 
 # Define the contents of the Electron Node.js `package.json`:
 deps_electron_package_json := '{"name":"@stdlib/electron","version":"VERSION","bin":{"electron":"cli.js"},"main":"index.js"}'

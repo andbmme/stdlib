@@ -5,6 +5,12 @@
 */
 
 /**
+* An array-like object (excluding string primitives).
+*
+* @typedef {(Array|String|Object)} ArrayLikeObject
+*/
+
+/**
 * A plain object; i.e., either `{}` or an object created via `Object.create( null )`.
 *
 * @typedef {Object} PlainObject
@@ -64,4 +70,12 @@
 * @typedef {RegExp} RegExp
 *
 * @see [RegExp]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp}
+*/
+
+/**
+* An iterator protocol-compliant object.
+*
+* @typeof {Object} Iterator
+*
+* @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
 */

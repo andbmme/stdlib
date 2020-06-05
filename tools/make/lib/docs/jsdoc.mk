@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -54,7 +71,10 @@ JSDOC_JSON_FLAGS ?= \
 # This target generates source HTML documentation from [JSDoc][1]-style comments using [JSDoc][1].
 #
 # To install JSDoc:
-#     $ npm install jsdoc
+#
+# ```bash
+# $ npm install jsdoc
+# ```
 #
 # [1]: http://usejsdoc.org/
 
@@ -71,7 +91,10 @@ jsdoc-html: $(NODE_MODULES)
 # This target generates JSDoc JSON from [JSDoc][1]-style comments.
 #
 # To install JSDoc:
-#     $ npm install jsdoc
+#
+# ```bash
+# $ npm install jsdoc
+# ```
 #
 # [1]: http://usejsdoc.org/
 
@@ -108,7 +131,10 @@ clean-jsdoc:
 # This target removes any current documentation and regenerates source HTML documentation from [JSDoc][1]-style comments.
 #
 # To install JSDoc:
-#     $ npm install jsdoc
+#
+# ```bash
+# $ npm install jsdoc
+# ```
 #
 # [1]: http://usejsdoc.org/
 
@@ -117,4 +143,3 @@ rebuild-jsdoc-html:
 	$(QUIET) $(MAKE) -f $(this_file) jsdoc-html
 
 .PHONY: rebuild-jsdoc-html
-

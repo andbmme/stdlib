@@ -1,8 +1,26 @@
 #!/usr/bin/env bash
 #
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # Build script to run continuous integration on [Circle CI][1].
 #
 # [1]: https://circleci.com
+
+# shellcheck disable=SC2181,SC2034,SC1091
 
 
 # DEPENDENCIES #
@@ -30,7 +48,7 @@ log_file='/var/log/circle-ci.log'
 
 # Determine the root project directory:
 root_dir=$(dirname "$0")/../../..
-root_dir=$(cd "${root_dir}" && echo $PWD)
+root_dir=$(cd "${root_dir}" && echo "$PWD")
 
 # Define the project source code directory:
 base_dir="${root_dir}/lib/node_modules"
@@ -40,6 +58,12 @@ tests_pattern='test*.js'
 
 # Define the pattern for filtering tests based on their file path:
 tests_filter='.*/.*'
+
+# Define the folder name for tests:
+tests_folder='test'
+
+# Define the folder name for test fixtures:
+tests_fixtures_folder="${tests_folder}/fixtures"
 
 # Define the directory path of top-level node module dependencies:
 node_modules="${root_dir}/node_modules"
@@ -53,6 +77,9 @@ dist_dir="${root_dir}/dist"
 # Define the directory path for external library dependencies:
 deps_dir="${root_dir}/deps"
 
+# Define the directory path for documentation:
+docs_dir="${root_dir}/docs"
+
 # Define the directory path for reports:
 reports_dir="${root_dir}/reports"
 
@@ -60,7 +87,7 @@ reports_dir="${root_dir}/reports"
 tools_dir="${root_dir}/tools"
 
 # Define the directory for project tools which are Node.js packages:
-tools_pkgs_dir="${base_dir}/_tools"
+tools_pkgs_dir="${base_dir}/@stdlib/_tools"
 
 # Define a heartbeat interval to periodically print messages in order to prevent Circle CI from prematurely ending a build due to long running commands:
 heartbeat_interval='30s'
@@ -126,7 +153,8 @@ create_dir() {
 #
 # $1 - log file path
 create_log_file() {
-	local owner=$(whoami)
+	local owner
+	owner=$(whoami)
 	echo "Creating an output log file: $1." >&2
 	sudo touch "$1"
 	sudo chown "${owner}:${owner}" "$1"
@@ -283,19 +311,48 @@ lint() {
 		echo 'Linting filenames failed.' >&2
 		return 1
 	fi
+	make lint-header-filenames >> "$1" 2>&1
+	if [[ "$?" -ne 0 ]]; then
+		echo 'Linting filenames failed.' >&2
+		return 1
+	fi
 	echo 'Linting package.json files...' >&2
 	make lint-pkg-json >> "$1" 2>&1
 	if [[ "$?" -ne 0 ]]; then
 		echo 'Linting package.json failed.' >&2
 		return 1
 	fi
-	echo 'Linting Markdown files...' >&2
-	make lint-markdown >> "$1" 2>&1
+	# FIXME: linting of Markdown files takes too long; need to speed-up via distributed tasks or only linting files which changed
+	# echo 'Linting Markdown files...' >&2
+	# make lint-markdown >> "$1" 2>&1
+	# if [[ "$?" -ne 0 ]]; then
+	# 	echo 'Linting Markdown failed.' >&2
+	# 	return 1
+	# fi
+	echo 'Linting passed.' >&2
+	return 0
+}
+
+# Tests the ability to install the project via npm.
+#
+# $1 - log file
+test_npm_install() {
+	echo 'Testing npm install...' >&2
+	make test-npm-install >> "$1" 2>&1
 	if [[ "$?" -ne 0 ]]; then
-		echo 'Linting Markdown failed.' >&2
+		echo 'npm install failed.' >&2
 		return 1
 	fi
-	echo 'Linting passed.' >&2
+	echo 'Successfully performed npm install.' >&2
+
+	echo 'Testing npm install (via GitHub)...' >&2
+	make test-npm-install-github >> "$1" 2>&1
+	if [[ "$?" -ne 0 ]]; then
+		echo 'npm install (via GitHub) failed.' >&2
+		return 1
+	fi
+	echo 'Successfully performed npm install (via GitHub).' >&2
+
 	return 0
 }
 
@@ -308,9 +365,9 @@ find_tests() {
 
 	# On Mac OSX, in order to use `|` and other regular expression operators, we need to use enhanced regular expression syntax (-E); see https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man7/re_format.7.html#//apple_ref/doc/man/7/re_format.
 	if [[ "${kernel}" = "Darwin" ]]; then
-		tests=$(find -E "${root_dir}" -name "${tests_pattern}" -regex "${tests_filter}" -not -path "${root_dir}/.*" -not -path "${node_modules}/*" -not -path "${tools_dir}/*" -not -path "${tools_pkgs_dir}/*" -not -path "${deps_dir}/*" -not -path "${build_dir}/*" -not -path "${dist_dir}/*" -not -path "${reports_dir}/*")
+		tests=$(find -E "${root_dir}" -name "${tests_pattern}" -regex "${tests_filter}" -not -path "${root_dir}/.*" -not -path "${node_modules}/*" -not -path "${tools_dir}/*" -not -path "${tools_pkgs_dir}/*" -not -path "${deps_dir}/*" -not -path "${docs_dir}/*" -not -path "${build_dir}/*" -not -path "${dist_dir}/*" -not -path "${reports_dir}/*" -not -path "${root_dir}/**/{tests_fixtures_folder}/*")
 	else
-		tests=$(find "${root_dir}" -regextype posix-extended -name "${tests_pattern}" -regex "${tests_filter}" -not -path "${root_dir}/.*" -not -path "${node_modules}/*" -not -path "${tools_dir}/*" -not -path "${tools_pkgs_dir}/*" -not -path "${deps_dir}/*" -not -path "${build_dir}/*" -not -path "${dist_dir}/*" -not -path "${reports_dir}/*")
+		tests=$(find "${root_dir}" -regextype posix-extended -name "${tests_pattern}" -regex "${tests_filter}" -not -path "${root_dir}/.*" -not -path "${node_modules}/*" -not -path "${tools_dir}/*" -not -path "${tools_pkgs_dir}/*" -not -path "${deps_dir}/*" -not -path "${docs_dir}/*" -not -path "${build_dir}/*" -not -path "${dist_dir}/*" -not -path "${reports_dir}/*" -not -path "${root_dir}/**/{tests_fixtures_folder}/*")
 	fi
 	echo "${tests}"
 }
@@ -320,8 +377,10 @@ find_tests() {
 # $1 - total number of nodes
 # $2 - node index
 allocate_tests() {
+	local tests
+
 	# Keep those tests (rows) where the VM index equals the modulo:
-	local tests=$(find_tests | sort | awk -v "n=$1" -v "i=$2" '{if (NR % n == i) printf "%s ", $0} END {print ""}')
+	tests=$(find_tests | sort | awk -v "n=$1" -v "i=$2" '{if (NR % n == i) printf "%s ", $0} END {print ""}')
 	echo "${tests}"
 }
 
@@ -335,6 +394,8 @@ run_tests() {
 	local slug
 
 	echo 'Running tests...' >&2
+
+	# shellcheck disable=SC2116
 	for test in $(echo "$1"); do
 		echo "Running test: ${test}" >&2
 
@@ -342,7 +403,7 @@ run_tests() {
 		path="${test#${base_dir}/}"
 
 		# Slugify the path (basic algorithm):
-		slug="$(echo ${path} | sed -e 's/[^[:alnum:]]/_/g' | tr -s '-' | tr A-Z a-z)"
+		slug=$(echo "${path}" | sed -e 's/[^[:alnum:]]/_/g' | tr -s '-' | tr '[:upper:]' '[:lower:]')
 
 		# Define the output log file path:
 		log_file="$2/test-results.${slug}.xml"
@@ -373,7 +434,7 @@ main() {
 	local len
 	local i
 
-	TASKS=(check_deps check_licenses lint)
+	TASKS=(check_deps check_licenses lint test_npm_install)
 	len="${#TASKS[@]}"
 
 	create_log_file "${log_file}"
@@ -414,7 +475,13 @@ main() {
 			if [[ "$?" -ne 0 ]]; then
 				on_error 1
 			fi
+		elif [[ "${task}" = "test_npm_install" ]]; then
+			test_npm_install "${log_file}"
+			if [[ "$?" -ne 0 ]]; then
+				on_error 1
+			fi
 		fi
+		# shellcheck disable=SC2003
 		i=$(expr "${i}" + "${len}")
 	done
 

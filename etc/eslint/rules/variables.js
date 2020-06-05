@@ -1,3 +1,21 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 'use strict';
 
 /**
@@ -30,35 +48,6 @@ var rules = {};
 * var x = 5;
 */
 rules[ 'init-declarations' ] = 'off';
-
-/**
-* Address IE8 bug in which the `catch` clause can overwrite a variable in the outer scope.
-*
-* @name no-catch-shadow
-* @memberof rules
-* @type {string}
-* @default 'error'
-* @see [no-catch-shadow]{@link http://eslint.org/docs/rules/no-catch-shadow}
-*
-* @example
-* // Bad...
-* var err = 'x';
-* try {
-*     throw new Error( 'beep' );
-* } catch( err ) {
-*     // Do something...
-* }
-*
-* @example
-* // Good...
-* var err = 'x';
-* try {
-*     throw new Error( 'beep' );
-* } catch( error ) {
-*     // Do something...
-* }
-*/
-rules[ 'no-catch-shadow' ] = 'error';
 
 /**
 * Never allow variables to be deleted; only properties.
@@ -112,6 +101,23 @@ rules[ 'no-label-var' ] = 'error';
 rules[ 'no-restricted-globals' ] = [ 'error', 'event', 'fdescribe' ];
 
 /**
+* Allow shadowing of global variable names in a local scope.
+*
+* @name no-shadow
+* @memberof rules
+* @type {Array}
+* @see [no-shadow]{@link http://eslint.org/docs/rules/no-shadow}
+*
+* @example
+* // Okay...
+* var x = 'beep';
+* function foo() {
+*     var x = 'boop';
+* }
+*/
+rules[ 'no-shadow' ] = 'off';
+
+/**
 * Never allow reassignment of restricted names.
 *
 * @name no-shadow-restricted-names
@@ -127,43 +133,6 @@ rules[ 'no-restricted-globals' ] = [ 'error', 'event', 'fdescribe' ];
 * }
 */
 rules[ 'no-shadow-restricted-names' ] = 'error';
-
-/**
-* Allow shadowing of variable names in a local scope.
-*
-* @name no-shadow
-* @memberof rules
-* @type {string}
-* @default 'off'
-* @see [no-shadow]{@link http://eslint.org/docs/rules/no-shadow}
-*
-* @example
-* // Okay...
-* var x = 'beep';
-* function foo() {
-*     var x = 'boop';
-* }
-*/
-rules[ 'no-shadow' ] = 'off';
-
-/**
-* Never allow a variable to be initialized as `undefined`.
-*
-* @name no-undef-init
-* @memberof rules
-* @type {string}
-* @default 'error'
-* @see [no-undef-init]{@link http://eslint.org/docs/rules/no-undef-init}
-*
-* @example
-* // Bad...
-* var x = undefined;
-*
-* @example
-* // Good...
-* var x;
-*/
-rules[ 'no-undef-init' ] = 'error';
 
 /**
 * Never allow undeclared variables.
@@ -183,6 +152,25 @@ rules[ 'no-undef-init' ] = 'error';
 * var x = 5;
 */
 rules[ 'no-undef' ] = 'error';
+
+/**
+* Never allow a variable to be initialized as `undefined`.
+*
+* @name no-undef-init
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [no-undef-init]{@link http://eslint.org/docs/rules/no-undef-init}
+*
+* @example
+* // Bad...
+* var x = undefined;
+*
+* @example
+* // Good...
+* var x;
+*/
+rules[ 'no-undef-init' ] = 'error';
 
 /**
 * Never allow the use of `undefined`.

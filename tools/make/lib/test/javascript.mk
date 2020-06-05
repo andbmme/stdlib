@@ -1,8 +1,25 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
 # Define test runner to use when running JavaScript tests across multiple Node.js versions:
-JAVASCRIPT_TEST_NODE_VERSIONS ?= $(TOOLS_DIR)/test/scripts/test_node_versions
+JAVASCRIPT_TEST_NODE_VERSIONS ?= $(TOOLS_DIR)/tests/scripts/test_node_versions
 
 # Define the command-line options to be used when invoking the versions runner:
 JAVASCRIPT_TEST_NODE_VERSIONS_FLAGS ?= \
@@ -44,8 +61,8 @@ test-javascript-local: $(NODE_MODULES)
 	$(QUIET) $(FIND_TESTS_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r test; do \
 		echo ''; \
 		echo "Running test: $$test"; \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test \
@@ -63,8 +80,8 @@ test-javascript-files-local: $(NODE_MODULES)
 	$(QUIET) for test in $(FILES); do \
 		echo ''; \
 		echo "Running test: $$test"; \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test \
@@ -82,8 +99,8 @@ test-javascript-summary: $(NODE_MODULES)
 	$(QUIET) $(FIND_TESTS_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r test; do \
 		echo ''; \
 		echo "Running test: $$test"; \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test \
@@ -101,8 +118,8 @@ test-javascript-files-summary: $(NODE_MODULES)
 	$(QUIET) for test in $(FILES); do \
 		echo ''; \
 		echo "Running test: $$test"; \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test \
@@ -118,8 +135,8 @@ test-javascript-files-summary: $(NODE_MODULES)
 
 test-javascript-tap: $(NODE_MODULES)
 	$(QUIET) $(FIND_TESTS_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r test; do \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test; \
@@ -134,8 +151,8 @@ test-javascript-tap: $(NODE_MODULES)
 
 test-javascript-files-tap: $(NODE_MODULES)
 	$(QUIET) for test in $(FILES); do \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test; \
@@ -150,8 +167,8 @@ test-javascript-files-tap: $(NODE_MODULES)
 
 test-javascript-xunit: $(NODE_MODULES)
 	$(QUIET) $(FIND_TESTS_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r test; do \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test \
@@ -167,8 +184,8 @@ test-javascript-xunit: $(NODE_MODULES)
 
 test-javascript-files-xunit: $(NODE_MODULES)
 	$(QUIET) for test in $(FILES); do \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		$(JAVASCRIPT_TEST) \
 			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test \

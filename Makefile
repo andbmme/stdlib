@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -63,8 +80,14 @@ LOCAL_BIN_DIR ?= $(ROOT_DIR)/bin
 # Define the top-level directory containing vendor dependencies:
 DEPS_DIR ?= $(ROOT_DIR)/deps
 
+# Define the path to the root `package.json`:
+ROOT_PACKAGE_JSON ?= $(ROOT_DIR)/package.json
+
 # Define the top-level directory containing node module dependencies:
 NODE_MODULES ?= $(ROOT_DIR)/node_modules
+
+# Define the folder name convention for node module dependencies:
+NODE_MODULES_FOLDER ?= node_modules
 
 # Define the top-level directory containing node module executables:
 BIN_DIR ?= $(NODE_MODULES)/.bin
@@ -79,13 +102,19 @@ SRC_FOLDER ?= src
 TESTS_FOLDER ?= test
 
 # Define the folder name convention for test fixtures:
-TESTS_FIXTURES_FOLDER ?= test/fixtures
+TESTS_FIXTURES_FOLDER ?= $(TESTS_FOLDER)/fixtures
 
 # Define the folder name convention for examples files:
 EXAMPLES_FOLDER ?= examples
 
+# Define the folder name convention for examples fixtures:
+EXAMPLES_FIXTURES_FOLDER ?= $(EXAMPLES_FOLDER)/fixtures
+
 # Define the folder name convention for benchmark files:
 BENCHMARKS_FOLDER ?= benchmark
+
+# Define the folder name convention for benchmark fixtures:
+BENCHMARKS_FIXTURES_FOLDER ?= $(BENCHMARKS_FOLDER)/fixtures
 
 # Define the folder name convention for executables:
 BIN_FOLDER ?= bin
@@ -111,17 +140,26 @@ SCRIPTS_FOLDER ?= scripts
 # Define the folder name convention for temporary files:
 TMP_FOLDER ?= tmp
 
+# Define the folder name convention for TypeScript declaration files:
+TYPESCRIPT_DECLARATIONS_FOLDER ?= $(DOCUMENTATION_FOLDER)/types
+
+# Define the folder name convention for REPL tutorial files:
+TUTORIALS_FOLDER ?= $(DOCUMENTATION_FOLDER)/tutorials
+
 # Define filename extension conventions (keep in alphabetical order):
 AWK_FILENAME_EXT ?= awk
 BASH_FILENAME_EXT ?= sh
 BIBTEX_FILENAME_EXT ?= bib
 C_FILENAME_EXT ?= c
+C_HEADER_FILENAME_EXT ?= h
 CSL_FILENAME_EXT ?= csl
 CSS_FILENAME_EXT ?= css
 CSV_FILENAME_EXT ?= csv
-CXX_FILENAME_EXT ?= cpp
+CPP_FILENAME_EXT ?= cpp
+CPP_HEADER_FILENAME_EXT ?= hpp
 FORTRAN_FILENAME_EXT ?= f
 GYP_FILENAME_EXT ?= gyp
+GYPI_FILENAME_EXT ?= gypi
 HTML_FILENAME_EXT ?= html
 JAVASCRIPT_FILENAME_EXT ?= js
 JPEG_FILENAME_EXT ?= jpg
@@ -133,9 +171,13 @@ NODEJS_NATIVE_ADDON_FILENAME_EXT ?= node
 PNG_FILENAME_EXT ?= png
 PYTHON_FILENAME_EXT ?= py
 R_FILENAME_EXT ?= R
+SHELL_FILENAME_EXT ?= sh
 SVG_FILENAME_EXT ?= svg
 TEXT_FILENAME_EXT ?= txt
-WEBASSEMBLY_FILENAME_EXT ?= wasm
+TYPESCRIPT_FILENAME_EXT ?= ts
+TYPESCRIPT_DECLARATION_FILENAME_EXT ?= d.$(TYPESCRIPT_FILENAME_EXT)
+WASM_FILENAME_EXT ?= wasm
+WAT_FILENAME_EXT ?= wat
 YAML_FILENAME_EXT ?= yml
 
 # Define Node paths:
@@ -154,6 +196,7 @@ ifdef NODE_ENV
 	NODE_ENV_TEST := $(NODE_ENV)
 	NODE_ENV_WORKSHOPS := $(NODE_ENV)
 else
+	NODE_ENV ?=
 	NODE_ENV_BENCHMARK ?= benchmark
 	NODE_ENV_EXAMPLES ?= examples
 	NODE_ENV_REPL ?= repl

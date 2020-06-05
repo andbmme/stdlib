@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 #
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # A git hook called by `git push` after it has checked the remote status, but before anything has been pushed. If this script exits with a non-zero status, nothing will be pushed.
 #
 # This hook is called with the following arguments:
@@ -15,14 +31,18 @@
 # <local ref> <local sha1> <remote ref> <remote sha1>
 # ```
 
+# shellcheck disable=SC2181
+
 
 # VARIABLES #
 
 remote="$1"
-url="$2"
 
 # Determine the current branch:
-export GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
+GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
+
+# Determine root directory:
+root=$(git rev-parse --show-toplevel)
 
 
 # FUNCTIONS #
@@ -48,7 +68,7 @@ has_commits() {
 	if git branch -r | grep "${GIT_CURRENT_BRANCH}" > /dev/null; then
 		echo 'Remote branch exists.' >&2
 		echo 'Checking for commits to push...' >&2
-		commits=$(git log origin/"${GIT_CURRENT_BRANCH}".."${GIT_CURRENT_BRANCH}" --oneline --)
+		commits=$(git log "${remote}/${GIT_CURRENT_BRANCH}..${GIT_CURRENT_BRANCH}" --oneline --)
 	else
 		echo 'Remote branch does not exist.' >&2
 		echo 'Checking for commits to push...' >&2
@@ -67,6 +87,7 @@ check_licenses() {
 	echo 'Checking licenses...' >&2
 	make check-licenses-production > /dev/null 2>&1
 	if [[ "$?" -ne 0 ]]; then
+		# shellcheck disable=SC2016
 		echo 'Detected dependency licensing issues. Run `make check-licenses-production` to see failing dependency licenses.' >&2
 		return 1
 	fi
@@ -74,20 +95,11 @@ check_licenses() {
 	return 0
 }
 
-# Runs tests.
-run_tests() {
-	echo 'Running tests...' >&2
-	make test > /dev/null 2>&1
-	if [[ "$?" -ne 0 ]]; then
-		echo 'Tests failed. Run `make test` to see the failing tests.' >&2
-		return 1
-	fi
-	echo 'Tests passed.' >&2
-	return 0
-}
-
 # Main execution sequence.
 main() {
+	local changed_files
+	local files
+
 	has_commits
 	if [[ "$?" -ne 0 ]]; then
 		on_error 1
@@ -96,11 +108,156 @@ main() {
 	if [[ "$?" -ne 0 ]]; then
 		on_error 1
 	fi
-	# FIXME: re-enable once we have written tooling to support running only those tests involving affected packages.
-	# run_tests
-	# if [[ "$?" -ne 0 ]]; then
-	# 	on_error 1
-	# fi
+
+	# Get the set of changed files (added and modified):
+	changed_files=$(git diff --name-only --diff-filter AM "${remote}/${GIT_CURRENT_BRANCH}" | sed -e "s#^#${root}\\/#")
+
+	# Run JavaScript example files:
+	files=$(echo "${changed_files}" | grep '/examples/.*\.js$' | grep -v '/examples/fixtures/.*\.js$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running JavaScript example files...' >&2
+		make FILES="${files}" examples-javascript-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running JavaScript examples.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run C example files...
+	files=$(echo "${changed_files}" | grep '/examples/.*\.c$' | grep -v '/examples/fixtures/.*\.c$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running C example files...' >&2
+		make FILES="${files}" examples-c-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running C examples.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run C++ example files...
+	files=$(echo "${changed_files}" | grep '/examples/.*\.cpp$' | grep -v '/examples/fixtures/.*\.cpp$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running C++ example files...' >&2
+		make FILES="${files}" examples-cpp-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running C++ examples.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run JavaScript examples in README files:
+	files=$(echo "${changed_files}" | grep 'README.md$' | grep -v '^tools/' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running README JavaScript examples...' >&2
+		make FILES="${files}" markdown-examples-javascript-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running README JavaScript examples.' >&2
+			on_error 1
+		fi
+	fi
+
+	# TODO: run CLI examples found in Markdown files
+
+	# Run C benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.c$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running C benchmark files...' >&2
+		make FILES="${files}" benchmark-c-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running C benchmarks.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run C++ benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.cpp$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running C++ benchmark files...' >&2
+		make FILES="${files}" benchmark-cpp-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running C++ benchmarks.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run Fortran benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.f$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running Fortran benchmark files...' >&2
+		make FILES="${files}" benchmark-fortran-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running Fortran benchmarks.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run JavaScript benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.js$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running JavaScript benchmark files...' >&2
+		make FILES="${files}" benchmark-javascript-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running JavaScript benchmarks.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run Julia benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.jl$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running Julia benchmark files...' >&2
+		make FILES="${files}" benchmark-julia-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running Julia benchmarks.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run Python benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.py$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running Python benchmark files...' >&2
+		make FILES="${files}" benchmark-python-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running Python benchmarks.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run R benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.R$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running R benchmark files...' >&2
+		make FILES="${files}" benchmark-r-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running R benchmarks.' >&2
+			on_error 1
+		fi
+	fi
+
+	# Run JavaScript test files...
+	files=$(echo "${changed_files}" | grep '/test/.*\.js$' | grep -v '/test/fixtures/.*\.js$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		echo 'Running JavaScript test files...' >&2
+		make FILES="${files}" test-javascript-files > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Encountered an error when running JavaScript tests.' >&2
+			on_error 1
+		fi
+	fi
+
 	cleanup
 	exit 0
 }

@@ -139,6 +139,65 @@
       "js"
     ]
   },
+  "http://jupyter.org/": {
+    "id": "jupyter",
+    "description": "Official homepage for Jupyter, an open source project whose principal offering is the Jupyter notebook, an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text.",
+    "short_url": "",
+    "keywords": [
+      "jupyter",
+      "python"
+    ]
+  },
+  "http://man7.org/linux/man-pages/man2/chdir.2.html": {
+    "id": "chdir",
+    "description": "Documentation for the `chdir` function to change the working directory of the calling process.",
+    "short_url": "",
+    "keywords": [
+      "chdir",
+      "linux",
+      "man",
+      "dir"
+    ]
+  },
+  "http://man7.org/linux/man-pages/man2/getegid.2.html": {
+    "id": "getegid",
+    "description": "Documentation for the function `getegid` for returning the effective group identity of the calling process.",
+    "short_url": "",
+    "keywords": [
+      "man",
+      "linux",
+      "group",
+      "identity",
+      "getegid",
+      "getgid",
+      "permissions"
+    ]
+  },
+  "http://man7.org/linux/man-pages/man2/geteuid.2.html": {
+    "id": "geteuid",
+    "description": "Documentation for the function `geteuid` for returning the effective user identity of the calling process.",
+    "short_url": "",
+    "keywords": [
+      "man",
+      "linux",
+      "geteuid",
+      "getuid",
+      "user",
+      "identity"
+    ]
+  },
+  "http://man7.org/linux/man-pages/man2/getgid.2.html": {
+    "id": "getgid",
+    "description": "Documentation for the `getgid` function for returning the group identity.",
+    "short_url": "",
+    "keywords": [
+      "linux",
+      "man",
+      "getgid",
+      "group",
+      "identity"
+    ]
+  },
   "http://man7.org/linux/man-pages/man2/getuid.2.html": {
     "id": "getuid",
     "description": "Documentation for the `getuid` function to retrieve a user's identity.",
@@ -148,6 +207,17 @@
       "man",
       "user",
       "id"
+    ]
+  },
+  "http://man7.org/linux/man-pages/man2/umask.2.html": {
+    "id": "umask",
+    "description": "Documentation for the `umask` function to set the file creation mode mask.",
+    "short_url": "",
+    "keywords": [
+      "linux",
+      "man",
+      "umask",
+      "permissions"
     ]
   },
   "http://man7.org/linux/man-pages/man7/environ.7.html": {
@@ -186,6 +256,70 @@
       "polar",
       "area",
       "diagram"
+    ]
+  },
+  "http://oeis.org/A000027": {
+    "id": "oeis-a000027",
+    "description": "The OEIS entry for the sequence of positive integers.",
+    "short_url": "",
+    "keywords": [
+      "positive",
+      "integers",
+      "natural",
+      "whole",
+      "counting",
+      "numbers"
+    ]
+  },
+  "http://oeis.org/A000037": {
+    "id": "oeis-a000037",
+    "description": "The OEIS entry for the sequence of nonsquares.",
+    "short_url": "",
+    "keywords": [
+      "squares",
+      "nonsquares",
+      "sequence",
+      "seq",
+      "integers",
+      "numbers"
+    ]
+  },
+  "http://oeis.org/A000290": {
+    "id": "oeis-a000290",
+    "description": "The OEIS entry for the sequence of squares.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "seq",
+      "squares",
+      "integers",
+      "numbers"
+    ]
+  },
+  "http://oeis.org/A005843": {
+    "id": "oeis-a005843",
+    "description": "The OEIS entry for the sequence of nonnegative even integers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "seq",
+      "integers",
+      "numbers",
+      "even"
+    ]
+  },
+  "http://oeis.org/A299174": {
+    "id": "oeis-a299174",
+    "description": "The OEIS entry for the sequence of positive even integers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "integers",
+      "seq",
+      "positive",
+      "numbers"
     ]
   },
   "http://opendatacommons.org/licenses/by/1.0/": {
@@ -252,6 +386,16 @@
       "perl",
       "cs",
       "unittest"
+    ]
+  },
+  "http://tools.ietf.org/html/rfc5988": {
+    "id": "rfc-5988",
+    "description": "An RFC describing web links.",
+    "short_url": "",
+    "keywords": [
+      "web links",
+      "linking",
+      "link header"
     ]
   },
   "http://usejsdoc.org/": {
@@ -346,6 +490,17 @@
       "cite"
     ]
   },
+  "http://www.boost.org/": {
+    "id": "boost",
+    "description": "Homepage for Boost, a collection of free portable C++ libraries.",
+    "short_url": "",
+    "keywords": [
+      "c++",
+      "math",
+      "special functions",
+      "reference implementations"
+    ]
+  },
   "http://www.ecma-international.org/ecma-262/5.1": {
     "id": "ecma-262",
     "description": "ECMAScript language specification.",
@@ -426,6 +581,27 @@
       "math"
     ]
   },
+  "http://www.numpy.org/": {
+    "id": "numpy",
+    "description": "Official homepage for NumPy, the fundamental package for scientific computing with Python.",
+    "short_url": "",
+    "keywords": [
+      "numpy",
+      "python"
+    ]
+  },
+  "http://www.speech.cs.cmu.edu/cgi-bin/cmudict#about": {
+    "id": "cmudict",
+    "description": "Website for the Carnegie Mellon Pronouncing Dictionary.",
+    "short_url": "",
+    "keywords": [
+      "dataset",
+      "data",
+      "dictionary",
+      "nlp",
+      "speech"
+    ]
+  },
   "http://www.yaml.org/": {
     "id": "yaml",
     "description": "Human friendly data serialization standard.",
@@ -474,6 +650,19 @@
       "algorithm"
     ]
   },
+  "https://brew.sh": {
+    "id": "homebrew",
+    "description": "Package manager for MacOS.",
+    "short_url": "",
+    "keywords": [
+      "mac",
+      "os x",
+      "osx",
+      "macintosh",
+      "pkg",
+      "package manager"
+    ]
+  },
   "https://bugs.webkit.org/show_bug.cgi?id=7726": {
     "id": "webkit-bug-7726",
     "description": "Webkit bug report related to the naming of anonymous functions.",
@@ -498,6 +687,26 @@
       "linux",
       "macos",
       "mac"
+    ]
+  },
+  "https://codecov.io/": {
+    "id": "codecov",
+    "description": "A hosted code coverage service.",
+    "short_url": "",
+    "keywords": [
+      "codecov",
+      "coverage",
+      "unit testing"
+    ]
+  },
+  "https://coveralls.io/": {
+    "id": "coveralls",
+    "description": "A hosted code coverage service.",
+    "short_url": "",
+    "keywords": [
+      "coveralls",
+      "coverage",
+      "unit testing"
     ]
   },
   "https://creativecommons.org/licenses/by-sa/4.0/": {
@@ -536,6 +745,80 @@
       "identifier",
       "access",
       "protocol"
+    ]
+  },
+  "https://developer.github.com/guides/traversing-with-pagination/": {
+    "id": "github-pagination",
+    "description": "GitHub documentation for pagination.",
+    "short_url": "",
+    "keywords": [
+      "github",
+      "api",
+      "paginate",
+      "pagination"
+    ]
+  },
+  "https://developer.github.com/v3/": {
+    "id": "github-api",
+    "description": "Documentation for the GitHub API.",
+    "short_url": "",
+    "keywords": [
+      "github",
+      "api"
+    ]
+  },
+  "https://developer.github.com/v3/#oauth2-token-sent-in-a-header": {
+    "id": "github-oauth2",
+    "description": "GitHub documentation for OAuth2 header token.",
+    "short_url": "",
+    "keywords": [
+      "github",
+      "api",
+      "oauth2",
+      "oauth",
+      "token",
+      "header"
+    ]
+  },
+  "https://developer.github.com/v3/#user-agent-required": {
+    "id": "github-user-agent",
+    "description": "GitHub documentation for user agent header.",
+    "short_url": "",
+    "keywords": [
+      "github",
+      "api",
+      "useragent"
+    ]
+  },
+  "https://developer.github.com/v3/media/": {
+    "id": "github-media",
+    "description": "GitHub documentation for media types.",
+    "short_url": "",
+    "keywords": [
+      "github",
+      "api",
+      "media"
+    ]
+  },
+  "https://developer.github.com/v3/rate_limit/": {
+    "id": "github-rate-limit",
+    "description": "GitHub documentation for rate limits.",
+    "short_url": "",
+    "keywords": [
+      "github",
+      "api",
+      "rate limit"
+    ]
+  },
+  "https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Generator": {
+    "id": "mdn-generator-object",
+    "description": "Mozilla Developer Network (MDN) documentation for ECMAScript 2015 generator objects.",
+    "short_url": "",
+    "keywords": [
+      "generator",
+      "object",
+      "javascript",
+      "ecmascript"
     ]
   },
   "https://developer.mozilla.org/en-US/docs/Web/API/NavigatorConcurrentHardware/hardwareConcurrency": {
@@ -922,7 +1205,7 @@
     "keywords": [
       "number",
       "constructor",
-      "javascripty"
+      "javascript"
     ]
   },
   "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object": {
@@ -935,6 +1218,16 @@
       "javascript",
       "ecmascript",
       "js"
+    ]
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties": {
+    "id": "mdn-define-properties",
+    "description": "Mozilla Developer Network (MDN) documentation for the Object.defineProperties() method.",
+    "short_url": "",
+    "keywords": [
+      "object",
+      "ecmascript",
+      "javascript"
     ]
   },
   "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty": {
@@ -1104,6 +1397,18 @@
       "javascript"
     ]
   },
+  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator": {
+    "id": "mdn-iterator-symbol",
+    "description": "Documentation for the symbol which specifies the default iterator for an object.",
+    "short_url": "",
+    "keywords": [
+      "javascript",
+      "symbol",
+      "iterator",
+      "documentation",
+      "docs"
+    ]
+  },
   "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag": {
     "id": "mdn-symbol-tostringtag",
     "description": "Mozilla Developer Network (MDN) documentation for the Symbol.toStringTag property.",
@@ -1234,6 +1539,18 @@
       "ecmascript"
     ]
   },
+  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis": {
+    "id": "mdn-global-this",
+    "description": "MDN documentation for `globalThis`, a reference to the global object.",
+    "short_url": "",
+    "keywords": [
+      "global",
+      "this",
+      "self",
+      "javascript",
+      "ecmascript"
+    ]
+  },
   "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite": {
     "id": "mdn-is-finite",
     "description": "Mozilla Developer Network (MDN) documentation of the isFinite global JavaScript function.",
@@ -1243,6 +1560,29 @@
       "globals",
       "javascript",
       "ecmascript"
+    ]
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol": {
+    "id": "mdn-iterable-protocol",
+    "description": "MDN documentation for the iterable protocol.",
+    "short_url": "",
+    "keywords": [
+      "iterable",
+      "iterator",
+      "javascript",
+      "es2015",
+      "es6"
+    ]
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol": {
+    "id": "mdn-iterator-protocol",
+    "description": "Documentation for the iterator protocol.",
+    "short_url": "",
+    "keywords": [
+      "iterator",
+      "iter",
+      "protocol",
+      "javascript"
     ]
   },
   "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await": {
@@ -1312,6 +1652,16 @@
       "ecmascript"
     ]
   },
+  "https://docs.python.org/2/library/simplehttpserver.html": {
+    "id": "python-simplehttpserver",
+    "description": "Documentation for Python's SimpleHTTPServer module.",
+    "short_url": "",
+    "keywords": [
+      "python",
+      "server",
+      "http"
+    ]
+  },
   "https://docs.travis-ci.com/user/customizing-the-build": {
     "id": "travis-ci-customing-the-build",
     "description": "Travis CI documentation for customizing a build.",
@@ -1374,6 +1724,16 @@
       "application"
     ]
   },
+  "https://en.wikipedia.org/wiki/ARPABET": {
+    "id": "arpabet",
+    "description": "Wikipedia article on the ARPABET set of phonetic transcription codes.",
+    "short_url": "",
+    "keywords": [
+      "phonetic",
+      "alphabet",
+      "nlp"
+    ]
+  },
   "https://en.wikipedia.org/wiki/ASCII": {
     "id": "ascii",
     "description": "Wikipedia entry for the \"American Standard Code for Information Interchange\" (ASCII) character encoding standard.",
@@ -1404,6 +1764,30 @@
       "abs",
       "absolute",
       "magnitude"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Additive_white_Gaussian_noise": {
+    "id": "awgn",
+    "description": "Wikipedia entry for additive white Gaussian noise.",
+    "short_url": "",
+    "keywords": [
+      "noise",
+      "signal",
+      "gaussian",
+      "white"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance": {
+    "id": "algorithms-variance",
+    "description": "Wikipedia entry for good algorithms of calculating the variance.",
+    "short_url": "",
+    "keywords": [
+      "computing",
+      "statistics",
+      "spread",
+      "dispersion",
+      "calculation",
+      "algorithm"
     ]
   },
   "https://en.wikipedia.org/wiki/Alpha_max_plus_beta_min_algorithm": {
@@ -1451,6 +1835,19 @@
       "continuous",
       "arcsine",
       "probability",
+      "statistics",
+      "stats"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Arithmetic_mean": {
+    "id": "arithmetic-mean",
+    "description": "Wikipedia entry for the arithmetic mean.",
+    "short_url": "",
+    "keywords": [
+      "arithmetic",
+      "mean",
+      "average",
+      "avg",
       "statistics",
       "stats"
     ]
@@ -1526,7 +1923,7 @@
   },
   "https://en.wikipedia.org/wiki/Binomial_distribution": {
     "id": "binomial-distribution",
-    "description": "Wikipedia entry for the binomial distribution\"",
+    "description": "Wikipedia entry for the binomial distribution.",
     "short_url": "",
     "keywords": [
       "dist",
@@ -1537,6 +1934,19 @@
       "discrete",
       "binom",
       "binomial"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform": {
+    "id": "box-muller",
+    "description": "Wikipedia entry for the Box-Muller transform to generate standard normal pseudorandom numbers.",
+    "short_url": "",
+    "keywords": [
+      "random",
+      "rng",
+      "prng",
+      "algorithm",
+      "gaussian",
+      "normal"
     ]
   },
   "https://en.wikipedia.org/wiki/Cauchy_distribution": {
@@ -1551,6 +1961,17 @@
       "probability",
       "continuous",
       "cauchy"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Centrosymmetric_matrix": {
+    "id": "centrosymmetric-matrix",
+    "description": "Wikipedia entry for centrosymmetric matrices (i.e., matrices symmetric about their center).",
+    "short_url": "",
+    "keywords": [
+      "matrix",
+      "centrosymmetric",
+      "symmetric",
+      "linear algebra"
     ]
   },
   "https://en.wikipedia.org/wiki/Chi-squared_distribution": {
@@ -1610,6 +2031,31 @@
       "point"
     ]
   },
+  "https://en.wikipedia.org/wiki/Coefficient_of_variation": {
+    "id": "coefficient-of-variation",
+    "description": "Wikipedia entry for the coefficient of variation (CV), a standardized measure of dispersion of a probability distribution or frequency distribution.",
+    "short_url": "",
+    "keywords": [
+      "cv",
+      "statistics",
+      "stats",
+      "coefficient",
+      "variation",
+      "dispersion",
+      "ratio"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Common_logarithm": {
+    "id": "common-logarithm",
+    "description": "Wikipedia entry for the common logarithm, which is the logarithm with base 10.",
+    "short_url": "",
+    "keywords": [
+      "log",
+      "logarithm",
+      "common",
+      "base 10"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Constant_function": {
     "id": "constant-function",
     "description": "Wikipedia entry for a constant function (i.e., a function whose output value is the same for every input value).",
@@ -1627,6 +2073,39 @@
     "keywords": [
       "cdn",
       "content delivery network"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Coprime_integers": {
+    "id": "coprime-integers",
+    "description": "Wikipedia entry for coprime integers.",
+    "short_url": "",
+    "keywords": [
+      "integers",
+      "coprime",
+      "primes",
+      "number theory"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Covariance": {
+    "id": "covariance",
+    "description": "Wikipedia entry for covariance, a measure of joint variability of two random variables.",
+    "short_url": "",
+    "keywords": [
+      "covariance",
+      "statistics",
+      "stats",
+      "variance"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Covariance_matrix": {
+    "id": "covariance-matrix",
+    "description": "Wikipedia entry for covariance matrices.",
+    "short_url": "",
+    "keywords": [
+      "covariance",
+      "matrix",
+      "statistics",
+      "stats"
     ]
   },
   "https://en.wikipedia.org/wiki/Cumulative_distribution_function": {
@@ -1690,6 +2169,20 @@
       "stats"
     ]
   },
+  "https://en.wikipedia.org/wiki/Dot_product": {
+    "id": "dot-product",
+    "description": "Wikipedia entry for the dot product.",
+    "short_url": "",
+    "keywords": [
+      "dot",
+      "dot product",
+      "linear algebra",
+      "scalar",
+      "scalar product",
+      "vectors",
+      "blas"
+    ]
+  },
   "https://en.wikipedia.org/wiki/E_%28mathematical_constant%29": {
     "id": "eulers-number",
     "description": "Wikipedia entry for the mathematical constant e.",
@@ -1699,6 +2192,17 @@
       "euler",
       "napier",
       "constant"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Elliptic_integral": {
+    "id": "elliptic-integral",
+    "description": "Wikipedia entry for elliptic integrals.",
+    "short_url": "",
+    "keywords": [
+      "elliptic",
+      "integrals",
+      "math",
+      "calculus"
     ]
   },
   "https://en.wikipedia.org/wiki/Entropy_%28information_theory%29": {
@@ -1820,6 +2324,21 @@
       "pochhammer"
     ]
   },
+  "https://en.wikipedia.org/wiki/Fano_factor": {
+    "id": "fano-factor",
+    "description": "Wikipedia entry for the Fano factor, a measure of the dispersion of a probability distribution of a Fano noise.",
+    "short_url": "",
+    "keywords": [
+      "fano",
+      "factor",
+      "vmr",
+      "variance",
+      "mean",
+      "statistics",
+      "stats",
+      "physics"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Fibonacci_number": {
     "id": "fibonacci-number",
     "description": "Wikipedia entry for Fibonacci numbers.",
@@ -1864,6 +2383,17 @@
       "statistician",
       "person",
       "nurse"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Food_frequency_questionnaire": {
+    "id": "ffq",
+    "description": "Wikipedia entry for the food frequency questionnaire, a questionnaire used to obtain frequency and, in some cases, portion size information about food and beverage consumption over a specified period of time, typically the past month or year.",
+    "short_url": "",
+    "keywords": [
+      "ffq",
+      "food frequency",
+      "survey",
+      "questionnaire"
     ]
   },
   "https://en.wikipedia.org/wiki/Fortran": {
@@ -1950,6 +2480,19 @@
       "geometric"
     ]
   },
+  "https://en.wikipedia.org/wiki/Geometric_mean": {
+    "id": "geometric-mean",
+    "description": "Wikipedia entry for the geometric mean which is defined as the nth root of a product of n numbers.",
+    "short_url": "",
+    "keywords": [
+      "geometric",
+      "mean",
+      "product",
+      "prod",
+      "statistics",
+      "stats"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Given_name": {
     "id": "given-name",
     "description": "Wikipedia entry on given / first names.",
@@ -1968,6 +2511,19 @@
       "golden",
       "ratio",
       "phi"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Grubbs%27_test_for_outliers": {
+    "id": "grubbs-test",
+    "description": "Wikipedia entry for Grubbs' test for outliers.",
+    "short_url": "",
+    "keywords": [
+      "grubbs",
+      "statistics",
+      "stats",
+      "anomaly detection",
+      "outliers",
+      "outlier"
     ]
   },
   "https://en.wikipedia.org/wiki/Gumbel_distribution": {
@@ -1995,6 +2551,39 @@
       "format"
     ]
   },
+  "https://en.wikipedia.org/wiki/Harmonic_mean": {
+    "id": "harmonic-mean",
+    "description": "Wikipedia entry for the harmonic mean.",
+    "short_url": "",
+    "keywords": [
+      "harmonic",
+      "mean",
+      "avg",
+      "average",
+      "statistics",
+      "stats"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Hermite_polynomials": {
+    "id": "hermite-polynomials",
+    "description": "Wikipedia entry for Hermite polynomials, a classic orthogonal polynomial sequence.",
+    "short_url": "",
+    "keywords": [
+      "hermite",
+      "polynomial"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Horner%27s_method": {
+    "id": "horners-method",
+    "description": "Wikipedia entry for Horner's method, an algorithm for evaluating polynomials.",
+    "short_url": "",
+    "keywords": [
+      "horner",
+      "polynomials",
+      "algorithm",
+      "math"
+    ]
+  },
   "https://en.wikipedia.org/wiki/IEEE_floating_point": {
     "id": "ieee754",
     "description": "Wikipedia entry on the IEEE Standard for Floating-Point Arithmetic (754).",
@@ -2007,6 +2596,20 @@
       "standard",
       "arithmetic",
       "type"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Index_of_dispersion": {
+    "id": "variance-to-mean-ratio",
+    "description": "Wikipedia entry for the variance-to-mean ratio (VMR), a measure used to quantify whether a set of observed occurrences are clustered or dispersed compared to a standard statistical model.",
+    "short_url": "",
+    "keywords": [
+      "vmr",
+      "statistics",
+      "stats",
+      "variance",
+      "mean",
+      "ratio",
+      "dispersion"
     ]
   },
   "https://en.wikipedia.org/wiki/Inverse_Gamma_distribution": {
@@ -2036,6 +2639,34 @@
       "arctangent",
       "inverse",
       "function"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Inverse_trigonometric_functions": {
+    "id": "inverse-trigonmetric",
+    "description": "Wikipedia entry for inverse trigonometric functions.",
+    "short_url": "",
+    "keywords": [
+      "inverse",
+      "trigonometric",
+      "trig",
+      "sine",
+      "cosine",
+      "secant",
+      "cosecent",
+      "tangent",
+      "cotagent"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/K-means_clustering": {
+    "id": "k-means-clustering",
+    "description": "Wikipedia entry for k-means clustering, an approach for partitioning a set of observations into k clusters.",
+    "short_url": "",
+    "keywords": [
+      "clustering",
+      "machine learning",
+      "ml",
+      "kmeans",
+      "k-means"
     ]
   },
   "https://en.wikipedia.org/wiki/Kumaraswamy_distribution": {
@@ -2148,6 +2779,17 @@
       "lognormal"
     ]
   },
+  "https://en.wikipedia.org/wiki/Logarithm": {
+    "id": "logarithm",
+    "description": "Wikipedia entry for the logarithm, the inverse operation of exponentiation.",
+    "short_url": "",
+    "keywords": [
+      "log",
+      "logarithm",
+      "exp",
+      "exponentiation"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Logistic_distribution": {
     "id": "logistic-distribution",
     "description": "Wikipedia entry for the logistic distribution.",
@@ -2160,6 +2802,18 @@
       "probability",
       "continuous",
       "logistic"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Logistic_function": {
+    "id": "logistic-function",
+    "description": "Wikipedia entry for the logistic function.",
+    "short_url": "",
+    "keywords": [
+      "math",
+      "sigmoid",
+      "expit",
+      "logistic",
+      "logit"
     ]
   },
   "https://en.wikipedia.org/wiki/Lucas_number": {
@@ -2188,6 +2842,71 @@
       "stats"
     ]
   },
+  "https://en.wikipedia.org/wiki/Mean_Directional_Accuracy_%28MDA%29": {
+    "id": "mean-directional-accuracy",
+    "description": "Wikipedia entry for the mean directional accuracy, a measure of prediction accuracy.",
+    "short_url": "",
+    "keywords": [
+      "statistics",
+      "stats",
+      "forecasting",
+      "forecast",
+      "mda",
+      "accuracy",
+      "prediction"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Mean_absolute_error": {
+    "id": "mean-absolute-error",
+    "description": "Wikipedia entry for the mean absolute error which is a measure of the difference between two continuous variables.",
+    "short_url": "",
+    "keywords": [
+      "stats",
+      "statistics",
+      "mean",
+      "average",
+      "avg",
+      "error"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Mean_absolute_percentage_error": {
+    "id": "mean-absolute-percentage-error",
+    "description": "Wikipedia entry for the mean absolute percentage error (MAPE), which is used to access how well a model's forecast compares to actual values.",
+    "short_url": "",
+    "keywords": [
+      "mpe",
+      "mape",
+      "statistics",
+      "stats",
+      "forecasting",
+      "error"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Mean_percentage_error": {
+    "id": "mean-percentage-error",
+    "description": "Wikipedia entry for the mean percentage error (MPE), which is used to assess how well a model's forecast compares to actual values.",
+    "short_url": "",
+    "keywords": [
+      "mpe",
+      "statistics",
+      "stats",
+      "forecasting",
+      "error"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Mean_squared_error": {
+    "id": "mean-squared-error",
+    "description": "Wikipedia entry for the mean squared error (MSE).",
+    "short_url": "",
+    "keywords": [
+      "mse",
+      "statistics",
+      "stats",
+      "error",
+      "model",
+      "prediction"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Median": {
     "id": "median",
     "description": "Wikipedia entry for the median.",
@@ -2203,6 +2922,19 @@
       "probability"
     ]
   },
+  "https://en.wikipedia.org/wiki/Mersenne_Twister": {
+    "id": "mersenne-twistter",
+    "description": "Wikipedia entry for the Mersenne Twister pseudorandom number generator.",
+    "short_url": "",
+    "keywords": [
+      "prng",
+      "mersenne",
+      "twister",
+      "rng",
+      "pseudorandom",
+      "numbers"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Mode_%28statistics%29": {
     "id": "mode",
     "description": "Wikipedia entry for the mode.",
@@ -2215,6 +2947,20 @@
       "location",
       "center",
       "probability"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Moving_average": {
+    "id": "moving-average",
+    "description": "Wikipedia entry for a moving average.",
+    "short_url": "",
+    "keywords": [
+      "statistics",
+      "stats",
+      "average",
+      "avg",
+      "mean",
+      "moving",
+      "sliding window"
     ]
   },
   "https://en.wikipedia.org/wiki/NOP": {
@@ -2238,6 +2984,16 @@
       "entropy",
       "information",
       "shannon"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Natural_logarithm": {
+    "id": "natural-logarithm",
+    "description": "Wikipedia entry for the natural logarithm.",
+    "short_url": "",
+    "keywords": [
+      "logarithm",
+      "log",
+      "ln"
     ]
   },
   "https://en.wikipedia.org/wiki/Negative_binomial_distribution": {
@@ -2306,13 +3062,17 @@
   },
   "https://en.wikipedia.org/wiki/Pearson_correlation_coefficient": {
     "id": "pearson-correlation",
-    "description": "Wikipedia entry for the Pearsonc correlation coefficient.",
+    "description": "Wikipedia entry for the Pearson product-moment correlation coefficient, a measure of linear correlation between two variables X and Y.",
     "short_url": "",
     "keywords": [
       "statistics",
       "stats",
       "correlation",
-      "pearson"
+      "pearson",
+      "linear",
+      "pcc",
+      "ppmcc",
+      "coefficient"
     ]
   },
   "https://en.wikipedia.org/wiki/Percent-encoding": {
@@ -2326,6 +3086,17 @@
       "encoding",
       "percent-encoding",
       "url-encoding"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Persymmetric_matrix": {
+    "id": "persymmetric-matrix",
+    "description": "Wikipedia entry for persymmetric matrices.",
+    "short_url": "",
+    "keywords": [
+      "persymmetric",
+      "matrix",
+      "linear algebra",
+      "symmetric"
     ]
   },
   "https://en.wikipedia.org/wiki/Poisson_distribution": {
@@ -2367,6 +3138,18 @@
       "img",
       "format",
       "fmt"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Power_transform#Box-Cox_transformation": {
+    "id": "box-cox-transformation",
+    "description": "Wikipedia entry for the Box-Cox transformation.",
+    "short_url": "",
+    "keywords": [
+      "box-cox",
+      "transformation",
+      "power",
+      "transform",
+      "math"
     ]
   },
   "https://en.wikipedia.org/wiki/Probability_density_function": {
@@ -2440,6 +3223,34 @@
       "rayleigh"
     ]
   },
+  "https://en.wikipedia.org/wiki/Residual_sum_of_squares": {
+    "id": "residual-sum-of-squares",
+    "description": "Wikipedia entry for the residual sum of squares, which is the sum of the squares of residuals.",
+    "short_url": "",
+    "keywords": [
+      "rss",
+      "ssr",
+      "sse",
+      "residuals",
+      "model",
+      "statistics",
+      "stats"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Root-mean-square_deviation": {
+    "id": "root-mean-squared-error",
+    "description": "Wikipedia entry for the root-mean-squared error, which represents the sample standard deviation of the differences between actual and predicted values.",
+    "short_url": "",
+    "keywords": [
+      "rmse",
+      "rmsd",
+      "mse",
+      "mean squared error",
+      "statistics",
+      "stats",
+      "modeling"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Rounding": {
     "id": "rounding",
     "description": "Wikipedia entry on rounding, an operation which replaces a numerical value by another value that is approximately equal to the original number but has a shorter, simpler, or more explicit representation.",
@@ -2449,6 +3260,18 @@
       "rounding",
       "floating-point",
       "math"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Skew-symmetric_matrix": {
+    "id": "skew-symmetric-matrix",
+    "description": "Wikipedia entry for skew-symmetric matrices.",
+    "short_url": "",
+    "keywords": [
+      "linear algebra",
+      "symmetric",
+      "matrix",
+      "skew-symmetric",
+      "antisymmetric"
     ]
   },
   "https://en.wikipedia.org/wiki/Skewness": {
@@ -2472,6 +3295,30 @@
       "math",
       "function",
       "root"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Square_triangular_number": {
+    "id": "square-triangular-number",
+    "description": "Wikipedia entry for square triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "square",
+      "numbers",
+      "integers",
+      "sequences"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Squared_triangular_number": {
+    "id": "squared-triangular-number",
+    "description": "Wikipedia entry for squared triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "numbers",
+      "integers",
+      "squared",
+      "sequences"
     ]
   },
   "https://en.wikipedia.org/wiki/Standard_deviation": {
@@ -2551,6 +3398,16 @@
       "t"
     ]
   },
+  "https://en.wikipedia.org/wiki/Symmetric_matrix": {
+    "id": "symmetric-matrix",
+    "description": "Wikipedia entry for symmetric matrix, a matrix which equals its transpose.",
+    "short_url": "",
+    "keywords": [
+      "linear algebra",
+      "symmetric",
+      "matrix"
+    ]
+  },
   "https://en.wikipedia.org/wiki/TeX": {
     "id": "tex",
     "description": "Wikipedia entry for the TeX typesetting system.",
@@ -2576,6 +3433,17 @@
       "probability",
       "continuous",
       "triangular"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Triangular_number": {
+    "id": "triangular-number",
+    "description": "Wikipedia entry for triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "number",
+      "binomial",
+      "sequence"
     ]
   },
   "https://en.wikipedia.org/wiki/Truncated_normal_distribution": {
@@ -2658,6 +3526,18 @@
       "standard"
     ]
   },
+  "https://en.wikipedia.org/wiki/Unix_time": {
+    "id": "unix-time",
+    "description": "Wikipedia entry describing system for describing a point in time, defined as the number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970, minus the number of leap seconds that have taken place since then.",
+    "short_url": "",
+    "keywords": [
+      "unix",
+      "time",
+      "timestamp",
+      "ts",
+      "epoch"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Valence_%28psychology%29": {
     "id": "valence",
     "description": "Wikipedia entry for the concept of valence as used in psychology.",
@@ -2702,6 +3582,19 @@
       "weibull"
     ]
   },
+  "https://en.wikipedia.org/wiki/Weighted_arithmetic_mean": {
+    "id": "weighted-arithmetic-mean",
+    "description": "Wikipedia entry for the weighted arithmetic mean.",
+    "short_url": "",
+    "keywords": [
+      "mean",
+      "weighted",
+      "statistics",
+      "stats",
+      "average",
+      "avg"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Whitespace_character": {
     "id": "whitespace",
     "description": "Wikipedia entry on whitespace characters.",
@@ -2711,6 +3604,19 @@
       "encoding",
       "cs",
       "character"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Ziggurat_algorithm": {
+    "id": "ziggurat-algorithm",
+    "description": "Wikipedia entry for the Ziggurat algorithm to generate standard normal pseudorandom numbers.",
+    "short_url": "",
+    "keywords": [
+      "random",
+      "rng",
+      "prng",
+      "algorithm",
+      "gaussian",
+      "normal"
     ]
   },
   "https://en.wikipedia.org/wiki/hypergeometric_distribution": {
@@ -2762,6 +3668,23 @@
       "javascript"
     ]
   },
+  "https://fivethirtyeight.com/features/you-cant-trust-what-you-read-about-nutrition/": {
+    "id": "fivethirtyeight-nutrition-studies",
+    "description": "FiveThirtyEight article which uses p-hacking to find spurious correlations in Food Frequency Questionnaire (FFQ) data.",
+    "short_url": "",
+    "keywords": [
+      "fivethirtyeight",
+      "538",
+      "p-hacking",
+      "data mining",
+      "correlation",
+      "causation",
+      "ffq",
+      "food frequency",
+      "nutrition",
+      "survey"
+    ]
+  },
   "https://git-scm.com/": {
     "id": "git",
     "description": "The official website for Git, a free and open-source distributed version control system.",
@@ -2794,6 +3717,30 @@
       "fortran"
     ]
   },
+  "https://github.com/JohnNilsson/awk-sublime": {
+    "id": "sublime-text-awk",
+    "description": "GitHub repository for a Sublime Text plugin which provides syntax highlighting for AWK.",
+    "short_url": "",
+    "keywords": [
+      "awk",
+      "sublime",
+      "text",
+      "editor",
+      "plugin"
+    ]
+  },
+  "https://github.com/JuliaEditorSupport/Julia-sublime": {
+    "id": "sublime-text-julia",
+    "description": "GitHub repository for a Sublime Text plugin which provides syntax highlighting for Julia.",
+    "short_url": "",
+    "keywords": [
+      "julia",
+      "sublime",
+      "text",
+      "editor",
+      "plugin"
+    ]
+  },
   "https://github.com/Matt-Esch/virtual-dom": {
     "id": "virtual-dom",
     "description": "A Virtual DOM and diffing algorithm. The official repository of virtual-dom.",
@@ -2802,6 +3749,32 @@
       "vdom",
       "virtual",
       "dom"
+    ]
+  },
+  "https://github.com/Microsoft/TypeScript-Sublime-Plugin": {
+    "id": "sublime-text-typescript",
+    "description": "Sublime Text package which provides an IO wrapper around TypeScript language services.",
+    "short_url": "",
+    "keywords": [
+      "sublime text",
+      "st3",
+      "editor",
+      "typescript",
+      "ts",
+      "syntax",
+      "highlighting"
+    ]
+  },
+  "https://github.com/Microsoft/dtslint": {
+    "id": "dtslint",
+    "description": "GitHub repository for dtslint, a utility for testing TypeScript definition files for style and correctness.",
+    "short_url": "",
+    "keywords": [
+      "typescript",
+      "tslint",
+      "definition files",
+      "ts",
+      "lint"
     ]
   },
   "https://github.com/PyCQA/pycodestyle": {
@@ -2866,7 +3839,7 @@
   },
   "https://github.com/SublimeLinter/SublimeLinter-json": {
     "id": "sublime-text-sublimelinter-json",
-    "description": "Plugin for SublimeLinter3 which lints JSON",
+    "description": "Plugin for SublimeLinter3 which lints JSON.",
     "short_url": "",
     "keywords": [
       "sublime",
@@ -2875,9 +3848,23 @@
       "json"
     ]
   },
+  "https://github.com/SublimeLinter/SublimeLinter-shellcheck": {
+    "id": "sublime-text-sublimelinter-shellcheck",
+    "description": "Sublime Text plugin which provides an interface to shellcheck for linting files having \"Shell-Unix-Generic\" syntax (aka Shell Script).",
+    "short_url": "",
+    "keywords": [
+      "sublime text",
+      "st3",
+      "linter",
+      "shell",
+      "bash",
+      "lint",
+      "shellcheck"
+    ]
+  },
   "https://github.com/SublimeLinter/SublimeLinter3": {
     "id": "sublime-text-sublimelinter3",
-    "description": "Linting framework for Sublime Text 3",
+    "description": "Linting framework for Sublime Text 3.",
     "short_url": "",
     "keywords": [
       "sublime",
@@ -2885,6 +3872,18 @@
       "editor",
       "linting",
       "lint"
+    ]
+  },
+  "https://github.com/SublimeText-Markdown/MarkdownEditing": {
+    "id": "sublime-text-markdownediting",
+    "description": "GitHub repository for a Sublime Text plugin which provides syntax highlighting (including for fenced code blocks) and editing features for Markdown.",
+    "short_url": "",
+    "keywords": [
+      "markdown",
+      "sublime",
+      "text",
+      "editor",
+      "plugin"
     ]
   },
   "https://github.com/WebAssembly/wabt": {
@@ -2896,6 +3895,7 @@
       "wasm",
       "wabt",
       "wast",
+      "wat",
       "toolkit"
     ]
   },
@@ -2921,6 +3921,42 @@
       "buffer",
       "browserify",
       "browser"
+    ]
+  },
+  "https://github.com/kemayo/sublime-text-git": {
+    "id": "sublime-text-git",
+    "description": "GitHub repository for a Sublime Text plugin which provides Git integration.",
+    "short_url": "",
+    "keywords": [
+      "git",
+      "sublime",
+      "text",
+      "editor",
+      "plugin"
+    ]
+  },
+  "https://github.com/koalaman/shellcheck": {
+    "id": "shellcheck",
+    "description": "GitHub repository for shellcheck, a shell script static analysis tool.",
+    "short_url": "",
+    "keywords": [
+      "linter",
+      "lint",
+      "shell",
+      "bash",
+      "static analysis"
+    ]
+  },
+  "https://github.com/mvoidex/UnicodeMath": {
+    "id": "sublime-text-unicode-math",
+    "description": "Sublime Text package for inserting Unicode math symbols and emoji.",
+    "short_url": "",
+    "keywords": [
+      "sublime text",
+      "st3",
+      "sublime",
+      "editor",
+      "plugin"
     ]
   },
   "https://github.com/pypa/pip": {
@@ -2951,6 +3987,17 @@
       "eslint",
       "javascript",
       "ecmascript"
+    ]
+  },
+  "https://github.com/settings/tokens/new": {
+    "id": "github-token",
+    "description": "Link for creating a new GitHub token.",
+    "short_url": "",
+    "keywords": [
+      "github",
+      "auth",
+      "token",
+      "authorization"
     ]
   },
   "https://github.com/sindresorhus/editorconfig-sublime": {
@@ -3097,6 +4144,20 @@
       "error"
     ]
   },
+  "https://nodejs.org/api/fs.html": {
+    "id": "node-fs",
+    "description": "Node.js documentation for filesystem APIs.",
+    "short_url": "",
+    "keywords": [
+      "node-js",
+      "nodejs",
+      "node.js",
+      "fs",
+      "filesystem",
+      "documentation",
+      "docs"
+    ]
+  },
   "https://nodejs.org/api/os.html#os_os_cpus": {
     "id": "node-os",
     "description": "Node.js documentation for the `cpus()` function of the `os` module.",
@@ -3168,6 +4229,114 @@
       "js"
     ]
   },
+  "https://oeis.org/A000040": {
+    "id": "oeis-a000040",
+    "description": "The OEIS entry for the sequence of prime numbers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "seq",
+      "integers",
+      "numbers",
+      "primes"
+    ]
+  },
+  "https://oeis.org/A000142": {
+    "id": "oeis-a000142",
+    "description": "The OEIS entry for the sequence of factorials.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "seq",
+      "factorials",
+      "integers",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A000217": {
+    "id": "oeis-a000217",
+    "description": "The OEIS entry for triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "integers",
+      "numbers",
+      "binomial",
+      "triangular",
+      "triangle"
+    ]
+  },
+  "https://oeis.org/A000537": {
+    "id": "oeis-a000537",
+    "description": "The OEIS entry for squared triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "squared",
+      "numbers",
+      "integers",
+      "sequence"
+    ]
+  },
+  "https://oeis.org/A000578": {
+    "id": "oeis-a000578",
+    "description": "The OEIS entry for a sequence of cubes.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "seq",
+      "integers",
+      "cubes",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A001057": {
+    "id": "oeis-a001057",
+    "description": "The OEIS entry for a canonical enumeration of an interleaved integer sequence.",
+    "short_url": "",
+    "keywords": [
+      "integers",
+      "sequence",
+      "interleaved",
+      "enumeration",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A001477": {
+    "id": "oeis-a001477",
+    "description": "The OEIS entry for the sequence of nonnegative integers.",
+    "short_url": "",
+    "keywords": [
+      "nonnegative",
+      "integers",
+      "sequence",
+      "natural",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A001478": {
+    "id": "oeis-a001478",
+    "description": "The OEIS entry for the sequence of negative integers.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "integers",
+      "numbers",
+      "negative"
+    ]
+  },
+  "https://oeis.org/A001489": {
+    "id": "oeis-a001489",
+    "description": "The OEIS entry for the sequence of nonpositive integers.",
+    "short_url": "",
+    "keywords": [
+      "nonpositive",
+      "sequence",
+      "integers",
+      "numbers"
+    ]
+  },
   "https://oeis.org/A001690": {
     "id": "oeis-a001690",
     "description": "The On-Line Encyclopedia of Integer Sequences (OEIS) entry for non-Fibonacci numbers.",
@@ -3176,6 +4345,48 @@
       "fibonacci",
       "fibo",
       "fib",
+      "sequences",
+      "integer",
+      "oeis",
+      "number theory"
+    ]
+  },
+  "https://oeis.org/A002808": {
+    "id": "oeis-a002808",
+    "description": "The OEIS entry for the sequence of composite numbers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "seq",
+      "primes",
+      "composite",
+      "integers",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/wiki/Lucas_polynomials": {
+    "id": "oeis-lucas-polynomials",
+    "description": "The On-Line Encyclopedia of Integer Sequences (OEIS) entry for Lucas (or Cardan) polynomials.",
+    "short_url": "",
+    "keywords": [
+      "lucas",
+      "cardan",
+      "generalization",
+      "sequences",
+      "integer",
+      "oeis",
+      "number theory"
+    ]
+  },
+  "https://oeis.org/wiki/Lucas_triangle": {
+    "id": "oeis-lucas-triangle",
+    "description": "The On-Line Encyclopedia of Integer Sequences (OEIS) entry for the Lucas triangle or (1,2)-Pascal triangle.",
+    "short_url": "",
+    "keywords": [
+      "lucas",
+      "pascal",
+      "triangle",
       "sequences",
       "integer",
       "oeis",
@@ -3334,6 +4545,18 @@
       "utility"
     ]
   },
+  "https://www.npmjs.com/package/repl": {
+    "id": "repl-template-lib",
+    "description": "A lightweight template library in NodeJS.",
+    "short_url": "",
+    "keywords": [
+      "template",
+      "engine",
+      "repl",
+      "nodejs",
+      "javascript"
+    ]
+  },
   "https://www.python.org/": {
     "id": "python",
     "description": "The official website of Python, a general purpose programming language.",
@@ -3356,6 +4579,15 @@
       "language"
     ]
   },
+  "https://www.scipy.org/scipylib/index.html": {
+    "id": "scipy",
+    "description": "Official homepage for SciPy, a collection of mathematical algorithms and convenience functions built on the Numpy extension of Python.",
+    "short_url": "",
+    "keywords": [
+      "scipy",
+      "python"
+    ]
+  },
   "https://www.sublimetext.com/": {
     "id": "sublime-text",
     "description": "Sublime Text text editor. Official website.",
@@ -3364,6 +4596,17 @@
       "sublime",
       "text",
       "editor"
+    ]
+  },
+  "https://www.typescriptlang.org/": {
+    "id": "typescript",
+    "description": "Typescript language homepage.",
+    "short_url": "",
+    "keywords": [
+      "typescript",
+      "ts",
+      "docs",
+      "documentation"
     ]
   },
   "https://www.w3.org/Graphics/SVG/": {

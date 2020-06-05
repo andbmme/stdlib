@@ -1,8 +1,26 @@
 #!/usr/bin/env bash
 #
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # Build script to run continuous integration on [AppVeyor][1].
 #
 # [1]: https://www.appveyor.com/
+
+# shellcheck disable=SC2181
 
 
 # VARIABLES #
@@ -19,6 +37,12 @@ heartbeat_interval='30s'
 
 # Declare a variable for storing the heartbeat process id:
 heartbeat_pid=""
+
+# Define the project name:
+project_name='@stdlib/stdlib'
+
+# Define the project GitHub URL:
+project_github_url='git://github.com/stdlib-js/stdlib.git'
 
 
 # FUNCTIONS #
@@ -153,6 +177,29 @@ run_examples() {
 	return 0
 }
 
+# Tests whether the project successfully installs via `npm`.
+#
+# $1 - log file
+test_npm_install() {
+	echo 'Testing npm install...' >&2
+	make TEST_NPM_INSTALL_PKG="${project_name}" test-npm-install >> "$1" 2>&1
+	if [[ "$?" -ne 0 ]]; then
+		echo 'Installation failed.' >&2
+		return 1
+	fi
+	echo 'Successfully installed.' >&2
+
+	echo 'Testing npm install (via GitHub)...' >&2
+	make TEST_NPM_INSTALL_GITHUB_URL="${project_github_url}" test-npm-install-github >> "$1" 2>&1
+	if [[ "$?" -ne 0 ]]; then
+		echo 'Installation (via GitHub) failed.' >&2
+		return 1
+	fi
+	echo 'Successfully installed (via GitHub).' >&2
+
+	return 0
+}
+
 # Checks dependencies.
 #
 # $1 - log file
@@ -173,7 +220,12 @@ main() {
 	start_heartbeat "${heartbeat_interval}"
 
 	echo "Task: ${task}." >&2
-	if [[ "${task}" = "test" ]]; then
+	if [[ "${task}" = "test-npm-install" ]]; then
+		test_npm_install "${log_file}"
+		if [[ "$?" -ne 0 ]]; then
+			on_error 1
+		fi
+	elif [[ "${task}" = "test" ]]; then
 		run_tests "${log_file}"
 		if [[ "$?" -ne 0 ]]; then
 			on_error 1
@@ -215,6 +267,7 @@ main() {
 trap 'on_error' ERR
 
 # Run in the top-level project directory:
+# shellcheck disable=SC2164,SC2046
 cd $(dirname "$0")/../../..
 
 # Run main:

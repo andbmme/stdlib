@@ -1,30 +1,20 @@
-
-# VARIABLES #
-
-# Define the path to the `tap-spec` executable:
+#/
+# @license Apache-2.0
 #
-# To install tap-spec:
-#     $ npm install tap-spec
+# Copyright (c) 2017 The Stdlib Authors.
 #
-# [1]: https://github.com/scottcorgan/tap-spec
-TAP_REPORTER ?= $(BIN_DIR)/tap-spec
-
-# Define the path to the `tap-summary` executable:
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# To install tap-summary:
-#     $ npm install tap-summary
+#    http://www.apache.org/licenses/LICENSE-2.0
 #
-# [1]: https://github.com/zoubin/tap-summary
-TAP_SUMMARY ?= $(BIN_DIR)/tap-summary
-
-# Define the path to the `tap-xunit` executable:
-#
-# To install tap-xunit:
-#     $ npm install tap-xunit
-#
-# [1]: https://github.com/aghassemi/tap-xunit
-TAP_XUNIT ?= $(BIN_DIR)/tap-xunit
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # DEPENDENCIES #
 

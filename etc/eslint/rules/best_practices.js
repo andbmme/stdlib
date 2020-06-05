@@ -1,3 +1,21 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 'use strict';
 
 /**
@@ -19,15 +37,15 @@ var rules = {};
 * // Bad...
 * var obj = {};
 * Object.defineProperty( obj, 'a', {
-*     'set': function set(){}
+*     'set': function set() {}
 * });
 *
 * @example
 * // Good...
 * var obj = {};
 * Object.defineProperty( obj, 'a', {
-*     'set': function set(){},
-*     'get': function get(){}
+*     'set': function set() {},
+*     'get': function get() {}
 * });
 */
 rules[ 'accessor-pairs' ] = [ 'error', {
@@ -40,8 +58,7 @@ rules[ 'accessor-pairs' ] = [ 'error', {
 *
 * @name array-callback-return
 * @memberof rules
-* @type {string}
-* @default 'error'
+* @type {Array}
 * @see [array-callback-return]{@link http://eslint.org/docs/rules/array-callback-return}
 *
 * @example
@@ -59,7 +76,9 @@ rules[ 'accessor-pairs' ] = [ 'error', {
 * }
 * var o = [ 1, 2, 3 ].reduce( reduce, {} );
 */
-rules[ 'array-callback-return' ] = 'error';
+rules[ 'array-callback-return' ] = [ 'error', {
+	'allowImplicit': false
+}];
 
 /**
 * Never allow variables to be used outside of the block in which they were defined.
@@ -103,7 +122,7 @@ rules[ 'block-scoped-var' ] = 'error';
 * @example
 * // Bad...
 * class A {
-*     constructor(){}
+*     constructor() {}
 *     say() {
 *         return 'Hello';
 *     }
@@ -112,7 +131,7 @@ rules[ 'block-scoped-var' ] = 'error';
 * @example
 * // Good...
 * class A {
-*     constructor(){}
+*     constructor() {}
 *     static say() {
 *         return 'Hello';
 *     }
@@ -198,6 +217,29 @@ rules[ 'curly' ] = 'error';
 * }
 */
 rules[ 'default-case' ] = 'error';
+
+/**
+* Always require default parameters to be last.
+*
+* @name default-param-last
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [default-param-last]{@link http://eslint.org/docs/rules/default-param-last}
+*
+* @example
+* // Bad...
+* function foo( a = 1, b ) {
+*     // No-op...
+* }
+*
+* @example
+* // Good...
+* function foo( b, a = 1 ) {
+*     // No-op...
+* }
+*/
+rules[ 'default-param-last' ] = 'error';
 
 /**
 * Require that a dot be on the same line as a property.
@@ -291,6 +333,17 @@ rules[ 'eqeqeq' ] = [ 'error', 'always' ];
 rules[ 'guard-for-in' ] = 'error';
 
 /**
+* Never allow more than one class per file.
+*
+* @name max-classes-per-file
+* @memberof rules
+* @type {Array}
+* @default [ 'error', 1 ]
+* @see [max-classes-per-file]{@link https://eslint.org/docs/rules/max-classes-per-file}
+*/
+rules[ 'max-classes-per-file' ] = [ 'error', 1 ];
+
+/**
 * Never allow `alert`, `confirm`, or `prompt`.
 *
 * @name no-alert
@@ -357,26 +410,31 @@ rules[ 'no-div-regex' ] = 'error';
 *
 * @name no-else-return
 * @memberof rules
-* @type {string}
-* @default 'error'
+* @type {Array}
 * @see [no-else-return]{@link http://eslint.org/docs/rules/no-else-return}
 *
 * @example
 * // Bad...
-* if ( x === y ) {
-*     return x;
-* } else {
-*     return y;
+* function foo( x, y ) {
+*     if ( x === y ) {
+*         return x;
+*     } else {
+*         return y;
+*     }
 * }
 *
 * @example
 * // Good...
-* if ( x === y ) {
-*     return x;
+* function foo( x, y ) {
+*     if ( x === y ) {
+*         return x;
+*     }
+*     return y;
 * }
-* return y;
 */
-rules[ 'no-else-return' ] = 'error';
+rules[ 'no-else-return' ] = [ 'error', {
+	'allowElseIf': false
+}];
 
 /**
 * Never allow an empty function.
@@ -822,6 +880,25 @@ rules[ 'no-multi-spaces' ] = [ 'error', {
 rules[ 'no-multi-str' ] = 'error';
 
 /**
+* Never allow use the `new` operator without assignment.
+*
+* @name no-new
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [no-new]{@link http://eslint.org/docs/rules/no-new}
+*
+* @example
+* // Bad...
+* new Foo();
+*
+* @example
+* // Good...
+* var f = new Foo();
+*/
+rules[ 'no-new' ] = 'error';
+
+/**
 * Never allow using the `Function` constructor to create functions.
 *
 * @name no-new-func
@@ -862,23 +939,23 @@ rules[ 'no-new-func' ] = 'error';
 rules[ 'no-new-wrappers' ] = 'error';
 
 /**
-* Never allow use the `new` operator without assignment.
+* Never allow octal literals that begin with a leading zero; e.g., 071 (=> 57).
 *
-* @name no-new
+* @name no-octal
 * @memberof rules
 * @type {string}
 * @default 'error'
-* @see [no-new]{@link http://eslint.org/docs/rules/no-new}
+* @see [no-octal]{@link http://eslint.org/docs/rules/no-octal}
 *
 * @example
 * // Bad...
-* new Foo();
+* var num = 071;
 *
 * @example
 * // Good...
-* var f = new Foo();
+* var num = '071';
 */
-rules[ 'no-new' ] = 'error';
+rules[ 'no-octal' ] = 'error';
 
 /**
 * Never allow octal escape sequences, which are deprecated.
@@ -898,25 +975,6 @@ rules[ 'no-new' ] = 'error';
 * var foo = 'Copyright \u00A9';
 */
 rules[ 'no-octal-escape' ] = 'error';
-
-/**
-* Never allow octal literals that begin with a leading zero; e.g., 071 (=> 57).
-*
-* @name no-octal
-* @memberof rules
-* @type {string}
-* @default 'error'
-* @see [no-octal]{@link http://eslint.org/docs/rules/no-octal}
-*
-* @example
-* // Bad...
-* var num = 071;
-*
-* @example
-* // Good...
-* var num = '071';
-*/
-rules[ 'no-octal' ] = 'error';
 
 /**
 * Allow parameter reassignment (although bugs can arise when doing so).
@@ -1015,6 +1073,8 @@ rules[ 'no-restricted-properties' ] = 'off';
 */
 rules[ 'no-return-assign' ] = [ 'error', 'always' ];
 
+/* eslint-disable stdlib/jsdoc-doctest-marker, stdlib/jsdoc-doctest-quote-props */
+
 /**
 * Never allow `return await`.
 *
@@ -1031,6 +1091,8 @@ rules[ 'no-return-assign' ] = [ 'error', 'always' ];
 * }
 */
 rules[ 'no-return-await' ] = 'error';
+
+/* eslint-enable stdlib/jsdoc-doctest-marker stdlib/jsdoc-doctest-quote-props */
 
 /**
 * Never allow using `javascript:` in urls.
@@ -1163,12 +1225,14 @@ rules[ 'no-unused-expressions' ] = [ 'error', {
 *
 * @example
 * // Bad...
-* var x = 0;
-* A: while( true ) {
-*     if ( x === 10 ) {
-*         return;
+* function foo() {
+*     var x = 0;
+*     A: while( true ) {
+*         if ( x === 10 ) {
+*             return;
+*         }
+*         x += 1;
 *     }
-*     x += 1;
 * }
 */
 rules[ 'no-unused-labels' ] = 'error';
@@ -1191,6 +1255,36 @@ rules[ 'no-unused-labels' ] = 'error';
 * var x = foo( 1, 2 );
 */
 rules[ 'no-useless-call' ] = 'error';
+
+/**
+* Never allow unnecessary catch clauses.
+*
+* @name no-useless-catch
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [no-useless-catch]{@link http://eslint.org/docs/rules/no-useless-catch}
+*
+* @example
+* // Bad...
+* try {
+*     throw new Error( 'beep' );
+* } catch ( err ) {
+*     // Catch is unnecessary if we are just rethrowing...
+*     throw err;
+* }
+*
+* @example
+* // Good...
+* try {
+*     throw new Error( 'beep' );
+* } catch ( err ) {
+*     if ( err instanceof TypeError) {
+*         throw err;
+*     }
+* }
+*/
+rules[ 'no-useless-catch' ] = 'error';
 
 /**
 * Never allow concatenation of two string literals which can be combined as a single literal.
@@ -1307,6 +1401,48 @@ rules[ 'no-warning-comments' ] = [ 'warn', {
 rules[ 'no-with' ] = 'error';
 
 /**
+* Do not require the use of ES2018 named capture groups.
+*
+* @name prefer-named-capture-group
+* @memberof rules
+* @type {string}
+* @default 'off'
+* @see [prefer-named-capture-group]{@link http://eslint.org/docs/rules/prefer-named-capture-group}
+*/
+rules[ 'prefer-named-capture-group' ] = 'off';
+
+/**
+* Always require that promises are rejected with `Error` objects.
+*
+* @name prefer-promise-reject-errors
+* @memberof rules
+* @type {Array}
+* @see [prefer-promise-reject-errors]{@link https://eslint.org/docs/rules/prefer-promise-reject-errors}
+*/
+rules[ 'prefer-promise-reject-errors' ] = [ 'error', {
+	'allowEmptyReject': false
+}];
+
+/**
+* Always require regular expression literals when not dynamically generating a regular expression.
+*
+* @name prefer-regex-literals
+* @memberof rules
+* @type {string}
+* @default 'error'
+* @see [prefer-regex-literals]{@link https://eslint.org/docs/rules/prefer-regex-literals}
+*
+* @example
+* // Bad...
+* var re = new RegExp( 'foo' );
+*
+* @example
+* // Good...
+* var re = /foo/;
+*/
+rules[ 'prefer-regex-literals' ] = 'error';
+
+/**
 * Always require a `radix` parameter to `parseInt()`.
 *
 * @name radix
@@ -1324,6 +1460,8 @@ rules[ 'no-with' ] = 'error';
 * var x = parseInt( '8', 10 );
 */
 rules[ 'radix' ] = [ 'error', 'always' ];
+
+/* eslint-disable stdlib/jsdoc-doctest-marker, stdlib/jsdoc-doctest-quote-props */
 
 /**
 * Always require `async` functions to have an `await` expression.
@@ -1347,6 +1485,31 @@ rules[ 'radix' ] = [ 'error', 'always' ];
 * }
 */
 rules[ 'require-await' ] = 'error';
+
+/* eslint-enable stdlib/jsdoc-doctest-marker, stdlib/jsdoc-doctest-quote-props */
+
+/**
+* Don't require the `u` flag on a regular expression.
+*
+* ## Notes
+*
+* -   With the `u` flag set, regular expressions handle UTF-16 surrogate pairs correctly.
+*
+* @name require-unicode-regexp
+* @memberof rules
+* @type {string}
+* @default 'off'
+* @see [require-unicode-regexp]{@link http://eslint.org/docs/rules/require-unicode-regexp}
+*
+* @example
+* // Bad...
+* var re = /^[👍]$/;
+*
+* @example
+* // Good...
+* var re = /^[👍]$/u;
+*/
+rules[ 'require-unicode-regexp' ] = 'off';
 
 /**
 * Always declare variables at the top of their scope to represent hoisting.

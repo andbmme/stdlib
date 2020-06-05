@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -19,19 +36,18 @@ ifneq ($(OS), Darwin)
 	FIND_ISTANBUL_TEST_DIRS_FLAGS := -regextype posix-extended $(FIND_ISTANBUL_TEST_DIRS_FLAGS)
 endif
 
-# Define the path to the `tap-spec` executable:
-TAP_REPORTER ?= $(BIN_DIR)/tap-spec
-
 # Define the executable for generating a coverage report name:
 COVERAGE_REPORT_NAME ?= $(TOOLS_DIR)/test-cov/scripts/coverage_report_name
 
 # Define the path to the Istanbul executable.
 #
 # To install Istanbul:
-#     $ npm install istanbul
+#
+# ```bash
+# $ npm install istanbul
+# ```
 #
 # [1]: https://github.com/gotwarlost/istanbul
-
 ISTANBUL ?= $(BIN_DIR)/istanbul
 
 # Define which files and directories to exclude from coverage instrumentation:
@@ -98,7 +114,7 @@ ISTANBUL_REPORT_FLAGS ?= \
 
 # Define the test runner executable for Istanbul instrumented source code:
 ifeq ($(JAVASCRIPT_TEST_RUNNER), tape)
-	ISTANBUL_TEST_RUNNER ?= $(NODE) $(TOOLS_DIR)/test-cov/tape-istanbul/bin/cli
+	ISTANBUL_TEST_RUNNER ?= $(NODE) $(TOOLS_PKGS_DIR)/test-cov/tape-istanbul/bin/cli
 	ISTANBUL_TEST_RUNNER_FLAGS ?= \
 		--dir $(ISTANBUL_INSTRUMENT_OUT) \
 		--global '__coverage__'
@@ -142,8 +158,8 @@ test-istanbul: $(NODE_MODULES) test-istanbul-instrument
 		echo ''; \
 		echo "Running tests in directory: $$dir"; \
 		echo ''; \
-		NODE_ENV=$(NODE_ENV_TEST) \
-		NODE_PATH=$(NODE_PATH_TEST) \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH_TEST)" \
 		TEST_MODE=coverage \
 		$(ISTANBUL_TEST_RUNNER) \
 			$(ISTANBUL_TEST_RUNNER_FLAGS) \
@@ -171,8 +187,8 @@ test-istanbul-report: $(NODE_MODULES)
 # This target instruments source code, runs unit tests, and outputs a test coverage report.
 
 test-istanbul-cover: $(NODE_MODULES)
-	$(QUIET) NODE_ENV=$(NODE_ENV_TEST) \
-	NODE_PATH=$(NODE_PATH_TEST) \
+	$(QUIET) NODE_ENV="$(NODE_ENV_TEST)" \
+	NODE_PATH="$(NODE_PATH_TEST)" \
 	$(ISTANBUL_COVER) $(ISTANBUL_COVER_FLAGS) $(JAVASCRIPT_TEST) -- $(JAVASCRIPT_TEST_FLAGS) $(TESTS)
 
 .PHONY: test-istanbul-cover

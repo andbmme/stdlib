@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -22,8 +39,8 @@ REPL_DIR ?= $(ROOT_DIR)
 
 repl-node: $(NODE_MODULES) $(STDLIB)
 	$(QUIET) cd $(REPL_DIR); \
-	NODE_ENV=$(NODE_ENV_REPL) \
-	NODE_PATH=$(NODE_PATH_REPL) \
+	NODE_ENV="$(NODE_ENV_REPL)" \
+	NODE_PATH="$(NODE_PATH_REPL)" \
 	$(NODE) $(STDLIB) $(REPL) -- $(REPL_FLAGS)
 
 .PHONY: repl-node

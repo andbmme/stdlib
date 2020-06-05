@@ -1,8 +1,25 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
 # Define the command for generating distributable browser bundles:
-DIST_BROWSER_BUNDLES ?= $(NODE) \
+DIST_BROWSER_BUNDLES ?= NODE_PATH="$(NODE_PATH)" $(NODE) \
 	--max_old_space_size=4096 \
 	--expose_gc \
 	$(TOOLS_PKGS_DIR)/bundle/scripts/dist_browser_bundles
@@ -17,12 +34,14 @@ UPDATE_DIST_README_BROWSER_BUNDLE_STATS ?= $(NODE) $(TOOLS_PKGS_DIR)/bundle/scri
 UPDATE_DIST_README_BROWSER_BUNDLE_STATS_FLAGS ?=
 
 
-# TARGETS #
+# RULES #
 
-# Generate browser bundles.
+#/
+# Generates distributable browser bundles.
 #
-# This target generates distributable browser bundles.
-
+# @example
+# make dist-browser-bundles
+#/
 dist-browser-bundles: $(NODE_MODULES)
 	$(QUIET) echo 'Generating distributable browser bundles...'
 	$(QUIET) $(DIST_BROWSER_BUNDLES) $(DIST_BROWSER_BUNDLES_FLAGS)
@@ -33,12 +52,13 @@ dist-browser-bundles: $(NODE_MODULES)
 
 .PHONY: dist-browser-bundles
 
-
-# Update browser bundle stats.
+#/
+# Updates a README file documenting distributable browser bundles to include the most recent bundle statistics.
 #
-# This target updates a README file documenting distributable browser bundles to include the most recent bundle statistics.
-
-update-dist-readme-browser-bundle-stats:
-	$(QUIET) $(UPDATE_DIST_README_BROWSER_BUNDLE_STATS) $(UPDATE_DIST_README_BROWSER_BUNDLE_STATS_FLAGS)
+# @example
+# make update-dist-readme-browser-bundle-stats
+#/
+update-dist-readme-browser-bundle-stats: $(NODE_MODULES)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(UPDATE_DIST_README_BROWSER_BUNDLE_STATS) $(UPDATE_DIST_README_BROWSER_BUNDLE_STATS_FLAGS)
 
 .PHONY: update-dist-readme-browser-bundle-stats

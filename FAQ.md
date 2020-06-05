@@ -5,7 +5,9 @@
 > Common answers to common questions.
 
 -   [Why use this project?](#why-use)
+-   [What are the project's core values?](#core-values)
 -   [Why numeric computing in JavaScript?](#numeric-computing-in-javascript)
+-   [What are the use cases for numeric computing in JavaScript?](#use-cases)
 -   [Why not use R, Python, or Julia?](#other-languages)
 -   [Why not exclusively use native add-ons?](#native-add-ons)
 -   [What about WebAssembly?](#web-assembly)
@@ -13,6 +15,9 @@
 -   [Why not change the ECMAScript specification to use better Math algorithms?](#ecmascript-math-specification)
 -   [What can be done at the standards level to better support numeric computing?](#ecmascript-recommendations)
 -   [Why reimplement module functionality already available on npm?](#reimplementing-existing-packages)
+-   [Why not submit improvements to existing libraries?](#contributing-to-existing-libraries)
+-   [Why not aggregate (curate) packages published to npm?](#why-not-curate)
+-   [Why are built-in JavaScript globals wrapped and imported as packages?](#globals-as-packages)
 -   [Backward compatibility?](#backward-compatibility)
 -   [Why use semicolons?](#semicolons)
 -   [Import support?](#import-support)
@@ -20,6 +25,7 @@
 -   [ES2015 and beyond?](#es2015)
 -   [Why a monorepo?](#monorepo)
 -   [Why are library packages in a node_modules directory?](#lib-node-modules)
+-   [What is meant by saying the project is "decomposable"?](#decomposable-software)
 -   [How can I support the project?](#supporting)
 -   [Why contribute?](#why-contribute)
 -   [How can I contribute?](#contributing)
@@ -36,7 +42,7 @@
 
 This project
 
-1.  provides high quality, rigorous, and robust implementations having common licensing, documentation, tooling, and style
+1.  provides high-quality, rigorous, and robust implementations having common licensing, documentation, tooling, and style
 
 2.  provides peer-reviewed portable JavaScript libraries
 
@@ -64,6 +70,24 @@ This project
 
 * * *
 
+<a name="core-values"></a>
+
+### What are the project's core values?
+
+-   **Thoroughness**: implementations should be thorough, including testing, benchmarking, and documentation. Algorithms should be researched, studied, and measured. Taking shortcuts is not acceptable. Attention to detail is highly prized. Code should be written well the first time.
+-   **Rigor**: development should be rigorous. High-quality code is expected, and authors are expected to strive for excellence.
+-   **Robustness**: implementations should demonstrate an exhaustive understanding of how they can fail.
+-   **Approachability**: user-facing APIs and underlying implementations should be approachable. Interfaces should embrace simplicity. Source code should use the simplest primitives. Documentation should be abundant.
+-   **Integrity**: all aspects of the project&mdash;documentation, testing, benchmarking, implementations, tooling&mdash;should form a consistent and coherent whole. Code should be of one voice and reflect a single purpose: to write high-quality software.
+
+<!-- TODO: once the project stabilizes, consider "stability"; e.g., backward compatibility support, etc -->
+
+<!-- </faq-question> -->
+
+<!-- <faq-question> -->
+
+* * *
+
 <a name="numeric-computing-in-javascript"></a>
 
 ### Why numeric computing in JavaScript?
@@ -74,6 +98,49 @@ This project
 4.  **Ubiquity**: JavaScript is [ubiquitous][javascript-ubiquity], being supported on nearly any device with a web browser and, now, being pushed as a preferred scripting language in the Internet of Things (IoT) ([Cylon.js][cylon-js], [iot.js][iot-js], [JerryScript][jerryscript], [Johnny-Five][johnny-five]). Thus, if a numeric compute application can run in JavaScript, the broader the potential reach of that application.
 5.  **Distribution**: distributing a numeric compute application is considerably easier when compared to traditional numeric computation platforms. Because JavaScript is ubiquitous, the need for installing additional languages and tooling is often unnecessary. A web browser is frequently all that is required.
 6.  **Package Management**: Node.js package management is superior to anything available in other numeric computing environments. As developers who must manage Python [virtual environments][virtualenvs] or implement odd workarounds to support multiple versions of the same dependency can attest, the Node.js strategy makes dependency management trivial. And further, the tight integration with [npm][npm] makes distribution even more frictionless. Frictionless is not a common adjective used in describing package management in other numeric computing environments.
+
+<!-- </faq-question> -->
+
+<!-- <faq-question> -->
+
+* * *
+
+<a name="use-cases"></a>
+
+### What are the use cases for numeric computing in JavaScript?
+
+Fundamentally, the use cases for numerical and scientific computing in JavaScript are the same as for any other commonly used language for numerical and scientific computation, such as MATLAB, R, Python, and Julia. For example,
+
+-   perform some sort of statistical analysis, such as computing summary statistics or hypothesis testing.
+-   train and apply a statistical model (e.g., assign a probability as to whether `A` has characteristic `B` given an observation `Q`).
+-   cluster observations into a set of `N` distinct groups.
+-   determine the similarity of two or more datasets (i.e., can we reasonably distinguish `X` from `Y`?).
+-   assign a likelihood to unexpected events (i.e., all things being equal, how often should we expect to see a particular outcome were we to repeat our experiment hundreds, thousands or millions of times?).
+-   perform simulations involving alternative models (e.g., what would the data look like if we change model parameters `a` and `b`?).
+-   extract key "features" accounting for the most variation in observed values.
+-   translate text from one language to another.
+-   generate synthetic speech.
+-   rank documents according to their relevance (e.g., to build a search engine).
+-   recognize and classify objects in images (e.g., does image `I` contain a cat or a dog?).
+-   predict growth and financial returns.
+-   compute the trajectory of spacecraft and flying objects.
+-   determine optimal ticket prices and staffing requirements to maximize revenue.
+-   parse, transform, filter, and aggregate data.
+-   add, subtract, multiply, and divide numbers.
+
+In addition to the above, JavaScript has additional use cases by virtue of its being the _lingua franca_ of the web.
+
+-   offline computation in web applications (i.e., an entirely client-side machine learning library does not require a network connection in order to execute commands as is the case, e.g., in the [Jupyter][jupyter] notebook computation model).
+-   rapid prototyping and visualization.
+-   interactive explanations.
+
+The popularity of Node.js due to its ease-of-use and growing ubiquity in the HTTP networking stack affords Node.js additional use cases such as
+
+-   a rapidly prototyped and demo-able Node.js server endpoint which performs natural language processing (NLP) and uses the Amazon Alexa API for a chat bot.
+-   a serverless application which performs a machine learning computation without needing to install and bundle all of, e.g., Python, [NumPy][numpy], and [SciPy][scipy], thus saving time, money, and resources (all by virtue of Node.js' dominance in serverless cloud offerings, such as AWS Lambda, Google Cloud, and Microsoft Azure).
+-   browserless model computation done entirely in JavaScript.
+
+While other languages and platforms exist which _may_ be better suited for specific use cases, particularly those requiring bare metal performance or involving massive data sets, when considered in totality, the opinion of this project is that JavaScript (and Node.js) provides a comparable, if not better, environment for numerical and scientific computation than other competitor environments.  
 
 <!-- </faq-question> -->
 
@@ -144,7 +211,7 @@ Despite the disadvantages articulated above, this project **does** include Node.
 
 1.  **Compilation**: as developers who have used [asm.js][asm] to compile C and C++ libraries to run on the Web can attest, the process is not as simple as defining input and output targets. Often pre-compiled code has to be massaged into a form suitable for compilation, which means work is involved, requiring both time and labor.
 2.  **Bundling**: page load times are, and will continue to be, important, especially for business critical applications. The JavaScript community has invested considerable time and effort to both developing tooling and improving the web platform to bundle only code which is actually used and needed. Libraries written in other languages (e.g., [NumPy][numpy]) are not as amenable to modular bundles. Lack of modularity combined with significant size renders many non-JavaScript libraries impractical for web applications.
-3.  **Timescale**: [WebAssembly][wasm] is not likely to be ubiquitous anytime soon (as of 2017, browser implementations exist, but development targeting [WebAssembly][wasm] is not widespread) and a need exists now for numeric computation libraries which work on the Web.
+3.  **Timescale**: [WebAssembly][wasm] is not likely to be ubiquitous anytime soon (as of 2018, browser implementations exist, but development targeting [WebAssembly][wasm] is not widespread) and a need exists now for numeric computation libraries which work on the Web.
 4.  **Monoglot**: developers will still build JavaScript applications and most will, all things being equal, want to use a library written in the same idiom. Using a single language stack reduces cognitive overhead and simplifies application development.
 5.  **Legacy**: [WebAssembly][wasm] is unlikely to replace JavaScript, but, instead, serve a complementary role. JavaScript has a long and decorated history as part of the web platform. Relegating JavaScript to the dust bin would entail breaking the Web, an outcome which has been and will continue to be untenable, thus securing JavaScript's privileged status.
 6.  **Scripting**: [WebAssembly][wasm] does **not** eliminate the need for a scripting language. Even if lower level, performance critical math implementations are [WebAssembly][wasm] compiled C/C++ libraries, a dynamic, loosely typed, interpreted scripting language is still necessary. The iteration cycle when using compiled languages is simply too long when compared to dynamic languages, particularly within the context of interactive analysis. Accordingly, functionality is, and will continue to be, necessary in JavaScript, a scripting language to which, given the size and energy of its community, every other scripting language pales in comparison.
@@ -164,7 +231,7 @@ Despite the disadvantages articulated above, this project **does** include Node.
 1.  [ECMA-262][ecma-262] does not mandate specific algorithms (only recommends `libm`). Accordingly, JavaScript implementors are free to choose any algorithm, which means that numeric computation results often differ across environments. This renders the standard JavaScript Math library not amenable to reproducible computation.
 2.  [ECMA-262][ecma-262] does not require a minimum [precision][mdn-math]. As a result, JavaScript implementors make non-transparent trade-offs between speed and accuracy, frequently favoring speed above all else. While traditional web applications may not require highly accurate Math results, many numeric computation applications do. And because the implementations are not transparent, debugging accuracy issues in numeric computation applications which use Math built-ins is considerably more difficult.
 3.  Because built-in Math functions are implementation dependent, numeric computation applications are **not** portable. By creating a set of standard Math implementations, we ensure that results on one platform are reproducible on every other platform.
-4.  Built-in math functions frequently have bugs (see [docs/built_in_math_bugs.md][built-in-math-bugs]).
+4.  Built-in math functions frequently have bugs (see [built_in_math_bugs.md][built-in-math-bugs]).
 5.  Built-in math functions are often buried deep in compiler code and written in languages other than JavaScript. By implementing Math functions purely in JavaScript, the hope is that the underlying algorithms are more transparent, approachable, forkable, and debuggable.
 
 <!-- </faq-question> -->
@@ -249,7 +316,9 @@ To better support numeric computing, standards bodies can do the following:
 
     **Aside:** typed arrays and, more generally, array-like objects may have as many as [`2**53-1`][ecma-262-tolength] elements. In the case of typed arrays, however, one must allocate memory upon instantiation; thus, growing a typed array as needed, while possible, is neither straightforward nor efficient.
 
-4.  **Typed objects**: add support for [typed objects][typed-objects-proposal]. Typed objects would facilitate efficient memory storage of data, which is critical for [performant][five-things-that-make-go-fast] numeric computations. In short,
+4.  **Boolean arrays**: add support for `boolean` typed arrays. Similar in their nature to numeric typed arrays, `boolean` typed arrays would allow for more compact storage and efficient iteration for array masks which can be applied to, e.g., strided arrays.
+
+5.  **Typed objects**: add support for [typed objects][typed-objects-proposal]. Typed objects would facilitate efficient memory storage of data, which is critical for [performant][five-things-that-make-go-fast] numeric computations. In short,
 
     -   typed objects allow compact data structures and avoid unnecessary indirection
     -   typed objects enable better cache utilization
@@ -257,21 +326,21 @@ To better support numeric computing, standards bodies can do the following:
 
     Complex numbers are a prime example where typed objects would be immensely valuable. Particularly for complex vector arrays, the ability to access adjacent memory locations would result in significant performance benefits.
 
-5.  **Value types**: add support for [value types][typed-objects-explainer]. Value types allow for creating custom types and enabling compiler optimizations. As with [typed objects][typed-objects-proposal], complex numbers are a prime example where value types are valuable, due to value comparison via structural equivalence.
+6.  **Value types**: add support for [value types][typed-objects-explainer]. Value types allow for creating custom types and enabling compiler optimizations. As with [typed objects][typed-objects-proposal], complex numbers are a prime example where value types are valuable, due to value comparison via structural equivalence.
 
-6.  **Operator overloading**: add support for [operator overloading][operator-overloading]. Assuming [typed objects][typed-objects-proposal] and [value types][typed-objects-explainer], a natural extension is [operator overloading][operator-overloading]. Currently, element-wise vector operations and use cases such as matrix multiplication require either verbose OOP semantics (e.g., `M1.mul( M2 )` ) or functional equivalents requiring internal argument validation (e.g., `mul( M1, M2 )`. Contrast JavaScript to languages such as MATLAB or Julia which allow for compact expressions (e.g., `M1 .* M2`). Furthermore, operator overloading has a general appeal beyond vector and matrix operations, such as enabling cleaner `Date` arithmetic. The ability to write compact, and yet expressive, code would significantly broaden the appeal of JavaScript for numeric computing.
+7.  **Operator overloading**: add support for [operator overloading][operator-overloading]. Assuming [typed objects][typed-objects-proposal] and [value types][typed-objects-explainer], a natural extension is [operator overloading][operator-overloading]. Currently, element-wise vector operations and use cases such as matrix multiplication require either verbose OOP semantics (e.g., `M1.mul( M2 )` ) or functional equivalents requiring internal argument validation (e.g., `mul( M1, M2 )`. Contrast JavaScript to languages such as MATLAB or Julia which allow for compact expressions (e.g., `M1 .* M2`). Furthermore, operator overloading has a general appeal beyond vector and matrix operations, such as enabling cleaner `Date` arithmetic. The ability to write compact, and yet expressive, code would significantly broaden the appeal of JavaScript for numeric computing.
 
     **Aside**: vector and matrix operations will require additional operators. For instance, when multiplying matrices, need to distinguish between element-wise multiplication versus the matrix product. In languages such as MATLAB and Julia, element-wise operators include a period (e.g., `M1 .* M2` versus `M1 * M2`).
 
-7.  **Big numbers**: add support for big [integers][julia-bigint], [rationals][golang-big], and [floats][julia-bigfloat]. In addition to cryptography and computing irrational numbers, arbitrary precision arithmetic is useful for algorithms involving double-precision floating-point numbers. Currently, lack of efficient, and relatively performant, big number support limits the scope and types of implemented algorithms, including for basic transcendental functions.
+8.  **Big numbers**: add support for big [integers][julia-bigint], [rationals][golang-big], and [floats][julia-bigfloat]. In addition to cryptography and computing irrational numbers, arbitrary precision arithmetic is useful for algorithms involving double-precision floating-point numbers. Currently, lack of efficient, and relatively performant, big number support limits the scope and types of implemented algorithms, including for basic transcendental functions.
 
-8.  **SIMD**: add support for long SIMD. Currently, [proposals][ecmascript-simd] for [SIMD][mdn-simd-js] in JavaScript have focused on [short SIMD][mozilla-simd], which is well-suited for graphics applications. However, [short SIMD][mozilla-simd] is **not** particularly well-suited for large vector operations, which are common in numeric computing (e.g., BLAS).
+9.  **SIMD**: add support for long SIMD. Currently, [proposals][ecmascript-simd] for [SIMD][mdn-simd-js] in JavaScript have focused on [short SIMD][mozilla-simd], which is well-suited for graphics applications. However, [short SIMD][mozilla-simd] is **not** particularly well-suited for large vector operations, which are common in numeric computing (e.g., BLAS).
 
     **Aside:** JavaScript may never have native SIMD support. Instead, SIMD may be possible only via [WebAssembly][wasm]. Lack of native JavaScript SIMD support would be unfortunate, as plenty of applications exist (e.g., scripting for purposes of analysis and data manipulation), which would benefit from SIMD operations without requiring a context switch to a lower-level language and additional compilation steps.
 
-9.  **Parallelism**: add support for lightweight threading (parallelism). Currently, [data parallelism][data-parallelism], i.e., the same operations performed on different subsets of the same data, is only achievable by manual data orchestration and task execution via either [web workers][mdn-web-workers] (browser) or [child processes][node-child-process] (Node.js). While [web workers][mdn-web-workers] support [Transferable Objects][mdn-transferable-objects] thus allowing shared memory access, the same is not true for Node.js. Particularly in Node.js, task parallelism is heavyweight and cumbersome, especially for use cases like parallel computation involving matrix elements (e.g., compare to MATLAB's [`parfor`][matlab-parfor]). The ability to easily distribute data to a worker pool (processors) would provide a significant performance boost to many data analysis tasks.
+10. **Parallelism**: add support for lightweight threading (parallelism). Currently, [data parallelism][data-parallelism], i.e., the same operations performed on different subsets of the same data, is only achievable by manual data orchestration and task execution via either [web workers][mdn-web-workers] (browser) or [child processes][node-child-process] (Node.js). While [web workers][mdn-web-workers] support [Transferable Objects][mdn-transferable-objects] thus allowing shared memory access, the same is not true for Node.js. Particularly in Node.js, task parallelism is heavyweight and cumbersome, especially for use cases like parallel computation involving matrix elements (e.g., compare to MATLAB's [`parfor`][matlab-parfor]). The ability to easily distribute data to a worker pool (processors) would provide a significant performance boost to many data analysis tasks.
 
-10. **GPGPU**: provide better support for [GPGPU][gpgpu]. Currently, performing general purpose GPU (GPGPU) computing tasks within a browser is only possible via [WebGL][webgl] and awkward usage of shaders, which are designed for generating graphics, not generic number crunching. Additionally, synchronous data transfers between the main thread and the GPU are expensive, debugging support is limited, and reading floating-point textures is not possible without workarounds which encode floating-point numbers into integer outputs (RGBA). While [compute shaders][compute-shaders] and [Vulkan][vulkan] promise better GPGPU support, we are years away from realizing their proposed benefits via JavaScript. Once realized, however, embarrassingly parallel computation tasks and machine learning techniques such as neural networks become more viable and efficient.
+11. **GPGPU**: provide better support for [GPGPU][gpgpu]. Currently, performing general purpose GPU (GPGPU) computing tasks within a browser is only possible via [WebGL][webgl] and awkward usage of shaders, which are designed for generating graphics, not generic number crunching. Additionally, synchronous data transfers between the main thread and the GPU are expensive, debugging support is limited, and reading floating-point textures is not possible without workarounds which encode floating-point numbers into integer outputs (RGBA). While [compute shaders][compute-shaders] and [Vulkan][vulkan] promise better GPGPU support, we are years away from realizing their proposed benefits via JavaScript. Once realized, however, embarrassingly parallel computation tasks and machine learning techniques such as neural networks become more viable and efficient.
 
 <!-- </faq-question> -->
 
@@ -286,6 +355,49 @@ To better support numeric computing, standards bodies can do the following:
 -   **Consistency**: package structure, documentation, testing, and code style vary widely, often as artifacts of author taste and eccentricities. By adhering to a single style, library consumers can focus on implementation details, rather than continual and arbitrary style distractions.
 -   **Quality**: packages range from extremely high quality to extremely poor quality, with the distribution of packages skewed toward the latter end of the spectrum. Any reimplementation of existing package functionality is done to ensure the same high standard and quality across all project modules.
 -   **Control**: bringing functionality "in-house" enables control of release cycles, testing, distribution, interface design, and API changes. 
+
+<!-- </faq-question> -->
+
+<!-- <faq-question> -->
+
+* * *
+
+<a name="contributing-to-existing-libraries"></a>
+
+### Why not submit improvements to existing libraries?
+
+-   **Rewrites**: often, the project's approach and implementation improvements would require a drastic shift in how existing libraries are written. In some cases, incorporating changes would require completely rewriting one or more libraries. And if a rewrite is necessary, a rewritten library differs from a separate implementation in name only.
+-   **Bandwidth**: the demands of the project mean that core project authors do not have the time or resources to both develop the project and actively contribute to any and all existing libraries which might benefit from this project's implementation improvements. In an ideal world, any insights, bug fixes, and improved algorithms included in this project would be pushed to external community libraries; however, the project lacks the bandwidth to do so. As this project is open source, authors of community libraries are encouraged to track project development. If someone wants to take this project's implementation improvements and incorporate them elsewhere, she is free to do so (_subject to the project license_), but this is **not** something the project can actively pursue.
+-   **Opportunity cost**: while the project may benefit from engaging with authors of existing libraries in terms of knowledge transfer and insight, such efforts entail risk (no guarantee efforts will lead to library inclusion or achieve intended aim) and real costs (allocated time), and, as such, the opportunity cost (along with maintenance burden) of _pushing_ changes to external community libraries is too great.
+-   **Priorities**: given the project's rather strong opinions, there exists a strong possibility of endless developer debate (and bikeshedding) when pushing changes to external community libraries. The more time spent in debate, the less time allocated to project development. In general, this project is biased toward focusing attention on those aspects over which project authors have most control and which can best facilitate development efficiency.
+
+<!-- </faq-question> -->
+
+<!-- <faq-question> -->
+
+* * *
+
+<a name="why-not-curate"></a>
+
+### Why not aggregate (curate) packages published to npm?
+
+This project chose to centralize project development and to forgo aggregation/curation for the following reasons:
+
+-   **Security**: centralized development facilitates security patches and updates. In a distributed aggregation development model, patching security vulnerabilities is subject to increased lag and errors, both in terms of communication and resolution.
+-   **Control**: an aggregation model depends on a pull request development cycle, and the model's success depends on developer responsiveness. The latter is by no means guaranteed and resides outside the project's control.
+-   **Immediacy**: no additional tooling is needed for notification of source changes. As all development happens on a single source repository, changes are persisted in the commit history, facilitating code archeology and providing an embedded mechanism for both pushing and pulling change notifications.
+-   **History**: no additional tooling is needed to aggregate and compile a centralized history (changelog) for communicating changes included in a particular release. The ability to even generate a changelog in an aggregation model assumes codification and adoption of, e.g., a particular commit style, which, given significant variation in developer attitude, tastes, and willingness to adopt any one style, is unrealistic.
+-   **Search**: performing a code search is significantly more difficult in an aggregation model, especially given inevitable variation in style and naming conventions.
+-   **Continuous integration**: a centralized development model greatly facilitates testing whether changes in one part of the project affect other parts of the project. Feedback for external effects is more immediate and does not require propagation through a disperse network of curated libraries, each with independently managed build environments and configurations.
+-   **Testing**: a centralized development model better facilitates test coverage metrics, making a clearer delineation between project and external code.
+-   **Tooling**: an aggregation model cannot as readily leverage project tooling for testing, benchmarking, and documentation generation. Furthermore, requiring aggregated libraries to use project tooling would mean a significant amount of code redundancy, as each library would need to independently install and manage project tooling. Centralized development thus minimizes disk usage and redundancy.
+-   **Development efficiency**: centralized development enables efficiencies for refactoring and propagating changes which are not possible (without significant time and resources) in an aggregation model. While, in theory, a decentralized aggregation model distributes **initial** development work/costs across multiple developers, the model is not particularly efficient in distributing maintenance costs across those same (or even different) developers. While a centralized development model _may_ incur a greater **initial** development cost, maintenance costs (e.g., communication overhead, propagation of changes, et cetera) are considerably less. In short, centralized development helps unlock efficiencies of scale.
+-   **Operational efficiency**: from a practical standpoint, an aggregation model, by definition, means significantly longer installation times due to the need for the many HTTP requests which would be required to build an aggregated library.
+-   **Reproducibility**: in a centralized development model, project development always happens on (more or less) the "latest" code. In an aggregation model, which by definition involves dependencies, local development versions can vary significantly due to old/stale node modules and other dependencies. Accordingly, in a centralized model, reproducibility is streamlined (e.g., a `git pull` is faster than `npm clean && npm install`).
+-   **Source of truth**: a centralized development model allows operating on a single source of truth, while an aggregation model requires a search path involving two or more dispersed resources, thus incurring increased search and communication costs.
+-   **Integrity**: a centralized development model helps ensure project integrity. An aggregation model cannot guarantee that aggregated packages will not "drift" in terms of style, organization, tooling, and, most importantly, **quality**.
+
+**Aside**: in the long arc of history for this project, prior to the current project iteration, an aggregation model was both explored and even pursued. The reasons outlined above find their origin in that (often painful) experience.
 
 <!-- </faq-question> -->
 
@@ -308,6 +420,26 @@ This project has every intent on maintaining backward compatibility with older N
 1.  With regard to the Node.js [long-term release schedule][node-lts], simply because a Node.js version has reached its end-of-life (EOL), this does not mean that a) the Node.js version is no longer used or b) library authors ought to stop supporting that version. As long as libraries use the simplest, lowest level abstraction, the question as to whether a library should support a legacy Node.js version should never arise. The only time where dropping legacy support may be justified is when supporting native [add-ons][node-add-ons], as maintenance costs can be significantly higher.
 2.  Functionality should not only enable the future, but also allow probing the past. In an ideal world, everyone would use the latest and greatest engine; however, in the real world, not everyone can. Legacy systems abound for very valid and practical reasons; that they will continue to exist is not going to change. To achieve the greatest possible reach, functionality should account for these environments. The best approach for doing so is to use the simplest possible primitives which are most likely to be supported across the widest range of environments.
 3.  Consumers should have control over their migration schedules. In general, library developers are far too quick to drop support for legacy environments, citing maintenance costs, often as a thinly veiled desire to force consumers to upgrade. This parental and cavalier attitude fails to acknowledge the practical realities that many consumers face when building real-world applications. Once real-world applications are deployed in production environments, they assume lives of their own, becoming critical zero downtime components without concern for a library author's desire for evolution. All too frequently, a developer's desire for modernity (and trendiness) creates needless downstream effects, especially in those instances where the cost of maintenance is effectively zero.
+
+<!-- </faq-question> -->
+
+<!-- <faq-question> -->
+
+* * *
+
+<a name="globals-as-packages"></a>
+
+### Why are built-in JavaScript globals wrapped and imported as packages?
+
+We create packages which wrap built-in JavaScript globals for the following reasons:
+
+1.  **Polyfills**: as we target multiple platforms and strive for backward compatibility, wrapping globals as packages allows us to polyfill absent or defective implementations and ensure consistent behavior across environments.
+1.  **Documentation**: wrapping globals as packages allows us to ensure consistent and centralized documentation. Our preference is to minimize the amount of "out-of-band" resources consumers and developers alike must consult in order to effectively use and develop the project.
+1.  **Testing**: by applying the same approach to globals as we do to normal package development, such as unit testing and examples, we are able to track and monitor built-in implementations and detect abnormal behavior, thus serving as an early warning system and debugging tool.
+1.  **Mocking**: in addition to testing environment behavior, wrapping globals as packages facilitates project development and testing by allowing us to more easily mock built-ins (via dependency injection) and to eliminate unintended side-effects introduced by overwriting globals.
+1.  **Benchmarks**: applying the same approach to globals as we do to project-specific packages allows us to better organize benchmarks and to track environment performance. As with testing, monitoring the performance of built-ins provides an early warning system and aids in debugging performance related issues.
+
+In general, a core belief of this project is that **all** functionality **should** be exposed in the form of packages. While we are aware that some may criticize this approach due to, e.g., "unnecessary" meta data, thus potentially affecting download times and bundle sizes, we are of the opinion that the benefits greatly outweigh any perceived disadvantages and that most, if not all, of the perceived disadvantages are actually advantages, especially when considering offline development and the affordances of modern tooling such as symbol resolution and inlining.
 
 <!-- </faq-question> -->
 
@@ -531,6 +663,30 @@ In short, the module resolution [algorithm][node-require] provides a simple and 
 
 * * *
 
+<a name="decomposable-software"></a>
+
+### What is meant by saying the project is "decomposable"?
+
+This project embraces the software design philosophy of **modular decomposition**; i.e., breaking a complex system into independent parts that are easier to design, understand, implement, and maintain. The project's approach draws inspiration from the Unix philosophy, component-based software engineering, and The Node Way.
+
+When we say that the project is _decomposable_, we mean that **every** package (both core library and tooling) developed within the project is designed and implemented such that each package can be consumed and understood _independently_ of the project. More concretely, every package is required to maintain resource **locality**, containing its own documentation, tests, benchmarks, and examples. Thus, each package can be understood to form a single coherent whole which, provided satisfaction of package dependencies, allows each package to exist independently.
+
+From a practical perspective,
+
+> you should **not** have to install the entire project in order to consume (or customize) only a single part.
+
+The approach embraced by this project stands in contrast to more traditional standard library approaches, including those found in languages such as Python, R, and Julia, where, in order to use a single function, you need to bundle the entire runtime **and** every other standard library function. Instead, this project holds that you should be able to consume only what you need, when you need it, nothing more, nothing less.
+
+While development happens on a single repository (i.e., a monorepo), the larger aim is to facilitate project decomposition into individual repositories, thus allowing people to fork, customize, and recombine the varied project parts as necessary and, in effect, to easily build their own standard libraries. Accordingly, not only will the project be **decomposable**, but the project will be infinitely **composable** and, in perhaps more philosophical terms, fully support the duality of decomposition and composition.
+
+**Aside**: while project build scripts exist to publish each package independently and as separate repositories, the timeline for doing so is undetermined. The timeline is predicated on a fixed project namespace (meaning, once a package is independently published, we cannot revert this action). Upon reaching version `1.0`, the project will commit to a layout and organization and subsequently publish packages independently.
+
+<!-- </faq-question> -->
+
+<!-- <faq-question> -->
+
+* * *
+
 <a name="supporting"></a>
 
 ### How can I support the project?
@@ -561,7 +717,7 @@ If you have additional ideas, get in touch, and we'll do our best to help!
 
 You should contribute
 
--   if you want to write high quality software
+-   if you want to write high-quality software
 -   if you want to learn underlying algorithms
 -   if you want to learn how to write rigorous and robust implementations
 -   if you want to bring numeric and scientific computing to JavaScript and the Web
@@ -634,7 +790,7 @@ See the [contributing guide][contributing-guide].
 
 [mdn-transferable-objects]: https://developer.mozilla.org/en-US/docs/Web/API/Transferable
 
-[built-in-math-bugs]: https://github.com/stdlib-js/stdlib/blob/develop/docs/built_in_math_bugs.md
+[built-in-math-bugs]: https://github.com/stdlib-js/stdlib/blob/develop/docs/misc/built_in_math_bugs.md
 
 [contributing-guide]: https://github.com/stdlib-js/stdlib/blob/develop/CONTRIBUTING.md
 
@@ -650,7 +806,11 @@ See the [contributing guide][contributing-guide].
 
 [numpy]: http://www.numpy.org/
 
+[scipy]: https://www.scipy.org/scipylib/index.html
+
 [scikit-learn]: http://scikit-learn.org/stable/
+
+[jupyter]: http://jupyter.org/
 
 [semver]: http://semver.org/
 

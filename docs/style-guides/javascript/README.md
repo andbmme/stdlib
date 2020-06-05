@@ -570,6 +570,8 @@ Including parentheses around the test condition in ternary operators improves re
 
 ##### Bad Example
 
+<!-- eslint-disable stdlib/ternary-condition-parentheses -->
+
 ```javascript
 // Do not...
 var foo = a === b ? a*3 : b/4;
@@ -884,6 +886,8 @@ Allows compiler to pre-allocate memory.
 
 ##### Bad Example
 
+<!-- eslint-disable stdlib/no-builtin-math -->
+
 ```javascript
 // Do not...
 var arr = [];
@@ -894,6 +898,8 @@ for ( i = 0; i < 100; i++ ) {
 ```
 
 ##### Good Example
+
+<!-- eslint-disable stdlib/no-builtin-math -->
 
 ```javascript
 // Do...
@@ -907,6 +913,8 @@ for ( i = 0; i < arr.length; i++ ) {
 ##### Notes
 
 -   Do **not** use the `new` operator if the `array` length is **very large** due to how compilers handle "fast" elements. Instead, to ensure "fast" elements,
+
+    <!-- eslint-disable stdlib/no-builtin-math -->
 
     ```javascript
     var arr;
@@ -967,6 +975,8 @@ When copying a small `array`, using `Array#slice()` incurs a function overhead w
 
 ##### Small Array Example
 
+<!-- eslint-disable stdlib/no-builtin-math -->
+
 ```javascript
 // Do...
 var arr = new Array( 10 );
@@ -982,6 +992,8 @@ for ( i = 0; i < arr.length; i++ ) {
 ```
 
 ##### Large Array Example
+
+<!-- eslint-disable stdlib/no-builtin-math -->
 
 ```javascript
 // Do...
@@ -1317,7 +1329,7 @@ for ( var i = 0; i < 10; i++ ) {
 
 ##### Bad Example
 
-<!-- eslint-disable no-inner-declarations -->
+<!-- eslint-disable no-inner-declarations, stdlib/no-builtin-math -->
 
 ```javascript
 // Do not...
@@ -1331,6 +1343,8 @@ if ( i < 11 ) {
 ```
 
 ##### Good Example
+
+<!-- eslint-disable stdlib/no-builtin-math -->
 
 ```javascript
 // Do...
@@ -1395,7 +1409,7 @@ Reduces noise when first attempting to understand implementation flow, especiall
 
 ##### Bad Example
 
-<!-- eslint-disable no-use-before-define -->
+<!-- eslint-disable no-use-before-define, stdlib/no-builtin-math -->
 
 ```javascript
 // Don't...
@@ -1423,6 +1437,8 @@ function getEquation( a, b, c ) {
 ```
 
 ##### Good Example
+
+<!-- eslint-disable stdlib/no-builtin-math -->
 
 ```javascript
 // Do...
@@ -1945,23 +1961,40 @@ Regular expressions are error prone and difficult to understand without thorough
 * Regular expression: `/^\/((?:\\\/|[^\/])+)\/([imgy]*)$/`
 *
 * `/^\/`
-*   - match a string that begins with a `/`
+*
+* -   match a string that begins with a `/`
+*
 * `()`
-*   - capture
+*
+* -   capture
+*
 * `(?:)+`
-*   - capture, but do not remember, a group of characters which occur one or more times
+*
+* -   capture, but do not remember, a group of characters which occur one or more times
+*
 * `\\\/`
-*   - match the literal `\/`
+*
+* -   match the literal `\/`
+*
 * `|`
-*   - OR
+*
+* -   OR
+*
 * `[^\/]`
-*   - anything which is not the literal `\/`
+*
+* -   anything which is not the literal `\/`
+*
 * `\/`
-*   - match the literal `/`
+*
+* -   match the literal `/`
+*
 * `([imgy]*)`
-*   - capture any characters matching `imgy` occurring zero or more times
+*
+* -   capture any characters matching `imgy` occurring zero or more times
+*
 * `$/`
-*   - string end
+*
+* -   string end
 *
 * @constant
 * @type {RegExp}
@@ -2209,7 +2242,7 @@ var err = new Error( '1' );
 
 ```javascript
 // Do...
-var err = new TypeError( 'invalid input argument. Window option must be a positive integer. Value: `' + value + '`.' );
+var err = new TypeError( 'invalid argument. Window option must be a positive integer. Value: `' + value + '`.' );
 ```
 
 ##### Enforcement
@@ -2234,7 +2267,6 @@ Throw and provide tailored `error` messages if expected conditions are not met. 
 /**
 * Beep boop.
 *
-* @api public
 * @param {Function} clbk - callback
 */
 function boop( clbk ) {
@@ -2250,7 +2282,6 @@ function boop( clbk ) {
 /**
 * Beep boop.
 *
-* @api public
 * @param {Function} clbk - callback
 */
 function beep( clbk ) {
@@ -2291,7 +2322,7 @@ function bar( opts ) {
 // Do...
 function foo( opts ) {
     if ( !isObject( opts ) ) {
-        throw new TypeError( 'invalid input argument. Options argument must be an object. Value: `' + opts + '`.' );
+        throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
     }
 }
 ```
@@ -2304,7 +2335,7 @@ function foo( opts ) {
     // Do...
     function bop( len ) {
         if ( !isPositiveInteger( len ) ) {
-            throw new TypeError( 'invalid input argument. Length must be a positive integer. Value: `' + len + '`.' );
+            throw new TypeError( 'invalid argument. Length must be a positive integer. Value: `' + len + '`.' );
         }
     }
 
@@ -2579,7 +2610,6 @@ var foo = bar || null;
     var bap = 'bap';
     ```
 
-
 ##### Enforcement
 
 Code review. TODO: ESLint rule (?).
@@ -2667,48 +2697,14 @@ function factorial( x ) {
 
 Use `// NOTE:` to annotate questions, comments, or anything which does not fit under `TODO`, `FIXME`, `HACK`, `WARNING`, `OPTIMIZE` which should be brought to a user's attention.
 
+<!-- eslint-disable stdlib/no-builtin-math -->
+
 ```javascript
 // NOTE: consider optimizing this for large arrays (len > 64K).
 var arr = new Array( len );
 for ( var i = 0; i < len; i++ ) {
     arr[ i ] = Math.random();
 }
-```
-
-##### Enforcement
-
-Code review.
-
-<!-- </rule> -->
-
-<!-- <rule> -->
-
-### Rule: Comment closing braces of long code blocks
-
-##### Reason
-
-Doing so helps lessen bracket hell when dealing with long code blocks.
-
-##### Good Example
-
-```javascript
-function longFunction() {
-    // [0] Do first thing.
-    firstThing();
-
-    // [1] Do second thing.
-    secondThing();
-
-    // [2] Do third thing.
-    thirdThing();
-
-    // ...
-
-    // [N-1] Do Nth thing.
-    nthThing();
-
-    return true;
-} // end FUNCTION longFunction()
 ```
 
 ##### Enforcement
@@ -3180,7 +3176,7 @@ Stream.prototype.window = function streamWindow( win ) {
 
 ##### Good Example
 
-<!-- eslint-disable no-restricted-syntax -->
+<!-- eslint-disable no-restricted-syntax, stdlib/no-builtin-math -->
 
 ```javascript
 // Do...
@@ -3189,10 +3185,10 @@ Stream.prototype.window = function streamWindow( win ) {
         return this._window;
     }
     if ( typeof win !== 'number' || win !== win ) {
-        throw new Error( 'invalid input argument. Window size must be numeric. Value: `' + win + '`.' );
+        throw new Error( 'invalid argument. Window size must be numeric. Value: `' + win + '`.' );
     }
     if ( Math.floor( win ) !== win || win <= 0 ) {
-        throw new Error( 'invalid input argument. Window size must be a positive integer. Value: `' + win + '`.' );
+        throw new Error( 'invalid argument. Window size must be a positive integer. Value: `' + win + '`.' );
     }
     this._window = win;
     return this;
@@ -3308,7 +3304,9 @@ function autocorr( vector ) {
 // Do...
 
 /**
-* Calculate the auto-correlation of an input vector. To calculate the auto-correlation using an FFT, the data is padded to have length 2^n, where `n` is the next power of 2 greater than the vector length. For more details, consult {@link http://example.com}.
+* Calculate the auto-correlation of an input vector. To calculate the auto-correlation using an FFT, the data is padded to have length 2^n, where `n` is the next power of 2 greater than the vector length. For more details, consult [link][link].
+*
+* [link]: http://example.com
 *
 * @param {number[]} vector - 1d array
 * @returns {number} auto-correlation
@@ -3362,6 +3360,8 @@ var y = ( x >> 0 );
 ```
 
 ##### Good Example
+
+<!-- eslint-disable stdlib/no-builtin-math -->
 
 ```javascript
 // Do...

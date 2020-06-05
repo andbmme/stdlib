@@ -1,9 +1,26 @@
+<!--
+
+@license Apache-2.0
+
+Copyright (c) 2018 The Stdlib Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+
 # TODO
 
-1.  switch to `eslint` as main JS linter
-
-    -   add to CI
-    -   support reformatting ala `go fmt` => `--fix`
+1.  consider automatic formatting support ala `go fmt` => `eslint --fix`
 
 1.  add NPM style [guide](https://github.com/voorhoede/npm-style-guide) with [versioning info](https://github.com/compute-io/contributing#versioning)
 
@@ -27,17 +44,16 @@
 
 1.  std polyfills?
 
-    -   object-keys
     -   typed-array
     -   ...
 
-1.  how to handle modules with CLIs?
-
-    -   will want some sort of CLI test framework to test `stdin`, `stdout`, args, etc.
+1.  add unit tests for all pkg CLIs
 
 1.  how to handle browser tests for non-browser fcns
 
     -   e.g., `fs` functions like `fs/exists`, or `cwd`
+    -   one option is to simply skip tests (which is most likely appropriate for most cases)
+    -   another option is to use a virtual fs backend in which, to a user, fs commands "behave" just like in Node (which is appropriate for other contexts; e.g., a browser REPL with a virtual filesystem)
 
 1.  migrate JSDoc; use one of
 
@@ -68,6 +84,7 @@
     -   [`docsify`](https://github.com/QingWei-Li/docsify)
     -   [`docute`](https://github.com/egoist/docute)
     -   [`sphinx-js`](https://github.com/erikrose/sphinx-js)
+    -   [`docma`](https://github.com/onury/docma)
     -   ...
 
 1.  debug [eval sources](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Debug_eval_sources)
@@ -79,19 +96,17 @@
 
 1.  See [tinycolor](https://github.com/bgrins/TinyColor/blob/master/tinycolor.js)
 
-1.  lint filenames
-
-    -   [eslint plugin](https://github.com/selaux/eslint-plugin-filenames)
-
 1.  consider changing `isNumber` to `isNumeric`
 
 1.  prngs
 
+    -   [Tyche](https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf)
     -   [pcg](http://www.pcg-random.org/)
     -   [random123](http://www.deshawresearch.com/downloads/download_random123.cgi/)
     -   [sfmt](http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/#dSFMT)
     -   [randamu](https://github.com/PhDP/randamu)
     -   [gsl](https://github.com/ampl/gsl/tree/master/rng)
+    -   [rand_r](https://github.com/lattera/freebsd/blob/master/lib/libc/stdlib/rand.c)
     -   [collection of lcgs](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.53.3686&rep=rep1&type=pdf)
     -   [Lehmer LCG](https://en.wikipedia.org/wiki/Lehmer_random_number_generator)
     -   [lcgs](https://en.wikipedia.org/wiki/Linear_congruential_generator)
@@ -150,8 +165,6 @@
 
 1.  `type-of` should check for `toStringTag` support
 
-1.  update `utils/tools`
-
 1.  generic `is-finite` util should include note about how differs from global `isFinite`
 
 1.  create better examples for constants
@@ -180,10 +193,6 @@
         -   No, as Sindre does not provide backward compatibility. Will need to roll our own.
 
 1.  `Makefile` does not list top-level `examples`; is this intentional?
-
-1.  move test fixture runners into sub-directories based on language
-
-    -   e.g., `./fixtures/julia/*`
 
 1.  add Saucelabs with zuul (?)
 
@@ -230,9 +239,8 @@
     -   given a Markdown file, create a list of two things: the unique citation identifiers used throughout the text and any citations included in the `links` section
     -   ignore internal links to other Markdown sections
     -   if an id is found in bib docs, use that reference
-    -   will want canonical way to reference project modules, which may be tricky, as modules may move, etc; this is important for automating "see also" type sections
     -   otherwise, leave the existing ref as is
-    -   as part of this, should be able to lint (although `remark` does this already)
+    -   as part of this, should be able to lint
     -   once finished, save to disk
     -   does require a separate build step, but can be automated `pre-push` or via `watch` 
     -   how would we distinguish (in markup) between just wanting a link and wanting a full-blown reference citation? => maybe if within a `references` section, similar to `links`
@@ -303,27 +311,13 @@
 
 1.  add code climate badge
 
-1.  consider using things like [shellcheck](https://github.com/koalaman/shellcheck) for linting files other than JavaScript
-
-    -   markdown linting
+1.  consider using tools for linting files other than JavaScript
 
     -   [alex](https://github.com/wooorm/alex)
-
     -   [retext-readability](https://github.com/wooorm/retext-readability)
-
-    -   [standard-markdown](https://github.com/zeke/standard-markdown)
-
-    -   [retext-lint-code](https://github.com/Qard/remark-lint-code)
-
-        -   uses eslint
-
-    -   js code in markdown linting
-
     -   [css linting](https://github.com/stylelint/stylelint) and [stylefmt](https://github.com/morishitter/stylefmt)
-
     -   [list](https://github.com/SalGnt/cscs) of style guidelines
-
-    -   Pep8 for Python, [pycodestyle](https://github.com/PyCQA/pycodestyle), and see [autopep8](https://github.com/hhatto/autopep8) for automatic formatting
+    -   see [autopep8](https://github.com/hhatto/autopep8) for automatic formatting
 
 1.  on src doc build for `gh-pages`, also do the same for `develop`; e.g., `/docs/src/develop`, which could map to `http://a.b.c/docs/src/develop`
 
@@ -411,11 +405,6 @@
     -   have a script which mines the individual `package.json` engine fields and determines, in aggregate, the supported engine range for all pkgs and assign as the engine range for the "aggregate"
     -   can also lint (search pkg deps, check engine field, and see if compatible)
 
-1.  consider adding a license prefix to each file
-
-    -   [julia](https://github.com/JuliaLang/julia/blob/master/contrib/add_license_to_files.jl)
-    -   [license-check](https://github.com/magemello/license-check)
-
 1.  intro how-tos
 
     -   [gifs](https://github.com/chjj/ttystudio)
@@ -426,18 +415,19 @@
 
 1.  investigate [xonsh](https://github.com/scopatz/xonsh)
 
+1.  investigate async but [awaitful](https://github.com/ramitos/apr)
+
 1.  `list-modules` Makefile recipe
 
     -   can be used in conjunction with dep analysis to see which modules are **not** required by a file, etc; e.g., which modules are not included in a namespace.
 
-1.  investigate async but [awaitful](https://github.com/ramitos/apr)
-
-1.  `list-required-modules` Makefile recipe
+1.  `list-required-modules` (name?) Makefile recipe
 
     -   should analyze `require` graph (ala `browserify`) to determine dependencies
     -   should work for a single file or a directory
     -   for directory, may want to dedupe (flat array), a tree result which states which modules require which modules (similar to a node dependency graph), or, for every found module, the deps for that module (array of arrays)
     -   see automation/package.json item below
+    -   a tree representation could be useful as would allow metrics such as tree "depth", in which we can identify files/modules/pkgs with "deep" trees
 
 1.  investigate [npm-publish-please](https://github.com/inikulin/publish-please) and `np` (Sindre)
 
@@ -494,6 +484,7 @@
     -   can use `simple-http-server` (or even `disposable-http-server`)
     -   [packify](https://github.com/maxogden/packify)
     -   option to stream to multiple browsers (tabs) in parallel (akin to parallel builds)
+    -   would also be nice to have editor support (e.g., keyboard shortcut to run current file in a browser)
 
 1.  build step which runs examples in browsers and catches any errors
 
@@ -523,7 +514,7 @@
         // returns {'a':[1,2,3]}
 
         // Deep equal (mutation):
-        // x => [ 1.  2, 3, 4, 5 ]
+        // x => [ 1, 2, 3, 4, 5 ]
 
         // Deep equal:
         /* returns
@@ -594,6 +585,9 @@
         // Type equality instanceof):
         // returns <Foo>
 
+        // Type equality + deep equal:
+        // returns <Float64Array>[ 1, 2, 3 ]
+
         // Wildcard (string):
         // returns '...'
 
@@ -628,16 +622,13 @@
         // {"beep":"boop"}
 
         // Output to terminal:
-        // <error_message>
-
-        // Output to terminal:
         // <boolean>
 
         // Insert figure:
-        // => <figure data=?>
+        // +> <figure data=?>
 
         // Insert figure:
-        // => plot(x, y)
+        // +> plot(x, y)
         ```
 
         ```javascript
@@ -648,7 +639,7 @@
                 throw error;
             }
             console.log( data.toString() );
-            // returns '...'
+            // => '...'
         }
         ```
 
@@ -687,7 +678,7 @@
 
 1.  Add Markdown style guide, including notes about comment annotations, equations, etc.
 
-1.  Add note about ES201.  features in JS style guide
+1.  Add note about ES2015 features in JS style guide
 
     -   Backward compatibility is important
     -   Only use if can polyfill
@@ -701,18 +692,6 @@
     -   julia
     -   go
     -   r
-
-1.  Add type specs to `@stdlib/types/` folder
-
-    -   `abstract-ndarray`
-    -   `abstract-complex`
-    -   etc.
-
-1.  Add [git hooks](https://cbednarski.com/articles/makefiles-for-everyone/) to Makefile
-
-    -   will prob want a way to undo setting of hooks (i.e., a reset)
-    -   [intro to git hooks](https://www.sitepoint.com/introduction-git-hooks/)
-    -   [git pre-push](http://blog.ittybittyapps.com/blog/2013/09/03/git-pre-push/)
 
 1.  [mkdirp](https://github.com/sindresorhus/make-dir/blob/master/index.js)
 
@@ -777,13 +756,11 @@
 
 1.  check that JSDoc annotations include `@throws`
 
-1.  include READMEs in namespace dirs
-
 1.  need a convention for defining README examples which are for illustration purposes only and not meant to be run
 
     -   e.g., an example which is path dependent and cannot be known ahead of time, as it depends on user environment, etc.
 
-1.  proposal: add `stdlib` field to `package.json`
+1.  add `__stdlib__` field to `package.json`
 
     -   allowing setting whether a module is browser-only, nodejs-only, etc and whether a module is suitable for a REPL context, etc.
 
@@ -794,31 +771,6 @@
     -   could be useful for test runners, etc.
 
 1.  investigate [starscope](https://github.com/eapache/starscope)
-
-1.  review
-
-    -   [ ] crypto
-    -   [x] datasets (~bib)
-    -   [x] fs
-    -   [x] math/base/blas
-    -   [ ] math/base/dist
-    -   [x] math/base/random
-    -   [ ] math/base/special
-    -   [ ] math/base/tools
-    -   [ ] math/base/utils
-    -   [x] math/constants
-    -   [ ] math/statistics
-    -   [ ] math/utils
-    -   [ ] ml
-    -   [ ] namespace
-    -   [x] net
-    -   [ ] plot
-    -   [x] regexp
-    -   [x] repl
-    -   [ ] streams (~)
-    -   [ ] string (~)
-    -   [ ] tools (~)
-    -   [ ] utils
 
 1.  profiling
 
@@ -883,7 +835,7 @@
 
 1.  see [makefile for the frontend](https://github.com/scriptype/Makefile-for-the-Front-End/blob/master/Makefile) for possible inspiration for frontend tasks
 
-1.  should `float64-signbit` return a `boolean` (like Julia) or a `1.  or `0`?
+1.  should `float64-signbit` return a `boolean` (like Julia) or a `1`  or `0`?
 
 1.  licenses utilities
 
@@ -1016,8 +968,6 @@
 
 1.  [Sieve of Eratosthenes](http://www.mahabal.io/eras)
 
-1.  files containing `new Buffer` should `var Buffer = require( 'buffer' ).Buffer`. Note that this will prob require overruling a lint rule against redefining globals.
-
 1.  See [casual](https://github.com/boo1ean/casual) for dataset inspiration
 
 1.  GitHub issues [Gantt diagrams](https://github.com/neyric/gh-issues-gantt)
@@ -1125,9 +1075,9 @@
 
 1.  pkg which can generate an Anscombe dataset
 
-1.  [authors-certificate](https://github.com/berneout/authors-certificate)
+    -   simulator
 
-1.  FAQ: what is decomposable software?
+1.  [authors-certificate](https://github.com/berneout/authors-certificate)
 
 1.  Electoral college [box scores](https://www.archives.gov/federal-register/electoral-college/scores.html#1789)
 
@@ -1173,7 +1123,7 @@
 
 1.  dependency docs (static site; use simple server)
 
-1.  mk recipe to read a dep readme and launch in an electron window/browser
+1.  make recipe to read a dep readme and launch in an electron window/browser
 
 1.  nlp levi dist (see also [damlev](https://github.com/WatchBeam/damlev) and [leven](https://github.com/sindresorhus/leven/blob/master/index.js))
 
@@ -1198,8 +1148,6 @@
 1.  [envify](https://github.com/hughsk/envify) => when browserifying environment dependent tests to be run in the browser, can use to inline env vars
 
 1.  [naming conventions](https://github.com/JuliaPraxis/Naming)
-
-1.  [Tyche](https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf) prng
 
 1.  typed array [binary string](https://github.com/AndreasMadsen/binary-view/blob/master/binary-view.js)
 
@@ -1236,7 +1184,7 @@
 
 1.  [json-depth-stream](https://github.com/indutny/json-depth-stream)
 
-1.  [is-iso-8601](https://github.com/ankane/chartkick.js/blob/master/chartkick.js#L59)
+1.  [is-iso-8601](https://github.com/ankane/chartkick.js/blob/master/chartkick.js#L59) (see [here](https://github.com/ankane/chartkick.js/blob/5dcd8b3b027a992715a66898cb6f17cc86be1bbd/src/helpers.js))
 
 1.  Generate a [diff](https://github.com/FormidableLabs/publish-diff) before publishing to `npm`
 
@@ -1525,7 +1473,7 @@
 
 1.  simple server
 
-1.  abstract-ndarray
+1.  ndarray
 
 1.  terminal sparklines
 
@@ -1669,7 +1617,7 @@
     -   should support option to return data of a specified type; e.g., `float32`, etc.
     -   returned value should be compliant with `abstract-ndarray`
 
-1.  remainder (c) and rem
+1.  remainder (see c) and rem
 
 1.  equivalents to various low-level [Julia](http://docs.julialang.org/en/release-0.5/stdlib/math/?highlight=maximum#Base.mod2pi) funcs
 
@@ -1686,7 +1634,6 @@
 1.  [is-class](https://github.com/miguelmota/is-class/blob/master/is-class.js)
 
 1.  [ilogb](https://github.com/JuliaLang/openlibm/blob/master/src/s_ilogb.c) and [logb](https://github.com/JuliaLang/openlibm/blob/master/src/s_logb.c), although these may just be `float64-exponent`
-
 
 1.  stream module (e.g., flow-split, flow-join, flow-mean) => /utils /math etc
 
@@ -1727,8 +1674,6 @@
 1.  [fma](https://github.com/JuliaLang/openlibm/blob/master/src/s_fma.c)
 
 1.  [to-number](https://github.com/lodash/lodash/blob/4.1.1-npm-packages/lodash.curry/index.js#L1160)
-
-1.  global var detection
 
 1.  feature detection [utils](https://github.com/williamkapke/node-compat-table/blob/gh-pages/testers.json)
 
@@ -1815,8 +1760,6 @@
 1.  [S&P 500 dataset](https://github.com/datasets/s-and-p-500)
 
 1.  sort methods, both numeric and general
-
-1.  [is-symbol](https://github.com/ljharb/is-symbol/blob/master/index.js)
 
 1.  [is-callable](https://github.com/ljharb/is-callable/blob/master/index.js)
 
@@ -1995,103 +1938,3 @@ Will need a `tools` directory in individual repositories to
     -   [insert-module-globals](https://github.com/substack/insert-module-globals/pull/48)
     -   [TC39](https://github.com/tc39/proposal-global)
     -   [symstem.global](https://github.com/ljharb/System.global)
-
-* * *
-
-## Project Structure
-
-> Sample project structure.
-
-|-stdlib
-|---lib
-|-----assert
-|-------is-array-like
-|-------is-function
-|-----datasets
-|-------anscombes-quartet
-|-----math
-|-------base
-|---------assert
-|-----------is-even
-|-----------is-integer
-|-----------is-number
-|-----------is-odd
-|---------blas
-|-----------scal
-|---------complex
-|-----------acos
-|-----------sin
-|---------dist
-|-----------norm
-|-------------cdf
-|-------------pdf
-|-----------poisson
-|---------random
-|-----------lcg
-|---------special
-|-----------erf
-|-----------erfc
-|-----------sin
-|---------tools
-|-----------evalpoly
-|-----------evalrational
-|---------utils
-|-----------float32-to-word
-|-----------float64-from-words
-|-----------float64-to-words
-|-------constants
-|---------e
-|---------pi
-|---------two-pi
-|-------fast
-|---------special
-|-----------cos
-|-----------sin
-|-------core
-|---------add
-|---------mult
-|---------subtract
-|---------sum
-|-------dist
-|---------normal
-|---------poisson
-|-------linalg
-|-------random
-|---------lcg
-|-------special
-|---------erf
-|---------erfc
-|-------statistics
-|---------mean
-|---------stdev
-|---------variance
-|-----namespace
-|-----regexp
-|-------eol
-|-------regexp
-|-----repl
-|-----streams
-|-------math
-|---------mean
-|---------stdev
-|-------utils
-|---------split
-|---------join
-|-----string
-|-------left-pad
-|-------pad
-|-------repeat
-|-------right-pad
-|-----tools
-|-----types
-|-------array
-|-------complex
-|-------dataframe
-|-------matrix
-|-------ndarray
-|-----utils
-|-------copy
-|-------deep-get
-|-------deep-set
-|-------merge
-|-------pluck

@@ -1,3 +1,23 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable stdlib/jsdoc-doctest-marker, stdlib/jsdoc-doctest-quote-props */
+
 'use strict';
 
 /**
@@ -33,12 +53,12 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* *   [X] checked
+* -   [X] checked
 *
 * @example
 * <!-- Good -->
 *
-* *   [x] checked
+* -   [x] checked
 */
 plugins.push([
 	require( 'remark-lint-checkbox-character-style' ),
@@ -59,12 +79,12 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* *   [x]    checked
+* -   [x]    checked
 *
 * @example
 * <!-- Good -->
 *
-* *   [x] checked
+* -   [x] checked
 */
 plugins.push([
 	require( 'remark-lint-checkbox-content-indent' ),
@@ -87,7 +107,7 @@ plugins.push([
 * @example
 * <!-- Good -->
 *
-* ``` javascript
+* ```javascript
 * code
 * code
 * code
@@ -146,12 +166,12 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* _beep_
+* *beep*
 *
 * @example
 * <!-- Good -->
 *
-* *beep*
+* _beep_
 */
 plugins.push([
 	require( 'remark-lint-emphasis-marker' ),
@@ -173,7 +193,7 @@ plugins.push([
 * @example
 * <!-- Good -->
 *
-* ``` text
+* ```text
 * code
 * ```
 */
@@ -195,14 +215,14 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* ~~~ text
+* ~~~text
 * Code
 * ~~~
 *
 * @example
 * <!-- Good -->
 *
-* ``` text
+* ```text
 * code
 * ```
 */
@@ -335,14 +355,14 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-*     *   Beep
-*     *   Boop
+*     -   Beep
+*     -   Boop
 *
 * @example
 * <!-- Good -->
 *
-* *   Beep
-* *   Boop
+* -   Beep
+* -   Boop
 *
 */
 plugins.push([
@@ -358,14 +378,16 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* *   Beep
-*   -   Boop
+* 1.  Beep
+*
+*      1.  Boop
 *
 * @example
 * <!-- Good -->
 *
-* *   Beep
-*     -   Boop
+* 1.  Beep
+*
+*     1.  Boop
 *
 */
 plugins.push([
@@ -381,22 +403,22 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* * Hello
-* * World
+* - Hello
+* - World
 *
 * @example
 * <!-- Good -->
 *
-* *   Hello
-* *   World
+* -   Hello
+* -   World
 *
 * @example
 * <!-- Good -->
 *
-* *   Beep
+* -   Beep
 *     boop
 *
-* *   Bop
+* -   Bop
 *     bip
 *
 */
@@ -413,26 +435,26 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* *   Beep
-* *   Boop
+* -   Beep
+* -   Boop
 *
-* *   Bop
+* -   Bop
 *
 * @example
 * <!-- Good -->
 *
-* *   Beep
-* *   Boop
-* *   Bop
+* -   Beep
+* -   Boop
+* -   Bop
 *
 * @example
 * <!-- Okay -->
 *
-* *   Beep
+* -   Beep
 *
-* *   Boop
+* -   Boop
 *
-* *   Bop
+* -   Bop
 *
 */
 plugins.push([
@@ -468,12 +490,12 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* <example.com>
+* <foo@bar.com>
 *
 * @example
 * <!-- Good -->
 *
-* <https://example.com>
+* <mailto:foo@bar.com>
 *
 */
 plugins.push([
@@ -600,7 +622,7 @@ plugins.push([
 * @example
 * <!-- Bad -->
 *
-* *Beep*
+* _Beep_
 *
 * Beep boop.
 *
@@ -944,7 +966,7 @@ plugins.push([
 * @example
 * <!-- Okay -->
 *
-* ``` bash
+* ```bash
 * $ echo beep
 * ```
 */

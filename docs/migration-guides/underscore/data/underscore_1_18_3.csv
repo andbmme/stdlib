@@ -19,8 +19,8 @@ sortBy,N/A
 groupBy,utils/group-by
 indexBy,(maybe)
 countBy,utils/count-by
-shuffle,math/random/*
-sample,math/random/*
+shuffle,random/shuffle
+sample,random/sample
 toArray,N/A
 size,N/A
 partition,utils/bifurcate
@@ -98,7 +98,7 @@ identity,utils/identity-function
 constant,utils/constant-function
 noop,utils/noop
 times,utils/map-function
-random,math/base/random/*
+random,random/base/*
 mixin,utils/merge
 iteratee,N/A
 uniqueId,N/A

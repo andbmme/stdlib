@@ -1,8 +1,22 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
-
-# Define the path to the browserify executable:
-BROWSERIFY ?= $(BIN_DIR)/browserify
 
 # Define the entry point of the plugin for custom ESLint rules:
 STDLIB_CUSTOM_ESLINT_RULES_PLUGIN_ENTRY ?= $(TOOLS_PKGS_DIR)/eslint/rules/scripts/plugin.js
@@ -23,45 +37,62 @@ BROWSERIFY_STDLIB_CUSTOM_ESLINT_RULES_PLUGIN_FLAGS ?= \
 	--standalone $(STDLIB_CUSTOM_ESLINT_RULES_PLUGIN_NAME)
 
 
-# TARGETS #
+# RULES #
 
-# Initialize custom ESLint rules.
+#/
+# Initializes custom [ESLint][eslint] rules.
 #
-# This target bundles a custom ESLint rules plugin as a node module and installs the plugin in the `node_modules` directory.
-
+# ## Notes
+#
+# -   This rule bundles a custom ESLint rules plugin as a node module and installs the plugin in the project `node_modules` directory.
+#
+# [eslint]: http://eslint.org/
+#
+# @example
+# make init-stdlib-custom-eslint-rules-plugin
+#/
 init-stdlib-custom-eslint-rules-plugin: $(NODE_MODULES)
 	$(QUIET) $(MKDIR_RECURSIVE) $(STDLIB_CUSTOM_ESLINT_RULES_PLUGIN_OUT)
-	$(QUIET) NODE_PATH=$(NODE_PATH) \
+	$(QUIET) NODE_PATH="$(NODE_PATH)" \
 	$(BROWSERIFY) \
 		$(STDLIB_CUSTOM_ESLINT_RULES_PLUGIN_ENTRY) \
 		$(BROWSERIFY_STDLIB_CUSTOM_ESLINT_RULES_PLUGIN_FLAGS)
 
 .PHONY: init-stdlib-custom-eslint-rules-plugin
 
-
-# Initialize custom ESLint plugins.
+#/
+# Initializes custom [ESLint][eslint] plugins.
 #
-# This target initializes custom ESLint plugins specific to the project.
-
+# [eslint]: http://eslint.org/
+#
+# @example
+# make init-stdlib-custom-eslint-plugins
+#/
 init-stdlib-custom-eslint-plugins: init-stdlib-custom-eslint-rules-plugin
 
 .PHONY: init-stdlib-custom-eslint-plugins
 
-
-# Remove custom ESLint rules plugin.
+#/
+# Removes a custom [ESLint][eslint] rule plugin.
 #
-# This target cleans up a custom ESLint rules plugin by removing the plugin directory.
-
+# [eslint]: http://eslint.org/
+#
+# @example
+# make clean-stdlib-custom-eslint-rules-plugin
+#/
 clean-stdlib-custom-eslint-rules-plugin:
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(STDLIB_CUSTOM_ESLINT_RULES_PLUGIN_OUT)
 
 .PHONY: clean-stdlib-custom-eslint-rules-plugin
 
-
-# Remove custom ESLint plugin directories.
+#/
+# Removes custom [ESLint][eslint] plugins.
 #
-# This target cleans up custom ESLint plugin directories by removing them entirely.
-
+# [eslint]: http://eslint.org/
+#
+# @example
+# make clean-stdlib-custom-eslint-plugins
+#/
 clean-stdlib-custom-eslint-plugins: clean-stdlib-custom-eslint-rules-plugin
 
 .PHONY: clean-stdlib-custom-eslint-plugins

@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -17,23 +34,26 @@ UPDATE_CONTRIBUTORS_FLAGS ?=
 UPDATE_CONTRIBUTORS_OUT ?= $(ROOT_DIR)/CONTRIBUTORS
 
 
-# TARGETS #
+# RULES #
 
-# List contributors.
+#/
+# Lists contributors to the project repository.
 #
-# This target lists contributors.
-
+# @example
+# make list-contributors
+#/
 list-contributors:
 	$(QUIET) $(MAKE_EXECUTABLE) $(LIST_CONTRIBUTORS)
 	$(QUIET) $(LIST_CONTRIBUTORS) $(LIST_CONTRIBUTORS_FLAGS)
 
 .PHONY: list-contributors
 
-
-# Update contributors.
+#/
+# Updates the project `CONTRIBUTORS` file.
 #
-# This target updates a CONTRIBUTORS file.
-
+# @example
+# make update-contributors
+#/
 update-contributors:
 	$(QUIET) $(MAKE_EXECUTABLE) $(UPDATE_CONTRIBUTORS)
 	$(QUIET) $(UPDATE_CONTRIBUTORS) $(UPDATE_CONTRIBUTORS_FLAGS) $(UPDATE_CONTRIBUTORS_OUT)

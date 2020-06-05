@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2017 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # Specify the build version format:
 version: '{build}'
@@ -32,10 +49,60 @@ environment:
     LINKER: /c/msys64/mingw64/bin/g++
 
   matrix:
+    # Install tests:
+    - nodejs_version: '13'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '12'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '11'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '10'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '9'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '8'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '7'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '6'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '5'
+      npm_version: '>2.7.0 <6.0.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '4'
+      npm_version: '>2.7.0 <6.0.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '0.12'
+      npm_version: '>2.7.0 <4.0.0'
+      BUILD_TASK: 'test-npm-install'
+    - nodejs_version: '0.10'
+      npm_version: '>2.7.0 <4.0.0'
+      BUILD_TASK: 'test-npm-install'
+
     # Unit tests:
-    # - nodejs_version: '9'
-    #   npm_version: '>2.7.0'
-    #   BUILD_TASK: 'test'
+    - nodejs_version: '13'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test'
+    - nodejs_version: '12'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test'
+    - nodejs_version: '11'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test'
+    - nodejs_version: '10'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test'
+    - nodejs_version: '9'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test'
     - nodejs_version: '8'
       npm_version: '>2.7.0'
       BUILD_TASK: 'test'
@@ -46,10 +113,10 @@ environment:
       npm_version: '>2.7.0'
       BUILD_TASK: 'test'
     - nodejs_version: '5'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'test'
     - nodejs_version: '4'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'test'
     - nodejs_version: '0.12'
       npm_version: '>2.7.0 <4.0.0'
@@ -59,9 +126,21 @@ environment:
       BUILD_TASK: 'test'
 
     # Examples:
-    # - nodejs_version: '9'
-    #   npm_version: '>2.7.0'
-    #   BUILD_TASK: 'examples'
+    - nodejs_version: '13'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'examples'
+    - nodejs_version: '12'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'examples'
+    - nodejs_version: '11'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'examples'
+    - nodejs_version: '10'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'examples'
+    - nodejs_version: '9'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'examples'
     - nodejs_version: '8'
       npm_version: '>2.7.0'
       BUILD_TASK: 'examples'
@@ -72,10 +151,10 @@ environment:
       npm_version: '>2.7.0'
       BUILD_TASK: 'examples'
     - nodejs_version: '5'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'examples'
     - nodejs_version: '4'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'examples'
     - nodejs_version: '0.12'
       npm_version: '>2.7.0 <4.0.0'
@@ -85,9 +164,21 @@ environment:
       BUILD_TASK: 'examples'
 
     # Test coverage:
-    # - nodejs_version: '9'
-    #   npm_version: '>2.7.0'
-    #   BUILD_TASK: 'test-coverage'
+    - nodejs_version: '13'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-coverage'
+    - nodejs_version: '12'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-coverage'
+    - nodejs_version: '11'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-coverage'
+    - nodejs_version: '10'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-coverage'
+    - nodejs_version: '9'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'test-coverage'
     - nodejs_version: '8'
       npm_version: '>2.7.0'
       BUILD_TASK: 'test-coverage'
@@ -98,10 +189,10 @@ environment:
       npm_version: '>2.7.0'
       BUILD_TASK: 'test-coverage'
     - nodejs_version: '5'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'test-coverage'
     - nodejs_version: '4'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'test-coverage'
     - nodejs_version: '0.12'
       npm_version: '>2.7.0 <4.0.0'
@@ -111,9 +202,21 @@ environment:
       BUILD_TASK: 'test-coverage'
 
     # Benchmarks:
-    # - nodejs_version: '9'
-    #   npm_version: '>2.7.0'
-    #   BUILD_TASK: 'benchmark'
+    - nodejs_version: '13'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'benchmark'
+    - nodejs_version: '12'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'benchmark'
+    - nodejs_version: '11'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'benchmark'
+    - nodejs_version: '10'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'benchmark'
+    - nodejs_version: '9'
+      npm_version: '>2.7.0'
+      BUILD_TASK: 'benchmark'
     - nodejs_version: '8'
       npm_version: '>2.7.0'
       BUILD_TASK: 'benchmark'
@@ -124,10 +227,10 @@ environment:
       npm_version: '>2.7.0'
       BUILD_TASK: 'benchmark'
     - nodejs_version: '5'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'benchmark'
     - nodejs_version: '4'
-      npm_version: '>2.7.0'
+      npm_version: '>2.7.0 <6.0.0'
       BUILD_TASK: 'benchmark'
     - nodejs_version: '0.12'
       npm_version: '>2.7.0 <4.0.0'
@@ -148,7 +251,11 @@ matrix:
 
 # Define build artifacts. To download build artifacts for any build, use the following URL template:
 #
-# https://ci.appveyor.com/api/projects/<account>/<project>/artifacts/<artifact_file_path>?all=<boolean>&job=<job>&branch=<branch>
+#   https://ci.appveyor.com/api/projects/<account>/<project>/artifacts/<artifact_file_path>?all=<boolean>&job=<job>&branch=<branch>
+#
+# For example,
+#
+#   https://ci.appveyor.com/api/projects/<account>/stdlib/artifacts/var/log/logs.zip?all=true&job=Environment%3a+nodejs_version%3d9%2c+npm_version%3d%3e2.7.0%2c+BUILD_TASK%3dtest&branch=develop
 
 artifacts:
   # Push entire `log` directory:
@@ -189,6 +296,9 @@ install:
   # [2]: http://www.mingw.org/wiki/MSYS
   # [3]: https://mingw-w64.org/doku.php
   - cmd: set PATH=C:\msys64\usr\bin;C:\msys64\mingw64\bin;%PATH%
+
+  # Update MSYS2 packages:
+  - cmd: pacman --noconfirm --sync unzip
 
   # Install updated browsers for browser testing:
   # TODO: address 32-bit vs 64-bit installs

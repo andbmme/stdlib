@@ -14,6 +14,10 @@ List of active domains:
 
 List of **currently** unused domains:
 
+-   [libstd.com](http://libstd.com)
+-   [libstd.org](http://libstd.org)
+-   [stdlib.ai](http://stdlib.ai)
+-   [stdlib.app](http://stdlib.app)
 -   [stdlibjs.com](http://stdlibjs.com)
 -   [stdlib.co](http://stdlib.co)
 -   [stdlibjs.co](http://stdlibjs.co)
@@ -34,7 +38,7 @@ List of **currently** unused domains:
 
 ## Changes
 
-This is a living document which may be periodically updated. Please refer to the [git history for this document][stdlib-git-commit-log-domains] to view the changes.
+This is a living document which may be periodically updated. Please refer to the [Git history for this document][stdlib-git-commit-log-domains] to view the changes.
 
 ## License
 

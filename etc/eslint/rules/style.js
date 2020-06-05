@@ -1,3 +1,21 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 'use strict';
 
 /**
@@ -68,12 +86,20 @@ rules[ 'array-bracket-spacing' ] = [ 'off', 'always', {
 }];
 
 /**
-* Do not enforce line breaks between array elements.
+* Enforce consistent line breaks between array elements.
 *
 * @name array-element-newline
 * @memberof rules
 * @type {Array}
+* @default [ 'error', 'consistent' ]
 * @see [array-element-newline]{@link http://eslint.org/docs/rules/array-element-newline}
+*
+* @example
+* // Bad...
+* var arr = [
+*     1, 2,
+*     3
+* ];
 *
 * @example
 * // Okay...
@@ -87,10 +113,7 @@ rules[ 'array-bracket-spacing' ] = [ 'off', 'always', {
 *     3
 * ];
 */
-rules[ 'array-element-newline' ] = [ 'off', {
-	'multiline': true,
-	'minItems': null
-}];
+rules[ 'array-element-newline' ] = [ 'error', 'consistent' ];
 
 /**
 * Always require spaces in single-line blocks.
@@ -103,11 +126,15 @@ rules[ 'array-element-newline' ] = [ 'off', {
 *
 * @example
 * // Bad...
-* if ( x === 5 ) {return x;}
+* function foo( x ) {
+*     if ( x === 5 ) {return x;}
+* }
 *
 * @example
 * // Good...
-* if ( x === 5 ) { return x; }
+* function foo( x ) {
+*     if ( x === 5 ) { return x; }
+* }
 */
 rules[ 'block-spacing' ] = [ 'error', 'always' ];
 
@@ -121,14 +148,18 @@ rules[ 'block-spacing' ] = [ 'error', 'always' ];
 *
 * @example
 * // Bad...
-* if ( x !== x )
-* {
-*     return NaN;
+* function foo( x ) {
+*     if ( x !== x )
+*     {
+*         return NaN;
+*     }
 * }
 *
 * @example
 * // Bad...
-* if ( x !== x ) { return NaN; }
+* function foo( x ) {
+*     if ( x !== x ) { return NaN; }
+* }
 *
 * @example
 * // Good...
@@ -197,7 +228,7 @@ rules[ 'camelcase' ] = [ 'error', {
 * @example
 * // bad...
 */
-rules[ 'capitalized-comments' ] = [ 'warn', 'always', {
+rules[ 'capitalized-comments' ] = [ 'off', 'always', {
 	'ignoreInlineComments': true
 }];
 
@@ -416,6 +447,80 @@ rules[ 'func-style' ] = [ 'error', 'declaration', {
 }];
 
 /**
+* Never allow linebreaks between arguments of a function call.
+*
+* @name function-call-argument-newline
+* @memberof rules
+* @type {Array}
+* @default [ 'error', 'never' ]
+* @see [function-call-argument-newline]{@link https://eslint.org/docs/rules/function-call-argument-newline}
+*
+* @example
+* // Bad...
+* function foo(
+*     x,
+*     y
+* ) {
+*     return x + y;
+* }
+*
+* @example
+* // Bad...
+* console.log(
+*     1,
+*     2
+* );
+*
+* @example
+* // Good...
+* function foo( x, y ) {
+*     return x + y;
+* }
+*
+* @example
+* // Good...
+* console.log( 1, 2 );
+*/
+rules[ 'function-call-argument-newline' ] = [ 'error', 'never' ];
+
+/**
+* Never allow linebreaks inside parentheses of function parameters or arguments.
+*
+* @name function-paren-newline
+* @memberof rules
+* @type {Array}
+* @default [ 'error', 'never' ]
+* @see [function-paren-newline]{@link https://eslint.org/docs/rules/function-paren-newline}
+*
+* @example
+* // Bad...
+* function foo(
+*     x,
+*     y
+* ) {
+*     return x + y;
+* }
+*
+* @example
+* // Bad...
+* console.log(
+*     1,
+*     2
+* );
+*
+* @example
+* // Good...
+* function foo( x, y ) {
+*     return x + y;
+* }
+*
+* @example
+* // Good...
+* console.log( 1, 2 );
+*/
+rules[ 'function-paren-newline' ] = [ 'error', 'never' ];
+
+/**
 * Do not blacklist any identifiers.
 *
 * @name id-blacklist
@@ -444,7 +549,7 @@ rules[ 'id-length' ] = [ 'warn', {
 * Do not impose draconian name restrictions.
 *
 * @name id-match
-* @memberof id-match
+* @memberof rules
 * @type {string}
 * @default 'off'
 * @see [id-match]{@link http://eslint.org/docs/rules/id-match}
@@ -452,10 +557,30 @@ rules[ 'id-length' ] = [ 'warn', {
 rules[ 'id-match' ] = 'off';
 
 /**
+* Do not allow a newline before an arrow function body.
+*
+* @name implicit-arrow-linebreak
+* @memberof rules
+* @type {Array}
+* @default [ 'error', 'beside' ]
+* @see [implicit-arrow-linebreak]{@link https://eslint.org/docs/rules/implicit-arrow-linebreak}
+*
+* @example
+* // Bad...
+* (foo) =>
+*     bar;
+*
+* @example
+* // Okay...
+* (foo) => bar;
+*/
+rules[ 'implicit-arrow-linebreak' ] = [ 'error', 'beside' ];
+
+/**
 * Require tabs, except for `case` statements.
 *
 * @name indent
-* @memberof indent
+* @memberof rules
 * @type {Array}
 * @see [indent]{@link http://eslint.org/docs/rules/indent}
 */
@@ -598,7 +723,36 @@ rules[ 'lines-around-comment' ] = [ 'off', {
 	'allowObjectStart': true,
 	'allowObjectEnd': true,
 	'allowArrayStart': true,
-	'allowArrayEnd': true
+	'allowArrayEnd': true,
+	'allowClassStart': true,
+	'allowClassEnd': true
+}];
+
+/**
+* Do not allow lines between class members.
+*
+* @name lines-between-class-members
+* @memberof rules
+* @type {Array}
+* @see [lines-between-class-members]{@link https://eslint.org/docs/rules/lines-between-class-members}
+*
+* @example
+* // Bad...
+* class Foo {
+*     bar() {}
+*
+*     baz() {}
+* }
+*
+* @example
+* // Okay...
+* class Foo {
+*     bar() {}
+*     baz() {}
+* }
+*/
+rules[ 'lines-between-class-members' ] = [ 'error', 'never', {
+	'exceptAfterSingleLine': false
 }];
 
 /**
@@ -647,6 +801,21 @@ rules[ 'max-lines' ] = [ 'warn', {
 }];
 
 /**
+* Warn when a function contains more than `200` source code lines.
+*
+* @name max-lines-per-function
+* @memberof rules
+* @type {Array}
+* @see [max-lines-per-function]{@link http://eslint.org/docs/rules/max-lines-per-function}
+*/
+rules[ 'max-lines-per-function' ] = [ 'warn', {
+	'max': 200,
+	'skipBlankLines': true,
+	'skipComments': true,
+	'IIFEs': true
+}];
+
+/**
 * Limit the number of nested callbacks.
 *
 * @name max-nested-callbacks
@@ -673,6 +842,19 @@ rules[ 'max-params' ] = [ 'error', {
 }];
 
 /**
+* Warn when a function has more than `100` statements.
+*
+* @name max-statements
+* @memberof rules
+* @type {Array}
+* @default [ 'warn', {'max': 100} ]
+* @see [max-statements]{@link http://eslint.org/docs/rules/max-statements}
+*/
+rules[ 'max-statements' ] = [ 'warn', {
+	'max': 100
+}];
+
+/**
 * Require only `1` statement per line.
 *
 * @name max-statements-per-line
@@ -686,17 +868,15 @@ rules[ 'max-statements-per-line' ] = [ 'error', {
 }];
 
 /**
-* Warn when a function has more than `100` statements.
+* Require multiline comments be "starred" blocks. NOTE: currently disabled as the rule only supports "aligned" starred blocks.
 *
-* @name max-statements
+* @name multiline-comment-style
 * @memberof rules
 * @type {Array}
-* @default [ 'warn', {'max': 100} ]
-* @see [max-statements]{@link http://eslint.org/docs/rules/max-statements}
+* @default [ 'off', 'starred-block' ]
+* @see [multiline-comment-style]{@link https://eslint.org/docs/rules/multiline-comment-style}
 */
-rules[ 'max-statements' ] = [ 'warn', {
-	'max': 100
-}];
+rules[ 'multiline-comment-style' ] = [ 'off', 'starred-block' ]; // TODO: enable once non-"aligned" blocks are supported
 
 /**
 * Allow same line or multiline ternary expressions.
@@ -728,8 +908,8 @@ rules[ 'new-cap' ] = [ 'error', {
 *
 * @name new-parens
 * @memberof rules
-* @type {string}
-* @default 'error'
+* @type {Array}
+* @default [ 'error', 'always' ]
 * @see [new-parens]{@link http://eslint.org/docs/rules/new-parens}
 *
 * @example
@@ -740,7 +920,7 @@ rules[ 'new-cap' ] = [ 'error', {
 * // Good...
 * var arr = new Array();
 */
-rules[ 'new-parens' ] = 'error';
+rules[ 'new-parens' ] = [ 'error', 'always' ];
 
 /**
 * Do not enforce newlines within chained calls.
@@ -888,10 +1068,10 @@ rules[ 'no-mixed-spaces-and-tabs' ] = 'error';
 * @name no-multiple-empty-lines
 * @memberof rules
 * @type {Array}
-* @default [ 'error', {'max':2} ]
+* @default [ 'off', {'max':2} ]
 * @see [no-multiple-empty-lines]{@link http://eslint.org/docs/rules/no-multiple-empty-lines}
 */
-rules[ 'no-multiple-empty-lines' ] = [ 'error', {
+rules[ 'no-multiple-empty-lines' ] = [ 'off', {
 	'max': 2,
 	'maxEOF': 1,
 	'maxBOF': 1
@@ -1119,7 +1299,7 @@ rules[ 'no-unneeded-ternary' ] = [ 'error', {
 * Never allow whitespace before a property.
 *
 * @name no-whitespace-before-property
-* @member rules
+* @memberof rules
 * @type {string}
 * @default 'error'
 * @see [no-whitespace-before-property]{@link http://eslint.org/docs/rules/no-whitespace-before-property}
@@ -1187,7 +1367,9 @@ rules[ 'object-curly-newline' ] = [ 'error', {
 		'minProperties': 1,
 		'consistent': true
 	},
-	'ObjectPattern': 'never'
+	'ObjectPattern': 'never',
+	'ImportDeclaration': 'never',
+	'ExportDeclaration': 'never'
 }];
 
 /**
@@ -1245,6 +1427,29 @@ rules[ 'object-property-newline' ] = [ 'error', {
 }];
 
 /**
+* Require multiple variable declarations per function or block.
+*
+* @name one-var
+* @memberof rules
+* @type {Array}
+* @see [one-var]{@link http://eslint.org/docs/rules/one-var}
+*
+* @example
+* // Bad...
+* var x, y;
+*
+* @example
+* // Good...
+* var x;
+* var y;
+*/
+rules[ 'one-var' ] = [ 'error', {
+	'var': 'never',
+	'let': 'never',
+	'const': 'never'
+}];
+
+/**
 * Do not require newlines around variable declarations.
 *
 * @name one-var-declaration-per-line
@@ -1268,29 +1473,6 @@ rules[ 'object-property-newline' ] = [ 'error', {
 * var y;
 */
 rules[ 'one-var-declaration-per-line' ] = 'off';
-
-/**
-* Require multiple variable declarations per function or block.
-*
-* @name one-var
-* @memberof rules
-* @type {Array}
-* @see [one-var]{@link http://eslint.org/docs/rules/one-var}
-*
-* @example
-* // Bad...
-* var x, y;
-*
-* @example
-* // Good...
-* var x;
-* var y;
-*/
-rules[ 'one-var' ] = [ 'error', {
-	'var': 'never',
-	'let': 'never',
-	'const': 'never'
-}];
 
 /**
 * Prefer operator shorthand.
@@ -1403,42 +1585,51 @@ rules[ 'padded-blocks' ] = [ 'error', 'never' ];
 *
 * @example
 * // Okay...
-* var x = 5;
-* var y = x * 3;
+* function foo() {
+*     var x = 5;
+*     var y = x * 3;
 *
-* return y;
+*     return y;
+* }
 *
 * @example
 * // Okay...
-* var x = 5;
-* var y = x * 3;
-* return y;
+* function foo( x ) {
+*     var x = 5;
+*     var y = x * 3;
+*     return y;
+* }
 */
 rules[ 'padding-line-between-statements' ] = [ 'error',
+
 	// Never allow a blank line before a directive...
 	{
 		'blankLine': 'never',
 		'prev': '*',
 		'next': 'directive'
 	},
+
 	// Always require a blank line after a directive...
 	{
 		'blankLine': 'always',
 		'prev': 'directive',
 		'next': '*'
 	},
+
 	// But allow directives to be grouped together...
 	{
 		'blankLine': 'any',
 		'prev': 'directive',
 		'next': 'directive'
 	},
+
 	// Allow discretion when inserting a blank line after `var` declarations...
 	{
 		'blankLine': 'any',
 		'prev': 'var',
 		'next': '*'
 	},
+
 	// Allow discretion when inserting a blank line before `return` statements...
 	{
 		'blankLine': 'any',
@@ -1446,6 +1637,17 @@ rules[ 'padding-line-between-statements' ] = [ 'error',
 		'next': 'return'
 	}
 ];
+
+/**
+* Do not require the use of object spread syntax when using `Object.assign`.
+*
+* @name prefer-object-spread
+* @memberof rules
+* @type {string}
+* @default 'off'
+* @see [prefer-object-spread]{@link https://eslint.org/docs/rules/prefer-object-spread}
+*/
+rules[ 'prefer-object-spread' ] = 'off';
 
 /**
 * Always quote object literal property names.
@@ -1518,7 +1720,6 @@ rules[ 'require-jsdoc' ] = [ 'error', {
 * @name semi
 * @memberof rules
 * @type {Array}
-* @default [ 'error', 'always' ]
 * @see [semi]{@link http://eslint.org/docs/rules/semi}
 *
 * @example
@@ -1529,7 +1730,9 @@ rules[ 'require-jsdoc' ] = [ 'error', {
 * // Good...
 * var x = 5;
 */
-rules[ 'semi' ] = [ 'error', 'always' ];
+rules[ 'semi' ] = [ 'error', 'always', {
+	'omitLastInOneLineBlock': false
+}];
 
 /**
 * Require a space after, but not before, a semicolon.
